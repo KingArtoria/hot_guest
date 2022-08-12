@@ -1,49 +1,42 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view>
-			<text class="title">{{title}}</text>
+	<view>
+		<view class="head">
+			<view class="head_1">
+				<image class="head_1_1" src="http://39.106.208.234/pic/img_/sy_suo@2x.png" />
+				<view class="head_1_2">地推 | 拉新 | 教育 | 跑量 | 阅读...</view>
+			</view>
+			<view class="head_2">
+				<image class="head_2_1" src="http://39.106.208.234/pic/img_/qiandao.png" />
+				<view class="head_2_2">签到</view>
+			</view>
+		</view>
+		<view class="content">
+			<view class="content_1">
+				<u-swiper :list="swiperList" height="200rpx" />
+			</view>
+			<view class="content_2">
+				<image class="content_2_1"/>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
+export default {
+	data() {
+		return {
+			swiperList: ['http://39.106.208.234/pic/img_/banner_3.png', 'http://39.106.208.234/pic/img_/banner_2.png', 'http://39.106.208.234/pic/img_/banner_1.png'],
 		}
+	},
+	onLoad() {
+
+	},
+	methods: {
+
 	}
+}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin: 200rpx auto 50rpx auto;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+<style lang="scss" scoped>
+@import './index.scss';
 </style>

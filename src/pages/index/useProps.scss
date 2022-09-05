@@ -1,0 +1,30 @@
+.content {
+  padding: 0 22rpx;
+  padding-top: 216rpx;
+  background: #f6f6f6;
+  min-height: 100vh;
+  .content_1 {
+    padding-bottom: 23rpx;
+    font-size: 24rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #b2b2b2;
+    line-height: 1;
+  }
+}
+.btn {
+  position: fixed;
+  bottom: 62rpx;
+  width: 700rpx;
+  height: 90rpx;
+  background: #0071fa;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}

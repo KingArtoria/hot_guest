@@ -52,7 +52,6 @@
 }
 .content {
   position: relative;
-  padding: 0 20rpx;
   .content_1 {
     width: 710rpx;
     margin: 0 auto;
@@ -60,5 +59,41 @@
     top: -40rpx;
     left: 0;
     right: 0;
+  }
+  .content_2 {
+    padding: 0 20rpx;
+    padding-top: 186rpx;
+    display: flex;
+    justify-content: space-between;
+    .content_2_1 {
+      width: 222rpx;
+      height: 115rpx;
+    }
+  }
+  .content_3 {
+    margin: 0 auto;
+    display: block;
+    margin-top: 22rpx;
+    height: 80rpx;
+    width: 710rpx;
+  }
+  .content_4 {
+    padding: 0 20rpx;
+    margin-top: 31rpx;
+    .content_4_1 {
+      width: 80rpx;
+      height: 80rpx;
+      margin-bottom: 27rpx;
+    }
+    .content_4_2 {
+      font-size: 24rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+  }
+  .content_5 {
+    background: #f7f4f8;
+    padding-top: 15rpx;
   }
 }

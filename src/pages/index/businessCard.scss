@@ -1,0 +1,33 @@
+.content {
+  background: #fafafa;
+  padding: 0 32rpx;
+  padding-top: 217rpx;
+  .content_1 {
+    margin-top: 29rpx;
+    margin-bottom: 46rpx;
+    display: flex;
+    .content_1_1 {
+      width: 146rpx;
+      height: 51rpx;
+      background: rgba($color: #317af6, $alpha: 0.15);
+      font-size: 26rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #317af6;
+      text-align: center;
+      line-height: 51rpx;
+      margin-right: 29rpx;
+    }
+  }
+  .content_2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    .content_2_1 {
+      width: 320rpx;
+      height: 203rpx;
+      box-shadow: 0px 0px 20rpx 0px rgba(0, 0, 0, 0.19);
+      border-radius: 15rpx;
+      margin-bottom: 42rpx;
+    }
+  }
+}

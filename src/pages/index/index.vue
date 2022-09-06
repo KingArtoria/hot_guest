@@ -15,9 +15,10 @@
 			<view class="content_1">
 				<u-swiper :list="swiperList" height="200rpx" />
 			</view>
-			<!-- 广告位置 -->
+			<!-- 功能区 -->
 			<view class="content_2">
-				<image class="content_2_1" v-for="(item, index) in advertisingImg" :key="index" :src="item" />
+				<image class="content_2_1" v-for="(item, index) in advertisingImg" :key="index" :src="item"
+					@click="goFunction(index)" />
 			</view>
 			<!-- 广告位入口 -->
 			<image class="content_3" src="http://39.106.208.234/pic/img_/sy_ggtf@2x.png" />
@@ -77,6 +78,16 @@ export default {
 			uni.navigateTo({
 				url: '/pages/index/check'
 			});
+		},
+		// 前往功能区
+		goFunction(index) {
+			switch (index) {
+				case 0:
+					uni.navigateTo({
+						url: '/pages/index/businessCard'
+					});
+					break;
+			}
 		},
 	},
 	onLoad() {

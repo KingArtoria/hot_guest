@@ -7,7 +7,9 @@
     { "path": "pages/index/search", "style": { "navigationStyle": "custom" } },
     { "path": "pages/index/check", "style": { "navigationStyle": "custom" } },
     { "path": "pages/index/exchangeRecords", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/useProps", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/index/useProps", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/index/businessCard", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/index/myCard", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

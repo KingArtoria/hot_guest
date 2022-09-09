@@ -9,7 +9,11 @@
     { "path": "pages/index/exchangeRecords", "style": { "navigationStyle": "custom" } },
     { "path": "pages/index/useProps", "style": { "navigationStyle": "custom" } },
     { "path": "pages/index/businessCard", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/myCard", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/index/myCard", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/index/platformTransaction", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/index/tradingRules", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/index/advertisingSpaceRental", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/index", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
@@ -18,7 +22,7 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
-    "color": "#fff",
+    "color": "#000",
     "selectedColor": "#1F73F1",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
@@ -28,6 +32,12 @@
         "iconPath": "static/shy_wx.png",
         "selectedIconPath": "static/shy_xz.png",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "static/gerenzx_wx.png",
+        "selectedIconPath": "static/gerenzx_xz.png",
+        "text": "我的"
       }
     ]
   }

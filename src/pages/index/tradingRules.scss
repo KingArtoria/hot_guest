@@ -1,0 +1,44 @@
+.content {
+  padding-top: 216rpx;
+  padding-bottom: 140rpx;
+  .content_1 {
+    width: 750rpx;
+  }
+}
+.btn {
+  width: 750rpx;
+  height: 140rpx;
+  background: #ffffff;
+  box-shadow: 0px 0px 38rpx 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  .btn_1 {
+    width: 300rpx;
+    height: 90rpx;
+    border: 3rpx solid #1f73f1;
+    border-radius: 45rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #1f73f1;
+  }
+  .btn_2 {
+    width: 300rpx;
+    height: 90rpx;
+    background: #1f73f1;
+    border-radius: 45rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #f5f5f5;
+  }
+}

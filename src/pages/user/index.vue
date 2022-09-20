@@ -5,7 +5,7 @@
       <view class="content_1">
         <!-- 个人信息 -->
         <view class="content_1_1">
-          <view class="content_1_1_1">
+          <view class="content_1_1_1" @click="goEditData">
             <image class="content_1_1_1_1" src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png" />
             <image class="content_1_1_1_2" src="http://39.106.208.234/pic/img_/xg.webp" />
           </view>
@@ -20,12 +20,12 @@
         </view>
         <!-- 选项卡 -->
         <view class="content_1_2">
-          <image class="content_1_2_1" :src="`${_url}daojshangc.webp`" />
-          <image class="content_1_2_1" :src="`${_url}wodeqianb.webp`" />
-          <image class="content_1_2_1" :src="`${_url}heika.webp`" />
+          <image class="content_1_2_1" :src="`${_url}daojshangc.webp`" @click="goProp" />
+          <image class="content_1_2_1" :src="`${_url}wodeqianb.webp`" @click="goWaller" />
+          <image class="content_1_2_1" :src="`${_url}heika.webp`" @click="goBlackCard" />
         </view>
         <!-- 开通会员 -->
-        <view class="content_1_3">
+        <view class="content_1_3" @click="goVip">
           <view class="content_1_3_1">开通会员立享超值特权</view>
           <view class="content_1_3_2">立即开通</view>
         </view>
@@ -94,6 +94,38 @@
 <script>
 import HY from '../../components/HY';
 export default {
+  methods: {
+    // 前往修改信息
+    goEditData() {
+      uni.navigateTo({
+        url: '/pages/user/editData',
+      });
+    },
+    // 前往道具商城
+    goProp() {
+      uni.navigateTo({
+        url: '/pages/user/prop',
+      });
+    },
+    // 前往钱包
+    goWaller() {
+      uni.navigateTo({
+        url: '/pages/user/wallet',
+      });
+    },
+    // 前往黑卡
+    goBlackCard() {
+      uni.navigateTo({
+        url: '/pages/user/blackCard',
+      });
+    },
+    // 前往会员
+    goVip() {
+      uni.navigateTo({
+        url: '/pages/user/vip',
+      });
+    },
+  },
   components: { HY },
 };
 </script>

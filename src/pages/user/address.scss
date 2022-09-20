@@ -1,0 +1,36 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 220rpx;
+  .content_1 {
+    width: 300rpx;
+    background: #ffffff;
+    max-height: calc(100vh - 220rpx);
+    overflow: auto;
+    .content_1_1 {
+      width: 300rpx;
+      height: 90rpx;
+      background: #f6f6f6;
+      font-size: 32rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #414141;
+      line-height: 90rpx;
+      padding-left: 66rpx;
+    }
+  }
+  .content_2 {
+    width: calc(100% - 300rpx);
+    max-height: calc(100vh - 220rpx);
+    overflow: auto;
+    .content_2_1 {
+      height: 90rpx;
+      font-size: 32rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #414141;
+      line-height: 90rpx;
+      padding-left: 85rpx;
+    }
+  }
+}

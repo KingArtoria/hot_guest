@@ -1,0 +1,29 @@
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30rpx;
+  background: #242324;
+  padding-top: 106rpx;
+  height: 193rpx;
+  position: fixed;
+  z-index: 5;
+  width: 100%;
+  .head_1 {
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    left: 30rpx;
+  }
+}
+.content {
+  background: #fff;
+  .content_1 {
+    background: url('http://39.106.208.234/pic/img_/hyzxbj.png') no-repeat;
+    background-size: 100%;
+    padding-top: 193rpx;
+    .content_1_1{
+      
+    }
+  }
+}

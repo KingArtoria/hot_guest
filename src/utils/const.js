@@ -44,3 +44,29 @@ export const PROPS_IMG = [
   { src: "http://39.106.208.234/pic/icon/bianse.png", name: "合作标题变色卡", info: "将合作信息标题变色", num: "350积分" },
   { src: "http://39.106.208.234/pic/icon/bianse.png", name: "合作标题变色卡", info: "将合作信息标题变色", num: "350积分" },
 ]
+// TODO 会员类型常量
+export const MEMBER_TYPE = [{ name: "普通会员" }, { name: "超级会员" }, { name: "企业会员" }]
+// TODO 会员卡片样式常量
+export const MEMBER_CARD = [
+  {
+    sizeColor: rgb(155, 102, 10),
+    btnColor: [rgb(147, 89, 9), rgb(155, 94, 10), rgb(255, 253, 232)],
+    tagColor: [rgb(255, 71, 24), rgb(255, 255, 255)],
+    border: rgb(205, 176, 132),
+    url: "http://39.106.208.234/pic/img_/huiyuan_kpthy.png"
+  },
+  {
+    sizeColor: rgb(255, 255, 255),
+    btnColor: [rgb(121, 116, 220), rgb(48, 48, 48), rgb(255, 239, 205)],
+    tagColor: [rgb(248, 108, 15), rgb(255, 255, 255)],
+    border: rgb(230, 188, 116),
+    url: "http://39.106.208.234/pic/img_/huiyuan_kchaojhuiy.png"
+  },
+  {
+    sizeColor: rgb(255, 209, 147),
+    btnColor: [rgb(42, 57, 115), rgb(24, 44, 77), 'linear-gradient(90deg, rgb(253, 226, 197) 0%, rgb(225, 160, 104) 100%)'],
+    tagColor: ['linear-gradient(90deg, rgb(213, 174, 146) 0%, rgb(229, 207, 187) 100%)', rgb(23, 43, 76)],
+    border: rgb(214, 174, 145),
+    url: "http://39.106.208.234/pic/img_/huiyuan_kqyhyuan.png"
+  },
+]

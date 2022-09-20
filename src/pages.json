@@ -13,7 +13,14 @@
     { "path": "pages/index/platformTransaction", "style": { "navigationStyle": "custom" } },
     { "path": "pages/index/tradingRules", "style": { "navigationStyle": "custom" } },
     { "path": "pages/index/advertisingSpaceRental", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/index", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/user/index", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/editData", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/school", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/address", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/prop", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/wallet", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/blackCard", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/vip", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

@@ -1,0 +1,131 @@
+.head {
+  height: 118rpx;
+  width: 100%;
+  background: #101010;
+  padding-bottom: 147rpx;
+}
+.content {
+  background: #101010;
+  .content_1 {
+    background: url('http://39.106.208.234/pic/img_/bg_heika.png') no-repeat;
+    height: 921rpx;
+    .content_1_1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30rpx;
+      .content_1_1_1,
+      .content_1_1_2,
+      .content_1_1_3 {
+        flex: 1;
+        .content_1_1_1_1 {
+          width: 40rpx;
+          height: 40rpx;
+        }
+      }
+      .content_1_1_2 {
+        text-align: center;
+        font-size: 30rpx;
+        font-family: PingFang SC;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 1;
+      }
+    }
+    .content_1_2 {
+      background: url('http://39.106.208.234/pic/img_/heiuka.png') no-repeat;
+      background-size: 100%;
+      width: 594rpx;
+      height: 396rpx;
+      margin: 0 auto;
+      margin-top: 281rpx;
+      position: relative;
+      .content_1_2_1 {
+        width: 91rpx;
+        height: 36rpx;
+        background: #484b50;
+        border-radius: 0px 10rpx 0px 25rpx;
+        line-height: 36rpx;
+        text-align: center;
+        font-size: 20rpx;
+        font-family: PingFang SC;
+        font-weight: 400;
+        color: #e9dca4;
+        position: absolute;
+        right: 24rpx;
+        top: 25rpx;
+      }
+      .content_1_2_2 {
+        display: flex;
+        align-items: flex-end;
+        position: absolute;
+        bottom: 88rpx;
+        left: 61rpx;
+        .content_1_2_2_1 {
+          font-size: 44rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          font-style: italic;
+          color: #ffeea6;
+          line-height: 1;
+        }
+        .content_1_2_2_2 {
+          font-size: 22rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          font-style: italic;
+          color: #ffeea6;
+        }
+      }
+    }
+    .content_1_3 {
+      display: block;
+      width: 332rpx;
+      height: 34rpx;
+      margin: 0 auto;
+      margin-top: 130rpx;
+    }
+  }
+  .content_2 {
+    .content_2_1 {
+      width: 690rpx;
+      height: 80rpx;
+      background: #131313;
+      border: 1rpx solid #cd9e71;
+      border-radius: 5rpx;
+      margin: 0 auto;
+      padding: 0 17rpx;
+      display: flex;
+      align-items: center;
+      margin-bottom: 40rpx;
+    }
+    .content_2_2 {
+      margin-top: 22rpx;
+      width: 510rpx;
+      height: 80rpx;
+      background: linear-gradient(90deg, #ffebd3 0%, #e1ad7d 100%);
+      border-radius: 40rpx;
+      margin: 0 auto;
+      font-size: 30rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #141414;
+      line-height: 80rpx;
+      text-align: center;
+    }
+  }
+  .content_3 {
+    width: 690rpx;
+    height: 939rpx;
+    display: block;
+    margin: 0 auto;
+    margin-top: 133rpx;
+  }
+  .content_4 {
+    width: 699rpx;
+    height: 1162rpx;
+    display: block;
+    margin: 0 auto;
+    margin-top: 91rpx;
+  }
+}

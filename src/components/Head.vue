@@ -49,7 +49,9 @@ export default {
       height: 32rpx;
     }
   }
-
+  .head_3 {
+    text-align: end;
+  }
   .head_2 {
     text-align: center;
     font-size: 36rpx;

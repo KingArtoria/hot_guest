@@ -237,3 +237,50 @@
     }
   }
 }
+.show {
+  width: 680rpx;
+  height: 884rpx;
+  background: url(http://39.106.208.234/pic/img_/kefu_tc.png) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  padding-top: 356rpx;
+  .show_1 {
+    margin-bottom: 30rpx;
+    text-align: center;
+    .show_1_1 {
+      font-size: 34rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      line-height: 1;
+      color: #212121;
+    }
+    .show_1_2 {
+      font-size: 34rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      line-height: 1;
+      color: #679fff;
+    }
+  }
+  .show_2 {
+    display: block;
+    margin: 0 auto;
+    width: 212rpx;
+    height: 212rpx;
+    margin-bottom: 32rpx;
+  }
+  .show_3 {
+    font-size: 30rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #939393;
+    line-height: 1;
+    text-align: center;
+  }
+}

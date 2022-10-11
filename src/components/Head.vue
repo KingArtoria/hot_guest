@@ -32,8 +32,8 @@ export default {
   justify-content: space-between;
   padding: 0 19rpx;
   align-items: center;
-  padding-top: 100rpx;
-  padding-bottom: 80rpx;
+  height: 180rpx;
+  padding-top: 20rpx;
   position: fixed;
   width: 100%;
   background: #fff;

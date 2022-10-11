@@ -33,10 +33,10 @@
       <!-- 选项卡*4 -->
       <view class="content_2">
         <view class="content_2_1">
-          <image class="content_2_1_1" :src="`${_url}wofabud.webp`" />
+          <image class="content_2_1_1" :src="`${_url}wofabud.webp`" @click="goMyPost" />
           <image class="content_2_1_2" :src="`${_url}shoucang.webp`" />
           <image class="content_2_1_3" :src="`${_url}daoju.webp`" />
-          <image class="content_2_1_4" :src="`${_url}danbaojil.webp`" />
+          <image class="content_2_1_4" :src="`${_url}danbaojil.webp`" @click="goGuaranteeRecord" />
         </view>
         <view class="content_2_2">
           <view class="content_2_2_1">我发布的</view>
@@ -50,9 +50,9 @@
         <view class="content_3_1">常用</view>
         <view class="content_3_2">
           <view class="content_3_2_1">
-            <image class="content_3_2_1_1" :src="`${_url}yewudy.webp`" />
+            <image class="content_3_2_1_1" :src="`${_url}yewudy.webp`" @click="goBusinessSubscription" />
             <image class="content_3_2_1_2" :src="`${_url}mingpian.webp`" />
-            <image class="content_3_2_1_3" :src="`${_url}yaoqing.webp`" />
+            <image class="content_3_2_1_3" :src="`${_url}yaoqing.webp`" @click="goInviteFriends" />
           </view>
           <view class="content_3_2_2">
             <view class="content_3_2_2_1">业务订阅</view>
@@ -65,11 +65,11 @@
       <view class="content_4">
         <view class="content_4_1">其他</view>
         <view class="content_4_2">
-          <view class="content_4_2_1">
+          <view class="content_4_2_1" @click="goVerified">
             <image class="content_4_2_1_1" :src="`${_url}shimrz.webp`" />
             <view class="content_4_2_1_6">实名认证</view>
           </view>
-          <view class="content_4_2_1">
+          <view class="content_4_2_1" @click="show = true">
             <image class="content_4_2_1_2" :src="`${_url}kefu.webp`" />
             <view class="content_4_2_1_6">联系客服</view>
           </view>
@@ -88,12 +88,28 @@
         </view>
       </view>
     </view>
+    <!-- 客服 -->
+    <u-overlay :show="show" @click="show = false">
+      <view class="show">
+        <view class="show_1">
+          <text class="show_1_1">商务合作：</text>
+          <text class="show_1_2">18511169119</text>
+        </view>
+        <image class="show_2" src="http://39.106.208.234/pic/img_/rwmsw.png" />
+        <view class="show_3">商务合作</view>
+      </view>
+    </u-overlay>
   </view>
 </template>
 
 <script>
 import HY from '../../components/HY';
 export default {
+  data() {
+    return {
+      /* 展示客服 */ show: false,
+    };
+  },
   methods: {
     // 前往修改信息
     goEditData() {
@@ -123,6 +139,36 @@ export default {
     goVip() {
       uni.navigateTo({
         url: '/pages/user/vip',
+      });
+    },
+    // 前往我的发布
+    goMyPost() {
+      uni.navigateTo({
+        url: '/pages/user/myPost',
+      });
+    },
+    // 前往担保记录
+    goGuaranteeRecord() {
+      uni.navigateTo({
+        url: '/pages/user/guaranteeRecord',
+      });
+    },
+    // 前往业务订阅
+    goBusinessSubscription() {
+      uni.navigateTo({
+        url: '/pages/user/businessSubscription',
+      });
+    },
+    // 前往邀请好友
+    goInviteFriends() {
+      uni.navigateTo({
+        url: '/pages/user/inviteFriends',
+      });
+    },
+    // 前往实名认证
+    goVerified() {
+      uni.navigateTo({
+        url: '/pages/user/verified',
       });
     },
   },

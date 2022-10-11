@@ -20,7 +20,12 @@
     { "path": "pages/user/prop", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/wallet", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/blackCard", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/vip", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/user/vip", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/myPost", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/guaranteeRecord", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/businessSubscription", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/inviteFriends", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/verified", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

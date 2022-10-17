@@ -9,7 +9,7 @@
         <view class="content_2_1">账号安全</view>
         <image class="content_2_2" src="http://39.106.208.234/pic/img/enter_jt.png" />
       </view>
-      <view class="content_2">
+      <view class="content_2" @click="goAboutUs">
         <view class="content_2_1">关于火客</view>
         <image class="content_2_2" src="http://39.106.208.234/pic/img/enter_jt.png" />
       </view>
@@ -37,6 +37,13 @@ export default {
         url: '/pages/user/accountSafety',
       });
     },
+    // 前往关于我们
+    goAboutUs() {
+      uni.navigateTo({
+        url: '/pages/user/aboutUs',
+      });
+    },
+    // 前往服务协议
   },
   components: { Head },
 };

@@ -30,7 +30,8 @@
     { "path": "pages/user/settings", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/accountSafety", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/modifyPhoneNumber", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/changePassword", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/user/changePassword", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/aboutUs", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

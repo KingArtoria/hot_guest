@@ -17,8 +17,12 @@
         </u-input>
       </view>
       <view class="content_1">
-        <view class="content_1_1">新手机号</view>
-        <u-input border="none" fontSize="28rpx" disabledColor="#fff" inputAlign="end" color="#317AF6" placeholder="请输入新手机号" />
+        <view class="content_1_1">新密码</view>
+        <u-input border="none" fontSize="28rpx" disabledColor="#fff" inputAlign="end" color="#317AF6" placeholder="请输入新密码" />
+      </view>
+      <view class="content_1">
+        <view class="content_1_1">确认密码</view>
+        <u-input border="none" fontSize="28rpx" disabledColor="#fff" inputAlign="end" color="#317AF6" placeholder="请确认密码" />
       </view>
       <!-- 提交按钮 -->
       <view class="content_2">提交</view>
@@ -29,6 +33,11 @@
 <script>
 import Head from '../../components/Head';
 export default {
+  data() {
+    return {
+      tips: '获取验证码',
+    };
+  },
   components: {
     Head,
   },

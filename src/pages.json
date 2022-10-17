@@ -25,7 +25,12 @@
     { "path": "pages/user/guaranteeRecord", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/businessSubscription", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/inviteFriends", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/verified", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/user/verified", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/feedback", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/settings", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/accountSafety", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/modifyPhoneNumber", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/changePassword", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

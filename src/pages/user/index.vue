@@ -73,11 +73,11 @@
             <image class="content_4_2_1_2" :src="`${_url}kefu.webp`" />
             <view class="content_4_2_1_6">联系客服</view>
           </view>
-          <view class="content_4_2_1">
+          <view class="content_4_2_1" @click="goFeedback">
             <image class="content_4_2_1_3" :src="`${_url}yijinfk.webp`" />
             <view class="content_4_2_1_6">意见反馈</view>
           </view>
-          <view class="content_4_2_1">
+          <view class="content_4_2_1" @click="goSettings">
             <image class="content_4_2_1_4" :src="`${_url}shezhi.webp`" />
             <view class="content_4_2_1_6">设置</view>
           </view>
@@ -169,6 +169,18 @@ export default {
     goVerified() {
       uni.navigateTo({
         url: '/pages/user/verified',
+      });
+    },
+    // 前往意见反馈
+    goFeedback() {
+      uni.navigateTo({
+        url: '/pages/user/feedback',
+      });
+    },
+    // 前往设置
+    goSettings() {
+      uni.navigateTo({
+        url: '/pages/user/settings',
       });
     },
   },

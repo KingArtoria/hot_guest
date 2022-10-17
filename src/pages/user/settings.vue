@@ -13,7 +13,7 @@
         <view class="content_2_1">关于火客</view>
         <image class="content_2_2" src="http://39.106.208.234/pic/img/enter_jt.png" />
       </view>
-      <view class="content_2">
+      <view class="content_2" @click="goServiceAgreement">
         <view class="content_2_1">服务协议</view>
         <image class="content_2_2" src="http://39.106.208.234/pic/img/enter_jt.png" />
       </view>
@@ -44,6 +44,11 @@ export default {
       });
     },
     // 前往服务协议
+    goServiceAgreement() {
+      uni.navigateTo({
+        url: '/pages/user/serviceAgreement',
+      });
+    },
   },
   components: { Head },
 };

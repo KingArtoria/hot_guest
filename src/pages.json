@@ -34,7 +34,9 @@
     { "path": "pages/user/aboutUs", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/serviceAgreement", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/privacyPolicy", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/contacts/index", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/contacts/index", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/contacts/buddyList", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/contacts/addFriend", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

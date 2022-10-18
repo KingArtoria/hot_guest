@@ -17,7 +17,7 @@
         <u-input border="none" fontSize="28rpx" placeholder="搜索人脉" />
       </view>
       <!-- 好友列表 -->
-      <view class="content_2">
+      <view class="content_2" @click="goFriendList">
         <view class="content_2_1">
           <image class="content_2_1_1" src="http://39.106.208.234/pic/img_/hylb2.png" />
           <view class="content_2_1_2">好友列表（30）</view>
@@ -71,6 +71,14 @@
 import FriendRequest from '@/components/FriendRequest';
 import Contacts from '@/components/Contacts';
 export default {
+  methods: {
+    // 前往好友列表
+    goFriendList() {
+      uni.navigateTo({
+        url: '/pages/contacts/buddyList',
+      });
+    },
+  },
   components: { FriendRequest, Contacts },
 };
 </script>

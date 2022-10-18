@@ -32,7 +32,9 @@
     { "path": "pages/user/modifyPhoneNumber", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/changePassword", "style": { "navigationStyle": "custom" } },
     { "path": "pages/user/aboutUs", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/serviceAgreement", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/user/serviceAgreement", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/privacyPolicy", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/contacts/index", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
@@ -51,6 +53,12 @@
         "iconPath": "static/shy_wx.png",
         "selectedIconPath": "static/shy_xz.png",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/contacts/index",
+        "iconPath": "static/renmai_wx.png",
+        "selectedIconPath": "static/renmai_xz.png",
+        "text": "人脉"
       },
       {
         "pagePath": "pages/user/index",

@@ -1,7 +1,7 @@
 <template>
   <view>
     <Head title="好友列表" style="background: #f6f6f6">
-      <image slot="head_3_1" src="http://39.106.208.234/pic/img_/jiahaoy.png" :style="slotStyle" />
+      <image slot="head_3_1" src="http://39.106.208.234/pic/img_/jiahaoy.png" :style="slotStyle" @click="goAddFriend" />
     </Head>
     <view class="content">
       <!-- 搜索框 -->
@@ -55,6 +55,14 @@ export default {
         ],
       ],
     };
+  },
+  methods: {
+    // 前往添加好友
+    goAddFriend() {
+      uni.navigateTo({
+        url: '/pages/contacts/addFriend',
+      });
+    },
   },
   components: { Head },
 };

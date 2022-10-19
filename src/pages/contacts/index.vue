@@ -5,7 +5,7 @@
       <view class="head_1">
         <view class="head_1_1" />
         <view class="head_1_2">人脉</view>
-        <view class="head_1_3">
+        <view class="head_1_3" @click="goAddFriend">
           <image class="head_1_3_1" src="http://39.106.208.234/pic/img_/tianjia2.png" />
         </view>
       </view>
@@ -76,6 +76,12 @@ export default {
     goFriendList() {
       uni.navigateTo({
         url: '/pages/contacts/buddyList',
+      });
+    },
+    // 前往添加好友
+    goAddFriend() {
+      uni.navigateTo({
+        url: '/pages/contacts/addFriend',
       });
     },
   },

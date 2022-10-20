@@ -48,7 +48,7 @@
             <image class="content_4_1_2_2" src="http://39.106.208.234/pic/img_/jinr.png" />
           </view>
         </view>
-        <FriendRequest />
+        <FriendRequest @click="goPersonal" />
       </view>
       <!-- Tabs -->
       <view class="content_5">
@@ -79,9 +79,15 @@ export default {
       });
     },
     // 前往添加好友
-    goAddFriend() {
+    goAddFriend() { 
       uni.navigateTo({
         url: '/pages/contacts/addFriend',
+      });
+    },
+    // 前往好友个人页
+    goPersonal() {
+      uni.navigateTo({
+        url: '/pages/contacts/personal',
       });
     },
   },

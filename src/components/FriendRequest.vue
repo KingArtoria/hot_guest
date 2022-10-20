@@ -1,5 +1,5 @@
 <template>
-  <view class="fr">
+  <view class="fr" @click="click">
     <view class="fr_1">
       <image class="fr_1_1" src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png" />
       <view class="fr_1_2">
@@ -20,7 +20,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    click() {
+      this.$emit('click');
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

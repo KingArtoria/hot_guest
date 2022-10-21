@@ -38,7 +38,8 @@
     { "path": "pages/contacts/buddyList", "style": { "navigationStyle": "custom" } },
     { "path": "pages/contacts/addFriend", "style": { "navigationStyle": "custom" } },
     { "path": "pages/contacts/addFriendAction", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/contacts/personal", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/contacts/personal", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/index/demo", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

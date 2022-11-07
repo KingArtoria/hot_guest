@@ -1,6 +1,7 @@
 // TODO 广告区图片常量
 export const ADVERTISING_IMG = [
   'http://39.106.208.234/pic/img_/sahngwump.png',
+  'http://39.106.208.234/pic/img_/qiyechaxun.png',
   'http://39.106.208.234/pic/img_/pingtjy.png',
 ]
 // TODO 宫格常量
@@ -81,4 +82,37 @@ export const MEMBER_CARD = [
     info: "每月送道具卡(置顶卡*1、变色卡*1、超级置顶卡*1)",
     price: 3998
   },
+]
+// TODO 企业信用
+export let companyCredit = [
+  { num: 0, src: 'http://39.106.208.234/pic/img/ktgg_icon_red.png', title: '开庭公告' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/caipws_icon_red.png', title: '裁判文书' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/fygg_icon_red.png', title: '法院公告' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/xzcf_icon_red.png', title: '行政处罚' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/swwf_icon_red.png', title: '税务违法' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/pcgg_icon_red.png', title: '破产公告' },
+]
+// TODO 经营信息常量
+export const businessInfo = [
+  { num: 0, src: 'http://39.106.208.234/pic/img/ztb_icon_red.png', title: '招投标' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/jzs_icon_red.png', title: '建造师' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/zzzs_icon_red.png', title: '资质证书' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/zpxx_icon_red.png', title: '招聘信息' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/swpj_icon_red.png', title: '税务评级' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/jckxy_icon_red.png', title: '进出口信用' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/wxgzh_icon_red.png', title: '微信公众号' },
+]
+// TODO 知识产权常量
+export const intellectualProperty = [
+  { num: 0, src: 'http://39.106.208.234/pic/img/sbxx_icon_gre.png', title: '商标信息' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/wzba_icon_gre.png', title: '网站备案' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/rjzzq_icon_gre.png', title: '软件著作权' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/zlxx_icon_gre.png', title: '专利信息' },
+]
+// TODO 企业背景常量
+export const companyBackground = [
+  { num: 0, src: 'http://39.106.208.234/pic/img/zycy_icon_blue.png', title: '主要成员' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/gdxx_icon_blue.png', title: '股东信息' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/dwtz_icon_blue.png', title: '对外投资' },
+  { num: 0, src: 'http://39.106.208.234/pic/img/fzjg_icon_blue.png', title: '分支机构' },
 ]

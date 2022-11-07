@@ -23,12 +23,24 @@
       <image class="content_3" src="http://39.106.208.234/pic/img_/sy_ggtf@2x.png" @click="goAdvertisingSpaceRental" />
       <!-- 宫格 -->
       <view class="content_4">
-        <u-grid :border="false" col="5">
-          <u-grid-item v-for="(item, index) in gridImg" :key="index" style="margin-bottom: 35rpx" :name="item.url">
-            <image class="content_4_1" :src="item.src" />
-            <text class="content_4_2">{{ item.text }}</text>
-          </u-grid-item>
-        </u-grid>
+        <swiper class="swiper" style="height: 358rpx" indicator-dots>
+          <swiper-item>
+            <u-grid :border="false" col="5">
+              <u-grid-item v-for="(item, index) in gridImg" :key="index" style="margin-bottom: 35rpx" :name="item.url">
+                <image class="content_4_1" :src="item.src" />
+                <text class="content_4_2">{{ item.text }}</text>
+              </u-grid-item>
+            </u-grid>
+          </swiper-item>
+          <swiper-item>
+            <u-grid :border="false" col="5">
+              <u-grid-item v-for="(item, index) in gridImg" :key="index" style="margin-bottom: 35rpx" :name="item.url">
+                <image class="content_4_1" :src="item.src" />
+                <text class="content_4_2">{{ item.text }}</text>
+              </u-grid-item>
+            </u-grid>
+          </swiper-item>
+        </swiper>
       </view>
       <!-- 标签 -->
       <u-sticky bgColor="#fff" style="padding: 0 20rpx" :customNavHeight="0" :offsetTop="0">
@@ -86,6 +98,11 @@ export default {
           });
           break;
         case 1:
+          uni.navigateTo({
+            url: '/pages/enterprise/index',
+          });
+          break;
+        case 2:
           uni.navigateTo({
             url: '/pages/index/platformTransaction',
           });

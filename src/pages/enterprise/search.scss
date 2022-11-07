@@ -1,0 +1,48 @@
+.head {
+  width: 750rpx;
+  height: 180rpx;
+  background: #0178ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20rpx;
+  padding-right: 22rpx;
+  padding-top: 77rpx;
+  position: fixed;
+  .head_1 {
+    width: 40rpx;
+    height: 40rpx;
+  }
+  .head_2 {
+    background: url('http://39.106.208.234/pic/img/cqy_ss_lb.png') no-repeat;
+    background-size: 100%;
+    width: 645rpx;
+    height: 88rpx;
+    padding-left: 82rpx;
+    padding-right: 22rpx;
+  }
+}
+.content {
+  padding-top: 180rpx;
+  background: #f6f6f6;
+  height: 100vh;
+  .content_1 {
+    height: 125rpx;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    .content_1_1 {
+      margin-left: 23rpx;
+      margin-right: 11rpx;
+      width: 8rpx;
+      height: 30rpx;
+    }
+    .content_1_2 {
+      font-size: 32rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #333333;
+      line-height: 1;
+    }
+  }
+}

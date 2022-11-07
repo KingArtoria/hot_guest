@@ -39,7 +39,14 @@
     { "path": "pages/contacts/addFriend", "style": { "navigationStyle": "custom" } },
     { "path": "pages/contacts/addFriendAction", "style": { "navigationStyle": "custom" } },
     { "path": "pages/contacts/personal", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/demo", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/index/demo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/news/index", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/news/privateChat", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/index", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/search", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
+    { "path": "pages/enterprise/info", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/adjudicativeDocument", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
+    { "path": "pages/enterprise/judgmentDocumentInfo", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
@@ -64,6 +71,12 @@
         "iconPath": "static/renmai_wx.png",
         "selectedIconPath": "static/renmai_xz.png",
         "text": "人脉"
+      },
+      {
+        "pagePath": "pages/news/index",
+        "iconPath": "static/xiaoxi_wx.png",
+        "selectedIconPath": "static/xiaoxi_xz.png",
+        "text": "消息"
       },
       {
         "pagePath": "pages/user/index",

@@ -6,7 +6,7 @@
       <!-- 宫格 -->
       <view class="lattice_2">
         <!-- 单个 -->
-        <view class="lattice_2_1" v-for="(item, index) in latticeArray" :key="index">
+        <view class="lattice_2_1" v-for="(item, index) in latticeArray" :key="index" @click="latticeClick(item)">
           <!-- 宫格数量 -->
           <view class="lattice_2_1_1" :style="`color:${labelColor}`">{{ item.num }}</view>
           <!-- 宫格图标 -->
@@ -33,6 +33,12 @@ export default {
     labelColor: {
       type: String,
       default: '',
+    },
+  },
+  methods: {
+    // 单击回调
+    latticeClick(item) {
+      this.$emit('latticeClick', item.function);
     },
   },
 };

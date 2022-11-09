@@ -2,7 +2,7 @@
   <view>
     <view class="document" v-for="(item, index) in data" :key="index" @click="document(item)">
       <!-- 标题 -->
-      <view class="document_1">{{ item.case_name }}</view>
+      <view class="document_1" :style="`color:${color}`">{{ item.case_name || item.name || item.notice_type || item.case_type || item.honor_level || item.tax_name }}</view>
       <!-- 附件 -->
       <view class="document_2" v-for="(item2, index2) in item.kv" :key="index2">{{ item2.key }}：{{ item2.value }}</view>
     </view>
@@ -15,6 +15,10 @@ export default {
     data: {
       type: Array,
       default: () => [],
+    },
+    color: {
+      type: String,
+      default: '#333',
     },
   },
   methods: {

@@ -46,7 +46,20 @@
     { "path": "pages/enterprise/search", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
     { "path": "pages/enterprise/info", "style": { "navigationStyle": "custom" } },
     { "path": "pages/enterprise/adjudicativeDocument", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/judgmentDocumentInfo", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/enterprise/judgmentDocumentInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/administrativePenalty", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
+    { "path": "pages/enterprise/administrativePenaltyInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/courtNotice", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
+    { "path": "pages/enterprise/courtNoticeInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/trialAnnouncement", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
+    { "path": "pages/enterprise/trialAnnouncementInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/qualification", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
+    { "path": "pages/enterprise/personnelCertificate", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
+    { "path": "pages/enterprise/enterprisePerformance", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
+    { "path": "pages/enterprise/personnelCertificateInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/honorAward", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/taxViolation", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/taxViolationInfo", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

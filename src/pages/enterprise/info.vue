@@ -34,21 +34,21 @@
             <view class="content_2_2_1_2">{{ data.company_judicial_doc_count > 99 ? '99+' : data.company_judicial_doc_count }}条</view>
           </view>
           <!-- 单个盒子 -->
-          <view class="content_2_2_1">
+          <view class="content_2_2_1" @click="toAdministrativePenalty">
             <!-- 标题 -->
             <view class="content_2_2_1_1">行政处罚</view>
             <!-- 数量 -->
             <view class="content_2_2_1_2">{{ data.administrative_penalize_count > 99 ? '99+' : data.administrative_penalize_count }}条</view>
           </view>
           <!-- 单个盒子 -->
-          <view class="content_2_2_1">
+          <view class="content_2_2_1" @click="toCourtNotice">
             <!-- 标题 -->
             <view class="content_2_2_1_1">法院公告</view>
             <!-- 数量 -->
             <view class="content_2_2_1_2">{{ data.court_notice_count > 99 ? '99+' : data.court_notice_count }}条</view>
           </view>
           <!-- 单个盒子 -->
-          <view class="content_2_2_1">
+          <view class="content_2_2_1" @click="toTrialAnnouncement">
             <!-- 标题 -->
             <view class="content_2_2_1_1">开庭公告</view>
             <!-- 数量 -->
@@ -59,7 +59,7 @@
       <!-- 荣誉 -->
       <view class="content_3">
         <!-- 单个荣誉 -->
-        <view class="content_3_1">
+        <view class="content_3_1" @click="toEnterpriseAchievement">
           <!-- 左侧 -->
           <image class="content_3_1_1" src="http://39.106.208.234/pic/img/qiyyj_icon.png" />
           <!-- 右侧 -->
@@ -71,12 +71,12 @@
               <!-- 标题 -->
               <view class="content_3_1_2_2_1">总额：</view>
               <!-- 数量 -->
-              <view class="content_3_1_2_2_2">{{ data.winning_bid_money_new }}万元</view>
+              <view class="content_3_1_2_2_2">{{ data.winning_bid_money_new }}</view>
             </view>
           </view>
         </view>
         <!-- 单个荣誉 -->
-        <view class="content_3_1">
+        <view class="content_3_1" @click="toQualification">
           <!-- 左侧 -->
           <image class="content_3_1_1" src="http://39.106.208.234/pic/img/qiyzz_icon.png" />
           <!-- 右侧 -->
@@ -93,7 +93,7 @@
           </view>
         </view>
         <!-- 单个荣誉 -->
-        <view class="content_3_1">
+        <view class="content_3_1" @click="toPersonnelCertificate">
           <!-- 左侧 -->
           <image class="content_3_1_1" src="http://39.106.208.234/pic/img/ryzs_icon.png" />
           <!-- 右侧 -->
@@ -110,7 +110,7 @@
           </view>
         </view>
         <!-- 单个荣誉 -->
-        <view class="content_3_1">
+        <view class="content_3_1" @click="toHonorAward">
           <!-- 左侧 -->
           <image class="content_3_1_1" src="http://39.106.208.234/pic/img/hjry_icon.png" />
           <!-- 右侧 -->
@@ -130,7 +130,7 @@
       <!-- 企业信用 -->
       <view class="content_4">
         <!-- 宫格列表 -->
-        <Lattice title="企业信用" :latticeArray="corporate" labelColor="#E24E30" />
+        <Lattice title="企业信用" :latticeArray="corporate" labelColor="#E24E30" @latticeClick="latticeClick" />
       </view>
       <!-- 经营信息 -->
       <view class="content_4">
@@ -227,21 +227,27 @@ export default {
       // 开庭公告
       let n_o_c_h_i_t_c = data.notice_of_court_hearing_info_table_count;
       this.corporate[0].num = n_o_c_h_i_t_c > 99 ? '99+' : n_o_c_h_i_t_c;
+      this.corporate[0].function = 'toTrialAnnouncement';
       // 裁判文书
       let c_j_d_c = data.company_judicial_doc_count;
       this.corporate[1].num = c_j_d_c > 99 ? '99+' : c_j_d_c;
+      this.corporate[1].function = 'toJudicialDoc';
       // 法院公告
       let c_n_c = data.court_notice_count;
       this.corporate[2].num = c_n_c > 99 ? '99+' : c_n_c;
+      this.corporate[2].function = 'toCourtNotice';
       // 行政处罚
       let a_p_c = data.administrative_penalize_count;
       this.corporate[3].num = a_p_c > 99 ? '99+' : a_p_c;
+      this.corporate[3].function = 'toAdministrativePenalty';
       // 税务违法
       let c_t_r_v_c = data.company_tax_revenue_violation_count;
       this.corporate[4].num = c_t_r_v_c > 99 ? '99+' : c_t_r_v_c;
+      this.corporate[4].function = 'toTaxViolation';
       // 破产公告
       let b_n_c = data.broke_notice_count;
       this.corporate[5].num = b_n_c > 99 ? '99+' : b_n_c;
+      // this.corporate[1].function = 'toJudicialDoc';
     },
     // 经营信息赋值
     businessData() {
@@ -304,6 +310,58 @@ export default {
     toJudicialDoc() {
       uni.navigateTo({
         url: `/pages/enterprise/adjudicativeDocument?company=${this.op.company}`,
+      });
+    },
+    // 前往行政处罚
+    toAdministrativePenalty() {
+      uni.navigateTo({
+        url: `/pages/enterprise/administrativePenalty?company=${this.op.company}`,
+      });
+    },
+    // 前往法院公告
+    toCourtNotice() {
+      uni.navigateTo({
+        url: `/pages/enterprise/courtNotice?company=${this.op.company}`,
+      });
+    },
+    // 前往开庭公告
+    toTrialAnnouncement() {
+      uni.navigateTo({
+        url: `/pages/enterprise/trialAnnouncement?company=${this.op.company}`,
+      });
+    },
+    // 前往企业业绩
+    toEnterpriseAchievement() {
+      uni.navigateTo({
+        url: `/pages/enterprise/enterprisePerformance?company=${this.op.company}`,
+      });
+    },
+    // 前往企业资质
+    toQualification() {
+      uni.navigateTo({
+        url: `/pages/enterprise/qualification?company=${this.op.company}`,
+      });
+    },
+    // 前往人员证书
+    toPersonnelCertificate() {
+      uni.navigateTo({
+        url: `/pages/enterprise/personnelCertificate?company=${this.op.company}`,
+      });
+    },
+    // 前往荣誉奖项
+    toHonorAward() {
+      uni.navigateTo({
+        url: `/pages/enterprise/honorAward?company=${this.op.company}`,
+      });
+    },
+    // 宫格的点击事件
+    latticeClick(item) {
+      this[item]();
+    },
+    // 前往税务违法
+    toTaxViolation() {
+      uni.navigateTo({
+        url: `/pages/enterprise/taxViolation?company=${this.op.company}`,
       });
     },
   },

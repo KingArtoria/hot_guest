@@ -1,0 +1,24 @@
+.content {
+  padding-top: 180rpx;
+  background: #f6f6f6;
+  min-height: 100vh;
+  .content_1 {
+    padding: 36rpx 30rpx;
+    background: #fff;
+    margin-bottom: 12rpx;
+    .content_1_1 {
+      font-size: 34rpx;
+      font-family: PingFangSC;
+      font-weight: 400;
+      color: #333333;
+      line-height: 50rpx;
+    }
+    .content_1_2 {
+      font-size: 28rpx;
+      font-family: PingFangSC;
+      font-weight: 400;
+      color: #666666;
+      line-height: 64rpx;
+    }
+  }
+}

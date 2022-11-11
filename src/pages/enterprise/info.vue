@@ -135,17 +135,17 @@
       <!-- 经营信息 -->
       <view class="content_4">
         <!-- 宫格列表 -->
-        <Lattice title="经营信息" :latticeArray="business" labelColor="#EF6A2C" />
+        <Lattice title="经营信息" :latticeArray="business" labelColor="#EF6A2C" @latticeClick="latticeClick" />
       </view>
       <!-- 知识产权 -->
       <view class="content_4">
         <!-- 宫格列表 -->
-        <Lattice title="知识产权" :latticeArray="intellectual" labelColor="#35AE6A" />
+        <Lattice title="知识产权" :latticeArray="intellectual" labelColor="#35AE6A" @latticeClick="latticeClick" />
       </view>
       <!-- 企业背景 -->
       <view class="content_4">
         <!-- 宫格列表 -->
-        <Lattice title="企业背景" :latticeArray="background" labelColor="#0D86FF" />
+        <Lattice title="企业背景" :latticeArray="background" labelColor="#0D86FF" @latticeClick="latticeClick" />
       </view>
     </view>
   </view>
@@ -247,7 +247,7 @@ export default {
       // 破产公告
       let b_n_c = data.broke_notice_count;
       this.corporate[5].num = b_n_c > 99 ? '99+' : b_n_c;
-      // this.corporate[1].function = 'toJudicialDoc';
+      this.corporate[5].function = 'toBankruptcyNotice';
     },
     // 经营信息赋值
     businessData() {
@@ -255,24 +255,31 @@ export default {
       // 招投标
       let t_n = data.tender_num;
       this.business[0].num = t_n > 99 ? '99+' : t_n;
+      this.business[0].function = 'toEnterpriseAchievement';
       // 建造师
       let a_i_t_c = data.architect_info_table_count;
       this.business[1].num = a_i_t_c > 99 ? '99+' : a_i_t_c;
-      // 资质证书1
+      this.business[1].function = 'toPersonnelCertificate';
+      // 资质证书
       let v_c_i_t_c = data.various_certificates_info_table_count;
       this.business[2].num = v_c_i_t_c > 99 ? '99+' : v_c_i_t_c;
+      this.business[2].function = 'toQualification';
       // 招聘信息
       let r_i_t_c = data.recruit_info_table_count;
       this.business[3].num = r_i_t_c > 99 ? '99+' : r_i_t_c;
+      this.business[3].function = 'toJobOffers';
       // 税务评级
       let t_r_i_t_c = data.tax_rating_info_table_count;
       this.business[4].num = t_r_i_t_c > 99 ? '99+' : t_r_i_t_c;
+      this.business[4].function = 'toTaxRating';
       // 进出口信用
       let i_e_c_i_t_c = data.import_export_credit_info_table_count;
       this.business[5].num = i_e_c_i_t_c > 99 ? '99+' : i_e_c_i_t_c;
+      this.business[5].function = 'toImportAndExportCredit';
       // 微信公众号
       let w_p_n_i_t_c = data.wechat_public_number_info_table_count;
       this.business[6].num = w_p_n_i_t_c > 99 ? '99+' : w_p_n_i_t_c;
+      this.business[6].function = 'toWeChatPublicAccount';
     },
     // 知识产权赋值
     intellectualData() {
@@ -280,15 +287,19 @@ export default {
       // 商标信息
       let t_i_i_t_c = data.trademark_information_info_table_count;
       this.intellectual[0].num = t_i_i_t_c > 99 ? '99+' : t_i_i_t_c;
+      this.intellectual[0].function = 'toTrademarkInfo';
       // 网站备案
       let w_f_i_t_c = data.website_filing_info_table_count;
       this.intellectual[1].num = w_f_i_t_c > 99 ? '99+' : w_f_i_t_c;
+      this.intellectual[1].function = 'toWebsiteFiling';
       // 软件著作权
       let s_c_i_t_c = data.software_copyright_info_table_count;
       this.intellectual[2].num = s_c_i_t_c > 99 ? '99+' : s_c_i_t_c;
+      this.intellectual[2].function = 'toSoftwareCopyright';
       // 专利信息
       let e_i_t_c = data.enterprise_info_table_count;
       this.intellectual[3].num = e_i_t_c > 99 ? '99+' : e_i_t_c;
+      this.intellectual[3].function = 'toPatentInfo';
     },
     // 企业背景赋值
     backgroundData() {
@@ -296,15 +307,19 @@ export default {
       // 主要成员
       let c_p_c = data.company_people_count;
       this.background[0].num = c_p_c > 99 ? '99+' : c_p_c;
+      this.background[0].function = 'toKeyMember';
       // 股东信息
       let c_g_i_c = data.company_gudong_info_count;
       this.background[1].num = c_g_i_c > 99 ? '99+' : c_g_i_c;
+      this.background[1].function = 'toShareholderInfo';
       // 对外投资
       let c_d_i_c = data.company_duiwai_info_count;
       this.background[2].num = c_d_i_c > 99 ? '99+' : c_d_i_c;
+      this.background[2].function = 'toForeignInvestment';
       // 分支机构
       let c_b_c = data.company_branch_count;
       this.background[3].num = c_b_c > 99 ? '99+' : c_b_c;
+      this.background[3].function = 'toBranch';
     },
     // 前往裁判文书
     toJudicialDoc() {
@@ -362,6 +377,84 @@ export default {
     toTaxViolation() {
       uni.navigateTo({
         url: `/pages/enterprise/taxViolation?company=${this.op.company}`,
+      });
+    },
+    // 前往破产公告
+    toBankruptcyNotice() {
+      uni.navigateTo({
+        url: `/pages/enterprise/bankruptcyNotice?company=${this.op.company}`,
+      });
+    },
+    // 前往招聘信息
+    toJobOffers() {
+      uni.navigateTo({
+        url: `/pages/enterprise/jobOffers?company=${this.op.company}`,
+      });
+    },
+    // 前往税务评级
+    toTaxRating() {
+      uni.navigateTo({
+        url: `/pages/enterprise/taxRating?company=${this.op.company}`,
+      });
+    },
+    // 前往进出口信用
+    toImportAndExportCredit() {
+      uni.navigateTo({
+        url: `/pages/enterprise/importAndExportCredit?company=${this.op.company}`,
+      });
+    },
+    // 前往微信公众号
+    toWeChatPublicAccount() {
+      uni.navigateTo({
+        url: `/pages/enterprise/weChatPublicAccount?company=${this.op.company}`,
+      });
+    },
+    // 前往商标信息
+    toTrademarkInfo() {
+      uni.navigateTo({
+        url: `/pages/enterprise/trademarkInfo?company=${this.op.company}`,
+      });
+    },
+    // 前往网站备案
+    toWebsiteFiling() {
+      uni.navigateTo({
+        url: `/pages/enterprise/websiteFiling?company=${this.op.company}`,
+      });
+    },
+    // 前往软件著作权
+    toSoftwareCopyright() {
+      uni.navigateTo({
+        url: `/pages/enterprise/softwareCopyright?company=${this.op.company}`,
+      });
+    },
+    // 前往专利信息
+    toPatentInfo() {
+      uni.navigateTo({
+        url: `/pages/enterprise/patentInfo?company=${this.op.company}`,
+      });
+    },
+    // 前往主要成员
+    toKeyMember() {
+      uni.navigateTo({
+        url: `/pages/enterprise/keyMember?company=${this.op.company}`,
+      });
+    },
+    // 前往股东信息
+    toShareholderInfo() {
+      uni.navigateTo({
+        url: `/pages/enterprise/shareholderInfo?company=${this.op.company}`,
+      });
+    },
+    // 前往对外投资
+    toForeignInvestment() {
+      uni.navigateTo({
+        url: `/pages/enterprise/foreignInvestment?company=${this.op.company}`,
+      });
+    },
+    // 前往分支机构
+    toBranch() {
+      uni.navigateTo({
+        url: `/pages/enterprise/branch?company=${this.op.company}`,
       });
     },
   },

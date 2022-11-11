@@ -59,7 +59,21 @@
     { "path": "pages/enterprise/personnelCertificateInfo", "style": { "navigationStyle": "custom" } },
     { "path": "pages/enterprise/honorAward", "style": { "navigationStyle": "custom" } },
     { "path": "pages/enterprise/taxViolation", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/taxViolationInfo", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/enterprise/taxViolationInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/bankruptcyNotice", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/bankruptcyNoticeInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/jobOffers", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/taxRating", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/importAndExportCredit", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/weChatPublicAccount", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/trademarkInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/websiteFiling", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/softwareCopyright", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/patentInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/keyMember", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/shareholderInfo", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/foreignInvestment", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/enterprise/branch", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

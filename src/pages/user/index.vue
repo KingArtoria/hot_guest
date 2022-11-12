@@ -81,7 +81,7 @@
             <image class="content_4_2_1_4" :src="`${_url}shezhi.webp`" />
             <view class="content_4_2_1_6">设置</view>
           </view>
-          <view class="content_4_2_1">
+          <view class="content_4_2_1" @click="loginOutShow = true">
             <image class="content_4_2_1_5" :src="`${_url}tuichu.webp`" />
             <view class="content_4_2_1_6">退出</view>
           </view>
@@ -99,6 +99,8 @@
         <view class="show_3">商务合作</view>
       </view>
     </u-overlay>
+    <!-- 退出登录 -->
+    <u-modal :show="loginOutShow" content="确定要退出登录吗" showCancelButton @confirm="goLoginOut" />
   </view>
 </template>
 
@@ -108,6 +110,8 @@ export default {
   data() {
     return {
       /* 展示客服 */ show: false,
+      // 退出登录模态框展示/隐藏
+      loginOutShow: false,
     };
   },
   methods: {
@@ -181,6 +185,12 @@ export default {
     goSettings() {
       uni.navigateTo({
         url: '/pages/user/settings',
+      });
+    },
+    // 退出登录
+    goLoginOut() {
+      uni.reLaunch({
+        url: '/pages/user/login',
       });
     },
   },

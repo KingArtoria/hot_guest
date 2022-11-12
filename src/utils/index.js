@@ -24,3 +24,15 @@ export function formatTime(time, format) {
   }
   return fmt;
 }
+// * 消息提示
+export const showToast = (title) => uni.showToast({ title: title, duration: 3000, icon: 'none' });
+// * 非空校验
+export const isNull = (value) => {
+  // 循环value对象查看数据是否正常
+  for (let key in value) {
+    if (value[key] === null || value[key] === undefined || value[key] === '') {
+      return true;
+    }
+  }
+  return false;
+}

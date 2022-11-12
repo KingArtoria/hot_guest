@@ -1,0 +1,7 @@
+{
+  "name": "callFunction",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

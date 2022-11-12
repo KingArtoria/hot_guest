@@ -51,7 +51,7 @@ export default {
   onLoad() {
     this.labelImg = LABEL_IMG
   },
-  components: { Fh_b, ProjectB, ProjectB }
+  components: { Fh_b, ProjectB }
 }
 </script>
 

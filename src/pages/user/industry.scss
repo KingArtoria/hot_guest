@@ -1,0 +1,33 @@
+.content {
+  display: flex;
+  padding-top: 220rpx;
+  width: 100%;
+  .content_1 {
+    background: #ffffff;
+    max-height: calc(100vh - 220rpx);
+    overflow: auto;
+    .content_1_1 {
+      height: 90rpx;
+      background: #f6f6f6;
+      font-size: 32rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #414141;
+      line-height: 90rpx;
+      padding-left: 66rpx;
+    }
+  }
+  .content_2 {
+    max-height: calc(100vh - 220rpx);
+    overflow: auto;
+    .content_2_1 {
+      height: 90rpx;
+      font-size: 32rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #414141;
+      line-height: 90rpx;
+      padding-left: 85rpx;
+    }
+  }
+}

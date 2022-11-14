@@ -1,8 +1,9 @@
 const request = (config) => {
-  config.url = `http://nad.bdhuoke.com/app_v5${config.url}`;
+  config.url = `http://appv5.bdhuoke.com/app_v5${config.url}`;
   if (!config.data) {
     config.data = {};
   }
+  if (uni.getStorageSync('token')) config.header.token = uni.getStorageSync('token');
   let promise = new Promise(function (resolve, reject) {
     uni.request(config).then(responses => {
       if (responses[0]) {

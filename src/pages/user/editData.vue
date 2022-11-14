@@ -5,23 +5,15 @@
       <view class="content_1">
         <view class="content_1_1">
           <view class="content_1_1_1">头像</view>
-          <view class="content_1_1_2">
-            <image class="content_1_1_2_1" src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png" />
+          <view class="content_1_1_2" @click="uploadAvatar">
+            <image class="content_1_1_2_1" :src="userInfo.head" />
             <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
           </view>
         </view>
         <view class="content_1_1">
           <view class="content_1_1_1">昵称</view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_3">肩上扛着几多圣灵</view>
-            <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
-          </view>
-        </view>
-        <view class="content_1_1">
-          <view class="content_1_1_1">性别</view>
-          <view class="content_1_1_2">
-            <view class="content_1_1_2_3">兜里揣着几斤理想</view>
-            <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
+            <u-input v-model="userInfo.nick_name" inputAlign="right" fontSize="32rpx" border="none" />
           </view>
         </view>
       </view>
@@ -29,36 +21,40 @@
         <view class="content_1_1">
           <view class="content_1_1_1">真实姓名</view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_3">我信仰之笃定</view>
-            <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
+            <u-input v-model="userInfo.real_name" inputAlign="right" fontSize="32rpx" border="none" />
           </view>
         </view>
         <view class="content_1_1" @click="goSchool">
           <view class="content_1_1_1">毕业学校</view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_3">何须神明佐证</view>
+            <view class="content_1_1_2_3">{{ userInfo.schoolname }}</view>
             <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
           </view>
         </view>
         <view class="content_1_1" @click="goAddress">
           <view class="content_1_1_1">所在省市</view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_3">所在省市所在省市所在省市</view>
+            <view class="content_1_1_2_3">{{ userInfo.province_name }}{{ userInfo.city_name }}</view>
+            <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
+          </view>
+        </view>
+        <view class="content_1_1" @click="goIndustry">
+          <view class="content_1_1_1">所属行业</view>
+          <view class="content_1_1_2">
+            <view class="content_1_1_2_3">{{ userInfo.industry_one_name }}/{{ userInfo.industry_tow_name }}</view>
             <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
           </view>
         </view>
         <view class="content_1_1">
           <view class="content_1_1_1">公司</view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_3">公司公司公司公司</view>
-            <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
+            <u-input v-model="userInfo.company" inputAlign="right" fontSize="32rpx" border="none" />
           </view>
         </view>
         <view class="content_1_1">
           <view class="content_1_1_1">职位</view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_3">职位职位职位职位</view>
-            <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
+            <u-input v-model="userInfo.position" inputAlign="right" fontSize="32rpx" border="none" />
           </view>
         </view>
       </view>
@@ -66,25 +62,33 @@
         <view class="content_1_1">
           <view class="content_1_1_1">邀请码</view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_3">我在荒芜的草原上流浪</view>
-            <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
+            <view class="content_1_1_2_3">{{ userInfo.Invitation_code }}</view>
           </view>
         </view>
         <view class="content_1_1">
           <view class="content_1_1_1">手机</view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_3">固执押韵的排比</view>
-            <image class="content_1_1_2_2" :src="`${_url}xiayiy.png`" />
+            <u-input v-model="userInfo.phone" inputAlign="right" fontSize="32rpx" border="none" />
           </view>
         </view>
       </view>
     </view>
+    <!-- 提交按钮 -->
+    <view class="btn" @click="setUserInfo">保存信息</view>
   </view>
 </template>
 
 <script>
 import Head from '../../components/Head';
+import { showToast } from '../../utils';
+import { updateUserInfo } from '../../utils/api';
 export default {
+  data() {
+    return {
+      // 用户信息
+      userInfo: { head: '' },
+    };
+  },
   methods: {
     // 前往选择学校
     goSchool() {
@@ -98,6 +102,58 @@ export default {
         url: '/pages/user/address',
       });
     },
+    // 获取用户信息
+    updateUserInfo() {
+      updateUserInfo({ type: 'get' }).then(res => {
+        // head开始是否有http
+        if (res.data.head.indexOf('http') === -1) {
+          res.data.head = this._avatarUrl + res.data.head;
+        }
+        this.userInfo = res.data;
+      });
+    },
+    // 上传头像
+    uploadAvatar() {
+      uni.chooseImage({
+        count: 1,
+        success: res => {
+          uni.uploadFile({
+            url: 'http://appv5.bdhuoke.com/app_v5/member/upload',
+            filePath: res.tempFilePaths[0],
+            success: res => {
+              this.userInfo.head = this._apiUrl + JSON.parse(res.data).data;
+            },
+          });
+        },
+      });
+    },
+    // 前往选择行业
+    goIndustry() {
+      uni.navigateTo({
+        url: '/pages/user/industry',
+      });
+    },
+    // 更改用户信息
+    setUserInfo() {
+      this.userInfo.type = 'set';
+      updateUserInfo(this.userInfo).then(res => {
+        if (res.code != 1) return showToast(res.msg);
+      });
+    },
+  },
+  onLoad() {
+    // 获取用户信息
+    this.updateUserInfo();
+    // 创建监听用户信息更改
+    uni.$on('updateUserInfo', data => {
+      data.forEach(item => {
+        this.userInfo[item.key] = item.value;
+      });
+    });
+  },
+  onUnload() {
+    // 移除监听
+    uni.$off('updateUserInfo');
   },
   components: { Head },
 };

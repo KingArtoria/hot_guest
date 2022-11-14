@@ -46,3 +46,66 @@ export const register = data => {
     data
   });
 }
+// ? 个人信息
+export const getUserInfo = data => {
+  return request({
+    method: 'post',
+    url: '/member/getMemberInfo',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 个人信息修改
+export const updateUserInfo = data => {
+  return request({
+    method: 'post',
+    url: '/member/memberInfoEdit',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 获取学校
+export const getSchool = data => {
+  return request({
+    method: 'post',
+    url: '/member/getSchoolList',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 获取省
+export const getProvince = data => {
+  return request({
+    method: 'post',
+    url: '/area/getProvince',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 获取市
+export const getCity = data => {
+  return request({
+    method: 'post',
+    url: '/area/getCity',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 获取一级行业
+export const getIndustry = data => {
+  return request({
+    method: 'post',
+    url: '/member/getIndustryList',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 获取二级行业
+export const getIndustryTwo = data => {
+  return request({
+    method: 'post',
+    url: '/member/getIndustryInfo',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

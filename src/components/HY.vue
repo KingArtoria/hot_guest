@@ -1,16 +1,16 @@
 <template>
   <view class="hy">
-    <image class="hy_1" :src="`${_url}huiy.webp`" v-if="type == 1" />
-    <image class="hy_2" :src="`${_url}chaojhy.webp`" v-if="type == 2" />
-    <image class="hy_3" :src="`${_url}qiyehy.webp`" v-if="type == 3" />
+    <image class="hy_1" :src="`${_url}huiy.webp`" v-if="type == 'vip'" />
+    <image class="hy_2" :src="`${_url}chaojhy.webp`" v-if="type == 'svip'" />
+    <image class="hy_3" :src="`${_url}qiyehy.webp`" v-if="type == 'fvip'" />
   </view>
 </template>
 <script>
 export default {
   props: {
     type: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
   },
 };

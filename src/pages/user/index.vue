@@ -6,16 +6,16 @@
         <!-- 个人信息 -->
         <view class="content_1_1">
           <view class="content_1_1_1" @click="goEditData">
-            <image class="content_1_1_1_1" src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png" />
+            <image class="content_1_1_1_1" :src="userInfo.head" />
             <image class="content_1_1_1_2" src="http://39.106.208.234/pic/img_/xg.webp" />
           </view>
           <view class="content_1_1_2">
             <view class="content_1_1_2_1">
-              <view class="content_1_1_2_1_1">我是名字</view>
-              <HY :type="1" />
+              <view class="content_1_1_2_1_1">{{ userInfo.nick_name }}</view>
+              <HY :type="userInfo.maxvip" />
             </view>
-            <view class="content_1_1_2_2" style="margin-bottom: 19rpx">BD火客&nbsp;&nbsp;&nbsp;产品经理</view>
-            <view class="content_1_1_2_2">我的邀请码：152645964（点击复制）</view>
+            <view class="content_1_1_2_2" style="margin-bottom: 19rpx">{{ userInfo.company }}&nbsp;&nbsp;&nbsp;{{ userInfo.position }}</view>
+            <view class="content_1_1_2_2" @click="copyCode">我的邀请码：{{ userInfo.Invitation_code }}（点击复制）</view>
           </view>
         </view>
         <!-- 选项卡 -->
@@ -105,13 +105,18 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import HY from '../../components/HY';
+import { showToast } from '../../utils';
+import { getUserInfo } from '../../utils/api';
 export default {
   data() {
     return {
       /* 展示客服 */ show: false,
       // 退出登录模态框展示/隐藏
       loginOutShow: false,
+      // 用户信息
+      userInfo: {},
     };
   },
   methods: {
@@ -189,10 +194,33 @@ export default {
     },
     // 退出登录
     goLoginOut() {
+      uni.removeStorageSync('token');
       uni.reLaunch({
         url: '/pages/user/login',
       });
     },
+    // 获取个人信息
+    getUserInfo() {
+      getUserInfo().then(res => {
+        // head是否包含http
+        if (res.data.head.indexOf('http') === -1) {
+          res.data.head = `${this._avatarUrl}${res.data.head}`;
+        }
+        this.userInfo = res.data;
+        Vue.prototype._userInfo = res.data;
+      });
+    },
+    // 复制邀请码
+    copyCode() {
+      uni.setClipboardData({
+        data: this.userInfo.Invitation_code,
+        success: () => showToast('复制成功'),
+      });
+    },
+  },
+  onLoad() {
+    // 获取个人信息
+    this.getUserInfo();
   },
   components: { HY },
 };

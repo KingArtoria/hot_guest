@@ -8,6 +8,10 @@ export default {
     Vue.prototype._source = '小米';
     // 声明全局类型
     Vue.prototype._type = 'android';
+    // 声明头像资源路径
+    Vue.prototype._avatarUrl = 'https://admin.bdhuoke.com';
+    // 接口地址
+    Vue.prototype._apiUrl = 'http://appv5.bdhuoke.com/';
   },
 };
 </script>

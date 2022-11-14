@@ -74,7 +74,8 @@
     { "path": "pages/enterprise/shareholderInfo", "style": { "navigationStyle": "custom" } },
     { "path": "pages/enterprise/foreignInvestment", "style": { "navigationStyle": "custom" } },
     { "path": "pages/enterprise/branch", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/login", "style": { "navigationStyle": "custom" } }
+    { "path": "pages/user/login", "style": { "navigationStyle": "custom" } },
+    { "path": "pages/user/industry", "style": { "navigationStyle": "custom" } }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

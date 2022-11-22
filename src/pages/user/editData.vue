@@ -75,6 +75,8 @@
     </view>
     <!-- 提交按钮 -->
     <view class="btn" @click="setUserInfo">保存信息</view>
+    <!-- 修改完成提示 -->
+    <u-modal :show="modal.show" :title="modal.title" :content="modal.content" @confirm="modal.confirm()" />
   </view>
 </template>
 
@@ -87,6 +89,16 @@ export default {
     return {
       // 用户信息
       userInfo: { head: '' },
+      // 修改完成提示
+      modal: {
+        show: false,
+        title: '修改成功',
+        content: '您的资料已修改成功',
+        confirm: () => {
+          this.modal.show = false;
+          this.$router.back();
+        },
+      },
     };
   },
   methods: {
@@ -138,6 +150,8 @@ export default {
       this.userInfo.type = 'set';
       updateUserInfo(this.userInfo).then(res => {
         if (res.code != 1) return showToast(res.msg);
+        uni.$emit('getUserInfo');
+        this.modal.show = true;
       });
     },
   },

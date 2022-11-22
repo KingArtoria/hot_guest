@@ -1,9 +1,8 @@
 <template>
   <view>
-    <view class="content">
-      <view class="content_1">
-        12312311111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</view>
-      <view class="content_2">08-18 13:21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;山东菏泽曹县</view>
+    <view class="content" @click="goProjectDetail">
+      <view class="content_1"> {{ item.title }}</view>
+      <view class="content_2">{{ item.addtime }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;山东菏泽曹县</view>
       <view class="content_3">
         <view class="content_3_1">日结</view>
         <view class="content_3_1">结算方式：CPC</view>
@@ -11,11 +10,10 @@
       </view>
       <view class="content_4">
         <view class="content_4_1">
-          <image class="content_4_1_1"
-            src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png" />
-          <view class="content_4_1_2">不挑食的张可爱</view>
+          <image class="content_4_1_1" :src="_userInfo.head" />
+          <view class="content_4_1_2">{{ _userInfo.nick_name }}</view>
           <view class="content_4_1_3" />
-          <view class="content_4_1_4">运营经理</view>
+          <view class="content_4_1_4">{{ _userInfo.position }}</view>
         </view>
         <view class="content_4_2">广告甲方</view>
       </view>
@@ -25,14 +23,28 @@
 
 <script>
 export default {
-
-}
+  props: {
+    item: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  methods: {
+    // 前往项目详细
+    goProjectDetail() {
+      // 跳转
+      uni.navigateTo({
+        url: `/pages/index/info?id=${this.item.id}`,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .content {
   width: 710rpx;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 10rpx;
   padding: 24rpx 11rpx 16rpx 25rpx;
   margin: 0 auto;
@@ -42,7 +54,7 @@ export default {
     font-size: 30rpx;
     font-family: PingFang SC;
     font-weight: 500;
-    color: #1A1A1A;
+    color: #1a1a1a;
     line-height: 40rpx;
     margin-bottom: 24rpx;
     word-break: break-all;
@@ -57,7 +69,7 @@ export default {
     font-size: 22rpx;
     font-family: PingFang SC;
     font-weight: 500;
-    color: #A4A4A4;
+    color: #a4a4a4;
     line-height: 1;
   }
 
@@ -68,13 +80,13 @@ export default {
 
     .content_3_1 {
       height: 31rpx;
-      border: 1rpx solid #7C7C7C;
+      border: 1rpx solid #7c7c7c;
       border-radius: 3rpx;
       padding: 0 18rpx;
       font-size: 22rpx;
       font-family: PingFang SC;
       font-weight: 500;
-      color: #7C7C7C;
+      color: #7c7c7c;
       display: flex;
       align-items: center;
       margin-right: 22rpx;
@@ -101,14 +113,14 @@ export default {
         font-size: 24rpx;
         font-family: PingFang SC;
         font-weight: 500;
-        color: #3B3B3B;
+        color: #3b3b3b;
         line-height: 1;
       }
 
       .content_4_1_3 {
         width: 1rpx;
         height: 20rpx;
-        background: #CFCFCF;
+        background: #cfcfcf;
         margin: 0 12rpx;
       }
 
@@ -116,7 +128,7 @@ export default {
         font-size: 24rpx;
         font-family: PingFang SC;
         font-weight: 500;
-        color: #A4A4A4;
+        color: #a4a4a4;
         line-height: 1;
       }
     }
@@ -124,13 +136,13 @@ export default {
     .content_4_2 {
       width: 113rpx;
       height: 38rpx;
-      background: #ECF3FE;
-      border: 1rpx solid #3875E9;
+      background: #ecf3fe;
+      border: 1rpx solid #3875e9;
       border-radius: 5rpx;
       font-size: 22rpx;
       font-family: PingFang SC;
       font-weight: 500;
-      color: #3875E9;
+      color: #3875e9;
       display: flex;
       align-items: center;
       justify-content: center;

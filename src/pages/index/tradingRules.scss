@@ -42,3 +42,31 @@
     color: #f5f5f5;
   }
 }
+.contactPopup {
+  width: 650rpx;
+  height: 700rpx;
+  background-image: url('http://39.106.208.234/pic/img_/lianxikef.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding-top: 127rpx;
+  .contactPopup_1 {
+    font-size: 34rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    line-height: 69rpx;
+  }
+  .contactPopup_3 {
+    width: 212rpx;
+    height: 212rpx;
+    margin-top: 72rpx;
+  }
+  .contactPopup_4 {
+    font-size: 30rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #939393;
+    line-height: 1;
+    margin-top: 33rpx;
+  }
+}

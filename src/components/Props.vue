@@ -1,56 +1,62 @@
 <template>
   <view class="props">
     <view class="props_1">
-      <image class="props_1_1" :src="item.src" />
+      <image class="props_1_1" :src="item.image" />
     </view>
     <view class="props_2">
       <view class="props_2_1">
-        <view class="props_2_1_1">{{ item.name }}</view>
-        <view class="props_2_1_2">{{ item.info }}</view>
-        <view class="props_2_1_3" v-if="type == 1">{{ item.num }}</view>
-        <view class="props_2_1_4" v-if="type == 2">{{ item.num }}</view>
-        <view class="props_2_1_5" v-if="type == 3">{{ item.num }}</view>
+        <view class="props_2_1_1">{{ item.title }}</view>
+        <view class="props_2_1_2">{{ item.remark }}</view>
+        <!-- 购买 -->
+        <view class="props_2_1_3" v-if="type == 1">￥{{ item.price }}</view>
+        <view class="props_2_1_4" v-if="type == 2">{{ item.price }}</view>
+        <view class="props_2_1_5" v-if="type == 3">{{ item.price }}</view>
       </view>
-      <view class="props_2_2" v-if="type == 1">兑换</view>
-      <view class="props_2_2" v-if="type == 2" @click="goUseProps">去使用</view>
+      <!-- 购买 -->
+      <view class="props_2_2" v-if="type == 1" @click="createOrder">购买</view>
     </view>
   </view>
 </template>
 
 <script>
+import { createOrder } from '../utils/api';
 export default {
   props: {
     item: {
       type: Object,
-      default: {}
+      default: {},
     },
     type: {
       type: Number,
-      default: 1
-    }
+      default: 1,
+    },
   },
   methods: {
-    goUseProps() {
-      uni.navigateTo({
-        url: '/pages/index/useProps'
+    // 创建订单
+    createOrder() {
+      // 创建订单API
+      createOrder({ id: this.item.id, paytype: 'wx' }).then(res => {
+        console.log(res.data);
+        // 调用支付
+        // this.pay(res.data);
       });
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .props {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1rpx solid #F6F6F6;
+  border-bottom: 1rpx solid #f6f6f6;
   padding-top: 19rpx;
   padding-bottom: 36rpx;
 
   .props_1 {
     width: 157rpx;
     height: 157rpx;
-    background: #F6F6F6;
+    background: #f6f6f6;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -91,15 +97,14 @@ export default {
         font-size: 36rpx;
         font-family: PingFang SC;
         font-weight: bold;
-        color: #1F73F1;
-        line-height: 1;
+        color: #ff4e00;
       }
 
       .props_2_1_4 {
         font-size: 24rpx;
         font-family: PingFang SC;
         font-weight: 400;
-        color: #1F73F1;
+        color: #1f73f1;
         line-height: 1;
       }
 
@@ -115,14 +120,15 @@ export default {
     .props_2_2 {
       width: 142rpx;
       height: 52rpx;
-      background: #1F73F1;
+      background: #fb7321;
       border-radius: 26rpx;
       text-align: center;
       line-height: 52rpx;
       font-size: 30rpx;
       font-family: PingFang SC;
       font-weight: 500;
-      color: #FFFFFF;
+      color: #ffffff;
+      flex-shrink: 0;
     }
   }
 }

@@ -48,11 +48,7 @@
       </u-sticky>
       <!-- 内容 -->
       <view class="content_5">
-        <Project />
-        <Project />
-        <Project />
-        <Project />
-        <Project />
+        <Project :list="list" />
       </view>
     </view>
   </view>
@@ -60,6 +56,7 @@
 
 <script>
 import Project from '../../components/Project';
+import { getCategoryMenu, getHomeData } from '../../utils/api';
 import { ADVERTISING_IMG, GRID_IMG, LABEL_IMG } from '../../utils/const';
 export default {
   data() {
@@ -68,6 +65,15 @@ export default {
       advertisingImg: [],
       gridImg: [],
       labelImg: [],
+      // 首页列表参数
+      params: {
+        page: 1,
+        num: 10,
+      },
+      // 首页列表数据
+      list: [],
+      // 分类菜单
+      categoryMenu: [],
     };
   },
   methods: {
@@ -115,9 +121,102 @@ export default {
         url: '/pages/index/advertisingSpaceRental',
       });
     },
+    // 首页数据
+    getHomeData() {
+      getHomeData(this.params).then(res => {
+        // 广告置顶
+        res.data.advert_top.forEach(item => {
+          // 数组追加
+          this.list.push(item);
+        });
+        // 超级置顶
+        res.data.super_top.forEach(item => {
+          // 数组追加
+          this.list.push(item);
+        });
+        // 普通置顶
+        res.data.ordinary_top.forEach(item => {
+          // 数组追加
+          this.list.push(item);
+        });
+        // 普通数据
+        res.data.list.forEach(item => {
+          // 数组追加
+          this.list.push(item);
+        });
+        // 格式化数据
+        this.list.forEach(item => {
+          // 头像格式化
+          if (item.head.indexOf('http') === -1) {
+            item.head = `${this._avatarUrl}${item.head}`;
+          }
+          // 时间删除最后3位
+          item.addtime = item.addtime.slice(0, -3);
+          // 不同类型展示的tag不一样(字段, 标签)
+          switch (item.type) {
+            case 1:
+              item.k = [item.settcycle_id, `结算方式:${item.settmod_id}`, item.promotion];
+              item.typeName = '广告甲方';
+              break;
+            case 2:
+              item.k = [item.settcycle_id, `结算方式:${item.settmod_id}`, item.promotion];
+              item.typeName = '流量乙方';
+              break;
+            case 3:
+              item.k = [item.product, item.source];
+              item.typeName = '优质货源';
+              break;
+            case 4:
+              item.k = [item.settcycle_id, item.source, item.product];
+              item.typeName = '销售渠道';
+              break;
+            case 5:
+              item.k = [`提供:${item.source}`, `需求:${item.comprehensive}`];
+              item.typeName = '资源互换';
+              break;
+            case 6:
+              item.k = [`提供:${item.source}`, `需求:${item.comprehensive}`];
+              item.typeName = '流量互换';
+              break;
+            case 7:
+              item.k = [item.product, item.comprehensive];
+              item.typeName = '招商加盟';
+              break;
+            case 8:
+              item.k = [item.product, `曝光：${item.user_number}`];
+              item.typeName = '线下广告';
+              break;
+            case 9:
+              item.k = [item.product, item.comprehensive];
+              item.typeName = '线下场地';
+              break;
+            case 10:
+              item.k = [item.product];
+              item.typeName = '免费福利';
+              break;
+            case 11:
+              item.k = [item.settcycle_id, `结算方式:${item.settmod_id}`, item.promotion];
+              item.typeName = '海外项目';
+              break;
+          }
+        });
+      });
+    },
+    // 分类菜单
+    getCategoryMenu() {
+      // 分类菜单API
+      getCategoryMenu().then(res => {
+        // 数据赋值
+        this.categoryMenu = res.data;
+      });
+    },
   },
   onLoad() {
     /* 初始化参数 */ this.initParams();
+    // 首页数据
+    this.getHomeData();
+    // 分类菜单
+    this.getCategoryMenu();
   },
   components: { Project },
 };

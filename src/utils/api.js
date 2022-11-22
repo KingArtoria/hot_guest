@@ -109,3 +109,156 @@ export const getIndustryTwo = data => {
     data
   });
 }
+// ? 内购列表
+export const getInnerList = data => {
+  return request({
+    method: 'post',
+    url: '/order/goodslist',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 创建订单
+export const createOrder = data => {
+  return request({
+    method: 'post',
+    url: '/order/goodsorderadd',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 黑卡申请
+export const applyBlackCard = data => {
+  return request({
+    method: 'post',
+    url: '/Blackcard/applyForBlackCard',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 我发布的
+export const getMyRelease = data => {
+  return request({
+    method: 'post',
+    url: '/member/member_project',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 项目详情
+export const getProjectDetail = data => {
+  return request({
+    method: 'post',
+    url: '/comprehensive/Info',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 查看联系方式
+export const getContact = data => {
+  return request({
+    method: 'post',
+    url: '/comprehensive/GetContactInfo',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 获取评论内容
+export const getComment = data => {
+  return request({
+    method: 'post',
+    url: '/comprehensive/getCommentContent',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 收藏
+export const collect = data => {
+  return request({
+    method: 'post',
+    url: '/member/keep',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 评论
+export const comment = data => {
+  return request({
+    method: 'post',
+    url: '/comprehensive/setComments',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 获取评论默认文本
+export const getCommentDefault = data => {
+  return request({
+    method: 'post',
+    url: '/comprehensive/getCommentContent',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 他人个人信息
+export const getOtherUserInfo = data => {
+  return request({
+    method: 'post',
+    url: '/friend/getFriendHome',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 他人发布的
+export const getOtherRelease = data => {
+  return request({
+    method: 'post',
+    url: '/friend/friend_project',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 添加好友
+export const addFriend = data => {
+  return request({
+    method: 'post',
+    url: '/friend/addFriendapply',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 担保交易
+export const guarantee = data => {
+  return request({
+    method: 'post',
+    url: '/Guarantee/establishGuarantee',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 首页数据
+export const getHomeData = data => {
+  return request({
+    method: 'post',
+    url: '/index/index',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 分类菜单
+export const getCategoryMenu = data => {
+  return request({
+    method: 'post',
+    url: '/index/getMenu',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 我的收藏
+export const getMyCollect = data => {
+  return request({
+    method: 'post',
+    url: '/member/member_keep',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

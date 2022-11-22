@@ -34,8 +34,8 @@
       <view class="content_2">
         <view class="content_2_1">
           <image class="content_2_1_1" :src="`${_url}wofabud.webp`" @click="goMyPost" />
-          <image class="content_2_1_2" :src="`${_url}shoucang.webp`" />
-          <image class="content_2_1_3" :src="`${_url}daoju.webp`" />
+          <image class="content_2_1_2" :src="`${_url}shoucang.webp`" @click="toCollection" />
+          <image class="content_2_1_3" :src="`${_url}daoju.webp`" @click="toMyProp" />
           <image class="content_2_1_4" :src="`${_url}danbaojil.webp`" @click="goGuaranteeRecord" />
         </view>
         <view class="content_2_2">
@@ -217,10 +217,29 @@ export default {
         success: () => showToast('复制成功'),
       });
     },
+    // 前往我的收藏
+    toCollection() {
+      uni.navigateTo({
+        url: '/pages/user/collection',
+      });
+    },
+    // 前往我的道具
+    toMyProp() {
+      uni.navigateTo({
+        url: '/pages/user/myProp',
+      });
+    },
   },
   onLoad() {
     // 获取个人信息
     this.getUserInfo();
+    // 重新拉取用户信息
+    uni.$on('getUserInfo', () => {
+      this.getUserInfo();
+    });
+  },
+  onUnload() {
+    uni.$off('getUserInfo');
   },
   components: { HY },
 };

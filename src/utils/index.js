@@ -1,5 +1,5 @@
 // * 时间戳转换为自定义格式
-export function formatTime(time, format) {
+export const formatTime = (time, format) => {
   if (!time) {
     return '';
   }

@@ -3,7 +3,7 @@
     <Head title="道具商城" />
     <view class="content">
       <view class="content_1">
-        <Props v-for="(item, index) in data" :key="index" :item="item" />
+        <Props v-for="(item, index) in propsList" :key="index" :item="item" :type="1"/>
       </view>
     </view>
   </view>
@@ -12,15 +12,31 @@
 <script>
 import Head from '../../components/Head';
 import Props from '../../components/Props';
-import { PROPS_IMG } from '../../utils/const';
+import { getInnerList } from '../../utils/api';
 export default {
   data() {
     return {
-      data: [],
+      // 道具列表
+      propsList: [],
     };
   },
+  methods: {
+    // 道具列表
+    getInnerList() {
+      // 道具列表API
+      getInnerList().then(res => {
+        console.log(res.data);
+        res.data.forEach(item => {
+          item.image = this._propUrl + item.image;
+        });
+        // 赋值
+        this.propsList = res.data;
+      });
+    },
+  },
   onLoad() {
-    this.data = PROPS_IMG;
+    // 道具列表
+    this.getInnerList();
   },
   components: { Head, Props },
 };

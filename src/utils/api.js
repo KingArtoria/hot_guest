@@ -262,3 +262,30 @@ export const getMyCollect = data => {
     data
   });
 }
+// ? 我的道具
+export const getMyProps = data => {
+  return request({
+    method: 'post',
+    url: '/member/user_coupons',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 一级使用道具
+export const usePropsOne = data => {
+  return request({
+    method: 'post',
+    url: '/coupons/useCouponsList',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 二级使用道具
+export const usePropsTwo = data => {
+  return request({
+    method: 'post',
+    url: '/coupons/useCoupons',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

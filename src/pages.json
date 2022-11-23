@@ -3,84 +3,489 @@
     "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
   },
   "pages": [
-    { "path": "pages/index/index", "style": { "navigationStyle": "custom", "onReachBottomDistance": 300 } },
-    { "path": "pages/index/search", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/check", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/exchangeRecords", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/useProps", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/businessCard", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/myCard", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/platformTransaction", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/tradingRules", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/advertisingSpaceRental", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/index", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/editData", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/school", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/address", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/prop", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/wallet", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/blackCard", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/vip", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/myPost", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/guaranteeRecord", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/businessSubscription", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/inviteFriends", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/verified", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/feedback", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/settings", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/accountSafety", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/modifyPhoneNumber", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/changePassword", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/aboutUs", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/serviceAgreement", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/privacyPolicy", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/contacts/index", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/contacts/buddyList", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/contacts/addFriend", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/contacts/addFriendAction", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/contacts/personal", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/demo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/news/index", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/news/privateChat", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/index", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/search", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/info", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/adjudicativeDocument", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/judgmentDocumentInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/administrativePenalty", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/administrativePenaltyInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/courtNotice", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/courtNoticeInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/trialAnnouncement", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/trialAnnouncementInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/qualification", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/personnelCertificate", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/enterprisePerformance", "style": { "navigationStyle": "custom" }, "onReachBottomDistance": "50" },
-    { "path": "pages/enterprise/personnelCertificateInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/honorAward", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/taxViolation", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/taxViolationInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/bankruptcyNotice", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/bankruptcyNoticeInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/jobOffers", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/taxRating", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/importAndExportCredit", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/weChatPublicAccount", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/trademarkInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/websiteFiling", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/softwareCopyright", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/patentInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/keyMember", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/shareholderInfo", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/foreignInvestment", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/enterprise/branch", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/login", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/industry", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/info", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/moreItems", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/index/browse", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/collection", "style": { "navigationStyle": "custom" } },
-    { "path": "pages/user/myProp", "style": { "navigationStyle": "custom" } }
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 300
+      }
+    },
+    {
+      "path": "pages/index/search",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/check",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/exchangeRecords",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/useProps",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/businessCard",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/myCard",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/platformTransaction",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/tradingRules",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/advertisingSpaceRental",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/editData",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/school",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/address",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/prop",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/wallet",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/blackCard",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/vip",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/myPost",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/guaranteeRecord",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/businessSubscription",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/inviteFriends",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/verified",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/feedback",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/settings",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/accountSafety",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/modifyPhoneNumber",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/changePassword",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/aboutUs",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/serviceAgreement",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/privacyPolicy",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/contacts/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/contacts/buddyList",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/contacts/addFriend",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/contacts/addFriendAction",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/contacts/personal",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/demo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/news/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/news/privateChat",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/search",
+      "style": {
+        "navigationStyle": "custom"
+      },
+      "onReachBottomDistance": "50"
+    },
+    {
+      "path": "pages/enterprise/info",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/adjudicativeDocument",
+      "style": {
+        "navigationStyle": "custom"
+      },
+      "onReachBottomDistance": "50"
+    },
+    {
+      "path": "pages/enterprise/judgmentDocumentInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/administrativePenalty",
+      "style": {
+        "navigationStyle": "custom"
+      },
+      "onReachBottomDistance": "50"
+    },
+    {
+      "path": "pages/enterprise/administrativePenaltyInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/courtNotice",
+      "style": {
+        "navigationStyle": "custom"
+      },
+      "onReachBottomDistance": "50"
+    },
+    {
+      "path": "pages/enterprise/courtNoticeInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/trialAnnouncement",
+      "style": {
+        "navigationStyle": "custom"
+      },
+      "onReachBottomDistance": "50"
+    },
+    {
+      "path": "pages/enterprise/trialAnnouncementInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/qualification",
+      "style": {
+        "navigationStyle": "custom"
+      },
+      "onReachBottomDistance": "50"
+    },
+    {
+      "path": "pages/enterprise/personnelCertificate",
+      "style": {
+        "navigationStyle": "custom"
+      },
+      "onReachBottomDistance": "50"
+    },
+    {
+      "path": "pages/enterprise/enterprisePerformance",
+      "style": {
+        "navigationStyle": "custom"
+      },
+      "onReachBottomDistance": "50"
+    },
+    {
+      "path": "pages/enterprise/personnelCertificateInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/honorAward",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/taxViolation",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/taxViolationInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/bankruptcyNotice",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/bankruptcyNoticeInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/jobOffers",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/taxRating",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/importAndExportCredit",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/weChatPublicAccount",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/trademarkInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/websiteFiling",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/softwareCopyright",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/patentInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/keyMember",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/shareholderInfo",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/foreignInvestment",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/enterprise/branch",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/login",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/industry",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/info",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/moreItems",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/browse",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/collection",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/myProp",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/useProps",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

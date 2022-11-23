@@ -14,7 +14,9 @@
               <view class="content_1_1_2_1_1">{{ userInfo.nick_name }}</view>
               <HY :type="userInfo.maxvip" />
             </view>
-            <view class="content_1_1_2_2" style="margin-bottom: 19rpx">{{ userInfo.company }}&nbsp;&nbsp;&nbsp;{{ userInfo.position }}</view>
+            <view class="content_1_1_2_2" style="margin-bottom: 19rpx">{{ userInfo.company }}&nbsp;&nbsp;&nbsp;{{
+                userInfo.position
+            }}</view>
             <view class="content_1_1_2_2" @click="copyCode">我的邀请码：{{ userInfo.Invitation_code }}（点击复制）</view>
           </view>
         </view>

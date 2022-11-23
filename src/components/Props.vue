@@ -9,17 +9,26 @@
         <view class="props_2_1_2">{{ item.remark }}</view>
         <!-- 购买 -->
         <view class="props_2_1_3" v-if="type == 1">￥{{ item.price }}</view>
-        <view class="props_2_1_4" v-if="type == 2">{{ item.price }}</view>
+        <view class="props_2_1_4" v-if="type == 2">数量：{{ item.num }}张</view>
         <view class="props_2_1_5" v-if="type == 3">{{ item.price }}</view>
       </view>
       <!-- 购买 -->
       <view class="props_2_2" v-if="type == 1" @click="createOrder">购买</view>
+      <!-- 使用 -->
+      <view
+        class="props_2_3"
+        v-if="type == 2 && status == 0"
+        @click="usePropsOne(item.id)"
+        >使用</view
+      >
+      <!-- 已使用 -->
+      <view class="props_2_4" v-if="type == 2 && status == 1">已使用</view>
     </view>
   </view>
 </template>
 
 <script>
-import { createOrder } from '../utils/api';
+import { createOrder, usePropsOne } from "../utils/api";
 export default {
   props: {
     item: {
@@ -30,15 +39,36 @@ export default {
       type: Number,
       default: 1,
     },
+    status: {
+      type: Number,
+      default: 0,
+    },
   },
   methods: {
     // 创建订单
     createOrder() {
       // 创建订单API
-      createOrder({ id: this.item.id, paytype: 'wx' }).then(res => {
+      createOrder({ id: this.item.id, paytype: "wx" }).then((res) => {
         console.log(res.data);
         // 调用支付
         // this.pay(res.data);
+      });
+    },
+    // 一级使用道具
+    usePropsOne(coupons) {
+      // 加载中
+      uni.showLoading({ title: "加载中" });
+      // 一级使用道具API
+      usePropsOne({ coupons }).then((res) => {
+        uni.hideLoading();
+        // 判断返回的是否是数组格式(数组格式为变色和置顶卡)
+        if (Array.isArray(res.data)) {
+          uni.setStorageSync("props", res.data);
+          // 前往使用道具
+          uni.navigateTo({
+            url: `/pages/user/useProps?coupons=${coupons}`,
+          });
+        }
       });
     },
   },
@@ -121,6 +151,32 @@ export default {
       width: 142rpx;
       height: 52rpx;
       background: #fb7321;
+      border-radius: 26rpx;
+      text-align: center;
+      line-height: 52rpx;
+      font-size: 30rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+    .props_2_3 {
+      width: 142rpx;
+      height: 52rpx;
+      background: #1f73f1;
+      border-radius: 26rpx;
+      text-align: center;
+      line-height: 52rpx;
+      font-size: 30rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+    .props_2_4 {
+      width: 142rpx;
+      height: 52rpx;
+      background: #9ec3f9;
       border-radius: 26rpx;
       text-align: center;
       line-height: 52rpx;

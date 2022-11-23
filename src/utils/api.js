@@ -289,3 +289,12 @@ export const usePropsTwo = data => {
     data
   });
 }
+// ? 担保记录
+export const getGuaranteeRecord = data => {
+  return request({
+    method: 'post',
+    url: '/Guarantee/member_Guarantee',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

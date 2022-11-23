@@ -4,84 +4,34 @@
     <view class="content">
       <!-- 内容 -->
       <view class="content_1">
-        <view class="content_1_1">
-          <view class="content_1_1_1">adn when youre done lll dance for me dance for me</view>
+        <view
+          class="content_1_1"
+          v-for="(item, index) in guaranteeRecord"
+          :key="index"
+        >
+          <view class="content_1_1_1">{{ item.details }}</view>
           <view class="content_1_1_2">
             <view class="content_1_1_2_1">担保金额：</view>
-            <view class="content_1_1_2_2">￥1000</view>
+            <view class="content_1_1_2_2">￥{{ item.price }}</view>
           </view>
           <view class="content_1_1_3">
             <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">付款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
+              <view class="content_1_1_3_1_1">发起方：</view>
+              <view class="content_1_1_3_1_2">{{ item.member_id }}</view>
             </view>
             <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">收款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
-            </view>
-          </view>
-          <view class="content_1_1_3">
-            <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">付款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
-            </view>
-            <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">收款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
-            </view>
-          </view>
-        </view>
-        <view class="content_1_1">
-          <view class="content_1_1_1">adn when youre done lll dance for me dance for me</view>
-          <view class="content_1_1_2">
-            <view class="content_1_1_2_1">担保金额：</view>
-            <view class="content_1_1_2_2">￥1000</view>
-          </view>
-          <view class="content_1_1_3">
-            <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">付款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
-            </view>
-            <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">收款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
+              <view class="content_1_1_3_1_1">合作方：</view>
+              <view class="content_1_1_3_1_2">{{ item.to_id }}</view>
             </view>
           </view>
           <view class="content_1_1_3">
             <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">付款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
+              <view class="content_1_1_3_1_1">发起时间：</view>
+              <view class="content_1_1_3_1_2">{{ item.createtime }}</view>
             </view>
             <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">收款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
-            </view>
-          </view>
-        </view>
-        <view class="content_1_1">
-          <view class="content_1_1_1">adn when youre done lll dance for me dance for me</view>
-          <view class="content_1_1_2">
-            <view class="content_1_1_2_1">担保金额：</view>
-            <view class="content_1_1_2_2">￥1000</view>
-          </view>
-          <view class="content_1_1_3">
-            <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">付款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
-            </view>
-            <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">收款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
-            </view>
-          </view>
-          <view class="content_1_1_3">
-            <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">付款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
-            </view>
-            <view class="content_1_1_3_1">
-              <view class="content_1_1_3_1_1">收款方：</view>
-              <view class="content_1_1_3_1_2">这是付款方哈哈哈哈</view>
+              <view class="content_1_1_3_1_1">完成时间：</view>
+              <view class="content_1_1_3_1_2">{{ item.completetime }}</view>
             </view>
           </view>
         </view>
@@ -91,12 +41,38 @@
 </template>
 
 <script>
-import Head from '../../components/Head';
+import Head from "../../components/Head";
+import { getGuaranteeRecord } from "../../utils/api";
 export default {
+  data() {
+    return {
+      // 担保记录参数
+      guaranteeRecordParams: {
+        page: 1,
+        num: 10,
+      },
+      // 担保记录
+      guaranteeRecord: [],
+    };
+  },
+  methods: {
+    // 担保记录
+    getGuaranteeRecord() {
+      // 担保记录API
+      getGuaranteeRecord(this.guaranteeRecordParams).then((res) => {
+        // 赋值
+        this.guaranteeRecord = res.data.list;
+      });
+    },
+  },
+  onLoad() {
+    // 担保记录
+    this.getGuaranteeRecord();
+  },
   components: { Head },
 };
 </script>
 
 <style lang="scss" scoped>
-@import './guaranteeRecord.scss';
+@import "./guaranteeRecord.scss";
 </style>

@@ -61,11 +61,21 @@ export default {
       // 担保记录API
       getGuaranteeRecord(this.guaranteeRecordParams).then((res) => {
         // 赋值
-        this.guaranteeRecord = res.data.list;
+        res.data.list.forEach((item) => {
+          // 数组追加
+          this.guaranteeRecord.push(item);
+        });
       });
     },
   },
   onLoad() {
+    // 担保记录
+    this.getGuaranteeRecord();
+  },
+  // 滚动到底部
+  onReachBottom() {
+    // 页数+1
+    this.guaranteeRecordParams.page++;
     // 担保记录
     this.getGuaranteeRecord();
   },

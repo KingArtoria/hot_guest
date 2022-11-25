@@ -298,3 +298,39 @@ export const getGuaranteeRecord = data => {
     data
   });
 }
+// ? 意见反馈
+export const feedback = data => {
+  return request({
+    method: 'post',
+    url: '/member/feedback',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 修改手机号
+export const changePhone = data => {
+  return request({
+    method: 'post',
+    url: '/member/changephone',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 添加关键词
+export const addKeyword = data => {
+  return request({
+    method: 'post',
+    url: '/Keywords/setKeyword',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 删除关键词
+export const deleteKeyword = data => {
+  return request({
+    method: 'post',
+    url: '/Keywords/updateKeyword',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

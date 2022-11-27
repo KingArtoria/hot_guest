@@ -9,15 +9,18 @@
   width: 100%;
   background: rgb(235, 21, 45);
   z-index: 5;
+
   .head_1,
   .head_2,
   .head_3 {
     flex: 1;
+
     .head_1_1 {
       width: 40rpx;
       height: 40rpx;
     }
   }
+
   .head_2 {
     text-align: center;
     font-size: 34rpx;
@@ -26,6 +29,7 @@
     color: #fff;
   }
 }
+
 .content {
   background: url('http://39.106.208.234/pic/img_/yhyzxj.png') no-repeat;
   background-size: 100%;
@@ -33,4 +37,31 @@
   position: absolute;
   top: 180rpx;
   width: 100%;
+  position: relative;
+
+
+  .content_1 {
+    width: 420rpx;
+    background: rgba(171, 0, 19, 0.34);
+    border-radius: 24rpx;
+    position: absolute;
+    top: 270rpx;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  .content_2 {
+    font-size: 24rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FFF4A8;
+    line-height: 1;
+    position: absolute;
+    margin: 0 auto;
+    top: 1029rpx;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
 }

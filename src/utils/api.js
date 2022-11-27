@@ -334,3 +334,30 @@ export const deleteKeyword = data => {
     data
   });
 }
+// ? 获取邀请码
+export const getInviteCode = data => {
+  return request({
+    method: 'post',
+    url: '/shell/getCashList',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 返现列表
+export const getBackCashList = data => {
+  return request({
+    method: 'post',
+    url: '/shell/sumMoneyList',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 修改密码
+export const changePassword = data => {
+  return request({
+    method: 'post',
+    url: '/login/forgetPass',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

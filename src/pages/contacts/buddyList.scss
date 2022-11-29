@@ -1,6 +1,9 @@
 .content {
   padding-top: 180rpx;
   background: #f6f6f6;
+  max-height: 100vh;
+  overflow: hidden;
+
   .content_1 {
     display: flex;
     align-items: center;
@@ -10,12 +13,14 @@
     background: #ffffff;
     border-radius: 35rpx;
     margin: 0 auto;
+
     .content_1_1 {
       width: 32rpx;
       height: 32rpx;
       margin-right: 11rpx;
     }
   }
+
   .content_2 {
     display: flex;
     align-items: center;
@@ -23,17 +28,20 @@
     height: 138rpx;
     background: #ffffff;
     padding: 0 33rpx;
+
     .content_2_1 {
       width: 90rpx;
       height: 90rpx;
       border-radius: 45rpx;
       margin-right: 20rpx;
     }
+
     .content_2_2 {
       flex-direction: column;
       display: flex;
       justify-content: space-between;
       height: 90rpx;
+
       .content_2_2_1 {
         font-size: 30rpx;
         font-family: PingFang SC;
@@ -41,6 +49,7 @@
         color: #303030;
         line-height: 1;
       }
+
       .content_2_2_2 {
         font-size: 24rpx;
         font-family: PingFang SC;

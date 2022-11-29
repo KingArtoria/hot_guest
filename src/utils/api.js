@@ -424,3 +424,12 @@ export const searchFriend = data => {
     data
   });
 }
+// ? 我的好友
+export const getMyFriend = data => {
+  return request({
+    method: 'post',
+    url: '/Friend/getFriendList',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

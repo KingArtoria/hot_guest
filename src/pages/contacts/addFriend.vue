@@ -63,12 +63,12 @@ export default {
     return {
       // 头部插槽样式参数
       slotStyle: {
-        width: "87px",
-        height: "40px",
+        width: "87rpx",
+        height: "40rpx",
         background: "#0078FF",
-        "border-radius": "5px",
+        "border-radius": "5rpx",
         display: "inline-block",
-        "font-size": "26px",
+        "font-size": "26rpx",
         "font-weight": 500,
         color: " #FFFFFF",
         "text-align": "center",

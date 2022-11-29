@@ -15,6 +15,11 @@ const request = (config) => {
         reject({ message: "网络超时" });
       } else {
         let response = responses[1].data;
+        if (response.code == -2) {
+          // 删除token
+          uni.removeStorageSync('token');
+          return
+        }
         resolve(response);
       }
     }).catch(error => {

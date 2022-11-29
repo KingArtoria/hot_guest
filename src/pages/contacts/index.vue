@@ -6,23 +6,35 @@
         <view class="head_1_1" />
         <view class="head_1_2">人脉</view>
         <view class="head_1_3" @click="goAddFriend">
-          <image class="head_1_3_1" src="http://39.106.208.234/pic/img_/tianjia2.png" />
+          <image
+            class="head_1_3_1"
+            src="http://39.106.208.234/pic/img_/tianjia2.png"
+          />
         </view>
       </view>
     </view>
     <view class="content">
       <!-- 搜索框 -->
-      <view class="content_1">
-        <image class="content_1_1" src="http://39.106.208.234/pic/img_/sousuo_rm.png" />
+      <view class="content_1" @click="goSearch">
+        <image
+          class="content_1_1"
+          src="http://39.106.208.234/pic/img_/sousuo_rm.png"
+        />
         <u-input border="none" fontSize="28rpx" placeholder="搜索人脉" />
       </view>
       <!-- 好友列表 -->
       <view class="content_2" @click="goFriendList">
         <view class="content_2_1">
-          <image class="content_2_1_1" src="http://39.106.208.234/pic/img_/hylb2.png" />
+          <image
+            class="content_2_1_1"
+            src="http://39.106.208.234/pic/img_/hylb2.png"
+          />
           <view class="content_2_1_2">好友列表（30）</view>
         </view>
-        <image class="content_2_2" src="http://39.106.208.234/pic/img_/jinr.png" />
+        <image
+          class="content_2_2"
+          src="http://39.106.208.234/pic/img_/jinr.png"
+        />
       </view>
       <!-- 开启通讯录 -->
       <view class="content_3">
@@ -34,7 +46,10 @@
           </view>
           <view class="content_3_1_3">看看你的好友都有哪些人脉资源</view>
         </view>
-        <image class="content_3_2" src="http://39.106.208.234/pic/img_/kaiqitongxunl.png" />
+        <image
+          class="content_3_2"
+          src="http://39.106.208.234/pic/img_/kaiqitongxunl.png"
+        />
       </view>
       <!-- 待处理请求 -->
       <view class="content_4">
@@ -45,7 +60,10 @@
           </view>
           <view class="content_4_1_2">
             <view class="content_4_1_2_1">管理我的请求</view>
-            <image class="content_4_1_2_2" src="http://39.106.208.234/pic/img_/jinr.png" />
+            <image
+              class="content_4_1_2_2"
+              src="http://39.106.208.234/pic/img_/jinr.png"
+            />
           </view>
         </view>
         <FriendRequest @click="goPersonal" />
@@ -68,26 +86,32 @@
 </template>
 
 <script>
-import FriendRequest from '@/components/FriendRequest';
-import Contacts from '@/components/Contacts';
+import FriendRequest from "@/components/FriendRequest";
+import Contacts from "@/components/Contacts";
 export default {
   methods: {
     // 前往好友列表
     goFriendList() {
       uni.navigateTo({
-        url: '/pages/contacts/buddyList',
+        url: "/pages/contacts/buddyList",
       });
     },
     // 前往添加好友
-    goAddFriend() { 
+    goAddFriend() {
       uni.navigateTo({
-        url: '/pages/contacts/addFriend',
+        url: "/pages/contacts/addFriend",
       });
     },
     // 前往好友个人页
     goPersonal() {
       uni.navigateTo({
-        url: '/pages/contacts/personal',
+        url: "/pages/contacts/personal",
+      });
+    },
+    // 前往搜索好友
+    goSearch() {
+      uni.navigateTo({
+        url: "/pages/contacts/addFriendAction",
       });
     },
   },
@@ -96,5 +120,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './index.scss';
+@import "./index.scss";
 </style>

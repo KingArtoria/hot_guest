@@ -2,20 +2,27 @@
   <view>
     <view class="content" @click="goProjectDetail">
       <view class="content_1"> {{ item.title }}</view>
-      <view class="content_2">{{ item.addtime }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;山东菏泽曹县</view>
+      <view class="content_2"
+        >{{ item.addtime }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
+          item.company
+        }}</view
+      >
       <view class="content_3">
-        <view class="content_3_1">日结</view>
-        <view class="content_3_1">结算方式：CPC</view>
-        <view class="content_3_1">网推</view>
+        <view
+          class="content_3_1"
+          v-for="(item2, index2) in item.k"
+          :key="index2"
+          >{{ item2 }}</view
+        >
       </view>
       <view class="content_4">
         <view class="content_4_1">
-          <image class="content_4_1_1" :src="_userInfo.head" />
-          <view class="content_4_1_2">{{ _userInfo.nick_name }}</view>
+          <image class="content_4_1_1" :src="item.head" />
+          <view class="content_4_1_2">{{ item.nick_name }}</view>
           <view class="content_4_1_3" />
-          <view class="content_4_1_4">{{ _userInfo.position }}</view>
+          <view class="content_4_1_4">{{ item.position }}</view>
         </view>
-        <view class="content_4_2">广告甲方</view>
+        <view class="content_4_2">{{ item.typeName }}</view>
       </view>
     </view>
   </view>

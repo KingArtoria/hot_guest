@@ -6,16 +6,19 @@ export const ADVERTISING_IMG = [
 ]
 // TODO 宫格常量
 export const GRID_IMG = [
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_ggjf@2x.png", text: "广告甲方" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_llyftb@2x.png", text: "流量乙方" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_chuhyw11@2x.png", text: "海外业务" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_yzhy@2x.png", text: "优质货源" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_xsqd.png", text: "销售渠道" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_zyhh@2x.png", text: "资源互换" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_llhh@2x.png", text: "流量互换" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_zsjm@2x.png", text: "招商加盟" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_xxgg@2x.png", text: "线下广告" },
-  { url: "", src: "http://39.106.208.234/pic/img_/sy_xxcd@2x.png", text: "线下场地" },
+  { id: 1, src: "http://39.106.208.234/pic/img_/sy_ggjf@2x.png", text: "广告甲方", type: 1 },
+  { id: 2, src: "http://39.106.208.234/pic/img_/sy_llyftb@2x.png", text: "流量乙方", type: 1 },
+  { id: 11, src: "http://39.106.208.234/pic/img_/sy_chuhyw11@2x.png", text: "海外业务", type: 1 },
+  { id: 3, src: "http://39.106.208.234/pic/img_/sy_yzhy@2x.png", text: "优质货源", type: 1 },
+  { id: 4, src: "http://39.106.208.234/pic/img_/sy_xsqd.png", text: "销售渠道", type: 1 },
+  { id: 5, src: "http://39.106.208.234/pic/img_/sy_zyhh@2x.png", text: "资源互换", type: 1 },
+  { id: 6, src: "http://39.106.208.234/pic/img_/sy_llhh@2x.png", text: "流量互换", type: 1 },
+  { id: 7, src: "http://39.106.208.234/pic/img_/sy_zsjm@2x.png", text: "招商加盟", type: 1 },
+  { id: 8, src: "http://39.106.208.234/pic/img_/sy_xxgg@2x.png", text: "线下广告", type: 1 },
+  { id: 12, src: "http://39.106.208.234/pic/img_/cgxq@2x.png", text: "采购需求", type: 1 },
+  { id: 9, src: "http://39.106.208.234/pic/img_/sy_xxcd@2x.png", text: "线下场地", type: 1 },
+  { id: 1, src: "http://39.106.208.234/pic/img_/djzx@2x.png", text: "道具中心", type: 2, url: "/pages/user/prop" },
+  { id: 1, src: "http://39.106.208.234/pic/img_/yaoqingyl@2x.png", text: "邀请有礼", type: 2, url: "/pages/user/inviteFriends" },
 ]
 // TODO 标签常量
 export const LABEL_IMG = [

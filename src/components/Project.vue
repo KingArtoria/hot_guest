@@ -1,11 +1,19 @@
 <template>
   <view>
     <view class="content">
-      <view class="content_1" v-for="(item, index) in list" :key="index" @click="goProject(item.id)">
+      <view
+        class="content_1"
+        v-for="(item, index) in list"
+        :key="index"
+        @click="goProject(item.id)"
+      >
         <!-- 置顶盒子 -->
-        <view class="content_1_2">
+        <view class="content_1_2" v-if="item.supertoptime > 0">
           <!-- 置顶图标 -->
-          <image class="content_1_2_1" src="http://39.106.208.234/pic/img_/cjzd.png" />
+          <image
+            class="content_1_2_1"
+            src="http://39.106.208.234/pic/img_/cjzd.png"
+          />
         </view>
         <!-- 信息盒子 -->
         <view class="content_1_1">
@@ -14,7 +22,9 @@
             <!-- 头像 -->
             <image class="content_1_1_1_1" :src="item.head" />
             <!-- 名称 -->
-            <view class="content_1_1_1_2">{{ item.nick_name }}</view>
+            <view class="content_1_1_1_2" :style="`color:${item.nameColor}`">{{
+              item.nick_name
+            }}</view>
             <!-- 分割线 -->
             <view class="content_1_1_1_3" />
             <!-- 职位 -->
@@ -22,14 +32,40 @@
           </view>
           <!-- 项目标题 -->
           <view class="content_1_1_2"> {{ item.title }}</view>
-          <view class="content_1_1_3">{{ item.addtime }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.company }}</view>
+          <!-- 添加日期 -->
+          <view class="content_1_1_3"
+            >{{ item.addtime }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
+              item.company
+            }}</view
+          >
+          <!-- 下部盒子 -->
           <view class="content_1_1_4">
+            <!-- 标签 -->
             <view class="content_1_1_4_1">
-              <view class="content_1_1_4_1_1" v-for="(v, i) in item.k" :key="i">{{ v }}</view>
+              <!-- 单标签 -->
+              <view
+                class="content_1_1_4_1_1"
+                v-for="(v, i) in item.k"
+                :key="i"
+                >{{ v }}</view
+              >
             </view>
-            <view class="content_1_1_4_2">{{ item.typeName }}</view>
+            <!-- 类型 -->
+            <view class="content_1_1_4_2" v-if="!item.advertisement_time > 0">{{
+              item.typeName
+            }}</view>
+            <!-- 广告置顶 -->
+            <view class="content_1_1_4_3" v-if="item.advertisement_time > 0"
+              >广告</view
+            >
           </view>
         </view>
+        <!-- 普通置顶 -->
+        <image
+          class="content_1_3"
+          src="http://39.106.208.234/pic/img_/sy_zd@2x.png"
+          v-if="item.toptime > 0"
+        />
       </view>
     </view>
   </view>
@@ -61,7 +97,8 @@ export default {
   .content_1 {
     background: #fff;
     margin-bottom: 15rpx;
-      border-radius: 9rpx;
+    border-radius: 9rpx;
+    position: relative;
     .content_1_2 {
       height: 57rpx;
       background: #e1edff;
@@ -94,7 +131,6 @@ export default {
           font-size: 24rpx;
           font-family: PingFang SC;
           font-weight: 500;
-          color: #b957fd;
           line-height: 1;
         }
 
@@ -159,7 +195,7 @@ export default {
             margin-right: 22rpx;
             display: flex;
             align-items: center;
-            juccy-content: center;
+            justify-content: center;
           }
         }
 
@@ -176,7 +212,27 @@ export default {
           font-weight: 500;
           color: #1f73f1;
         }
+        .content_1_1_4_3 {
+          width: 70rpx;
+          height: 30rpx;
+          background: #f6f6f6;
+          border-radius: 5rpx;
+          text-align: center;
+          line-height: 30rpx;
+          font-size: 24rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #bbbbbb;
+        }
       }
+    }
+    .content_1_3 {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 3;
+      width: 58rpx;
+      height: 58rpx;
     }
   }
 }

@@ -361,3 +361,66 @@ export const changePassword = data => {
     data
   });
 }
+// ? 搜索
+export const search = data => {
+  return request({
+    method: 'post',
+    url: '/index/search',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 签到信息
+export const getSignInfo = data => {
+  return request({
+    method: 'post',
+    url: '/coupons/getSignInfo',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 签到
+export const sign = data => {
+  return request({
+    method: 'post',
+    url: '/coupons/setPunchCard',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 兑换列表
+export const getExchangeList = data => {
+  return request({
+    method: 'post',
+    url: '/order/getCoupons',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 兑换
+export const exchange = data => {
+  return request({
+    method: 'post',
+    url: '/coupons/setCoupons',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 推荐人脉
+export const getRecommend = data => {
+  return request({
+    method: 'post',
+    url: '/friend/getRecommendList',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 搜索人脉
+export const searchFriend = data => {
+  return request({
+    method: 'post',
+    url: '/friend/searchFriendapply',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

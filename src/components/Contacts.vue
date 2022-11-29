@@ -1,21 +1,33 @@
 <template>
   <view>
-    <view class="contacts">
-      <image class="contacts_1" src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png" />
+    <!-- 内容盒子 -->
+    <view class="contacts" v-for="(item, index) in data" :key="index">
+      <!-- 头像 -->
+      <image class="contacts_1" :src="item.head" />
+      <!-- 信息盒子 -->
       <view class="contacts_2">
+        <!-- 个人信息 -->
         <view class="contacts_2_1">
+          <!-- 信息 -->
           <view class="contacts_2_1_1">
-            <text class="contacts_2_1_1_1">entity</text>
-            <text class="contacts_2_1_1_2">我是公司&nbsp;我是职位</text>
+            <text class="contacts_2_1_1_1">{{ item.nick_name }}</text>
+            <text class="contacts_2_1_1_2"
+              >{{ item.company }}&nbsp;{{ item.position }}</text
+            >
           </view>
-          <view class="contacts_2_1_2">
-            <image class="contacts_2_1_2_1" src="http://39.106.208.234/pic/img_/haoyou.png" />
+          <!-- 按钮 -->
+          <view class="contacts_2_1_2" @click="addFriend(item.id)">
+            <image
+              class="contacts_2_1_2_1"
+              src="http://39.106.208.234/pic/img_/haoyou.png"
+            />
             <view class="contacts_2_1_2_2">好友</view>
           </view>
         </view>
+        <!-- 项目信息 -->
         <view class="contacts_2_2">
-          <view class="contacts_2_2_1">3条合作信息</view>
-          <view class="contacts_2_2_2">最新合作信息：仔细看了除了亏支持哦破自行车控制下吧欧洲许昌v哦i中哦i中的哈佛中西合璧这些,每次不怎么,1</view>
+          <!-- 总数 -->
+          <view class="contacts_2_2_1">{{ item.count }}条合作信息</view>
         </view>
       </view>
     </view>
@@ -23,7 +35,32 @@
 </template>
 
 <script>
-export default {};
+import { showToast } from "../utils";
+import { addFriend } from "../utils/api";
+export default {
+  props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    // 添加好友
+    addFriend(toid) {
+      // 加载中
+      uni.showLoading({ title: "加载中" });
+      addFriend({ toid }).then((res) => {
+        // 抛出异常
+        if (res.code != 1) return showToast(res.msg);
+        // 提示
+        showToast("申请发送成功");
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -32,7 +69,6 @@ export default {};
   background: #ffffff;
   padding: 25rpx 31rpx 33rpx 33rpx;
   display: flex;
-  justify-content: space-between;
   .contacts_1 {
     width: 90rpx;
     height: 90rpx;
@@ -41,6 +77,7 @@ export default {};
     flex-shrink: 0;
   }
   .contacts_2 {
+    flex: 1;
     .contacts_2_1 {
       display: flex;
       align-items: center;

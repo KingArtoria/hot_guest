@@ -10,7 +10,9 @@
         <!-- 购买 -->
         <view class="props_2_1_3" v-if="type == 1">￥{{ item.price }}</view>
         <view class="props_2_1_4" v-if="type == 2">数量：{{ item.num }}张</view>
-        <view class="props_2_1_5" v-if="type == 3">{{ item.price }}</view>
+        <view class="props_2_1_5" v-if="type == 3"
+          >{{ item.integral }}积分</view
+        >
       </view>
       <!-- 购买 -->
       <view class="props_2_2" v-if="type == 1" @click="createOrder">购买</view>
@@ -23,12 +25,17 @@
       >
       <!-- 已使用 -->
       <view class="props_2_4" v-if="type == 2 && status == 1">已使用</view>
+      <!-- 兑换 -->
+      <view class="props_2_5" v-if="type == 3" @click="exchange(item.id)"
+        >兑换</view
+      >
     </view>
   </view>
 </template>
 
 <script>
-import { createOrder, usePropsOne } from "../utils/api";
+import { showToast } from "../utils";
+import { createOrder, exchange, usePropsOne } from "../utils/api";
 export default {
   props: {
     item: {
@@ -69,6 +76,16 @@ export default {
             url: `/pages/user/useProps?coupons=${coupons}`,
           });
         }
+      });
+    },
+    // 兑换道具
+    exchange(coupons_id) {
+      // 兑换道具API
+      exchange({ coupons_id }).then((res) => {
+        // 抛出异常
+        if (res.code != 1) return showToast(res.msg);
+        // 兑换成功
+        showToast("兑换成功");
       });
     },
   },
@@ -139,10 +156,10 @@ export default {
       }
 
       .props_2_1_5 {
-        font-size: 24rpx;
+        font-size: 36rpx;
         font-family: PingFang SC;
-        font-weight: 400;
-        color: #848484;
+        font-weight: bold;
+        color: #1f73f1;
         line-height: 1;
       }
     }
@@ -185,6 +202,18 @@ export default {
       font-weight: 500;
       color: #ffffff;
       flex-shrink: 0;
+    }
+    .props_2_5 {
+      width: 142rpx;
+      height: 52rpx;
+      background: #1f73f1;
+      border-radius: 26rpx;
+      text-align: center;
+      line-height: 52rpx;
+      font-size: 30rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
     }
   }
 }

@@ -5,7 +5,9 @@
     position: absolute;
     top: 116rpx;
     left: 41rpx;
+    z-index: 999;
   }
+
   .content_2 {
     position: absolute;
     display: flex;
@@ -14,11 +16,13 @@
     align-items: center;
     height: 100vh;
     width: 100%;
+
     .content_2_1 {
       width: 130rpx;
       height: 130rpx;
       margin-bottom: 24rpx;
     }
+
     .content_2_2 {
       font-size: 26rpx;
       font-family: PingFang SC;
@@ -26,6 +30,7 @@
       color: #afafaf;
       line-height: 1;
     }
+
     .content_2_3 {
       width: 670rpx;
       height: 90rpx;
@@ -40,6 +45,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       .content_2_3_1 {
         width: 52rpx;
         height: 42rpx;
@@ -47,10 +53,12 @@
       }
     }
   }
+
   .content_3 {
     position: absolute;
     bottom: 40rpx;
     width: 100%;
+
     .content_3_1 {
       font-size: 26rpx;
       font-family: PingFang SC;
@@ -60,16 +68,20 @@
       line-height: 1;
       margin-bottom: 60rpx;
     }
+
     .content_3_2 {
       display: flex;
       justify-content: space-around;
+
       .content_3_2_1 {
         text-align: center;
+
         .content_3_2_1_1 {
           width: 80rpx;
           height: 80rpx;
           margin-bottom: 18rpx;
         }
+
         .content_3_2_1_2 {
           font-size: 24rpx;
           font-family: PingFang SC;
@@ -80,6 +92,7 @@
       }
     }
   }
+
   .content_4 {
     position: absolute;
     display: flex;
@@ -87,6 +100,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
+
     .content_4_1 {
       font-size: 46rpx;
       font-family: PingFang SC;
@@ -96,10 +110,12 @@
       top: 226rpx;
       left: 42rpx;
     }
+
     .content_4_2 {
       display: flex;
       flex-direction: column;
       align-items: center;
+
       .content_4_2_1 {
         width: 635rpx;
         height: 100rpx;
@@ -110,10 +126,12 @@
         padding-right: 28rpx;
         display: flex;
         align-items: center;
+
         .content_4_2_1_1 {
           width: 28rpx;
           height: 36rpx;
         }
+
         .content_4_2_1_2 {
           width: 2rpx;
           height: 28rpx;
@@ -121,6 +139,7 @@
           margin: 0 34rpx;
         }
       }
+
       .content_4_2_2 {
         width: 450rpx;
         height: 100rpx;

@@ -5,25 +5,52 @@
       <view class="content_1">
         <!-- 个人信息 -->
         <view class="content_1_1">
-          <view class="content_1_1_1" @click="goEditData">
+          <!-- 头像盒子 -->
+          <view class="content_1_1_1" @click="goEditData" v-if="token">
             <image class="content_1_1_1_1" :src="userInfo.head" />
             <image
               class="content_1_1_1_2"
               src="http://39.106.208.234/pic/img_/xg.webp"
             />
           </view>
+          <!-- 未登录盒子 -->
+          <view class="content_1_1_1" v-if="!token">
+            <image
+              class="content_1_1_1_1"
+              src="http://39.106.208.234/pic/img_/wdl.png"
+          /></view>
           <view class="content_1_1_2">
-            <view class="content_1_1_2_1">
+            <!-- 去登录 -->
+            <view class="content_1_1_2_1" v-if="!token" @click="toLogin">
+              <!-- 登录提示 -->
+              <view class="content_1_1_2_1_1">立即登录</view>
+              <!-- 登录图标 -->
+              <image
+                style="height: 46rpx; width: 46rpx"
+                src="http://39.106.208.234/pic/img_/tz_dl.png"
+              />
+            </view>
+            <!-- 名字 -->
+            <view class="content_1_1_2_1" v-if="token">
               <view class="content_1_1_2_1_1">{{ userInfo.nick_name }}</view>
               <HY :type="userInfo.maxvip" />
             </view>
-            <view class="content_1_1_2_2" style="margin-bottom: 19rpx"
+            <!-- 职位 -->
+            <view
+              class="content_1_1_2_2"
+              v-if="token"
+              style="margin-bottom: 19rpx"
               >{{ userInfo.company }}&nbsp;&nbsp;&nbsp;{{
                 userInfo.position
               }}</view
             >
-            <view class="content_1_1_2_2" @click="copyCode"
+            <!-- 邀请码 -->
+            <view class="content_1_1_2_2" @click="copyCode" v-if="token"
               >我的邀请码：{{ userInfo.Invitation_code }}（点击复制）</view
+            >
+            <!-- 登录权益 -->
+            <view class="content_1_1_2_2" v-if="!token"
+              >登录畅享更多会员权益</view
             >
           </view>
         </view>
@@ -149,6 +176,15 @@
       showCancelButton
       @confirm="goLoginOut"
     />
+    <!-- 登录模态框 -->
+    <u-modal
+      :show="loginModal.show"
+      :title="loginModal.title"
+      :content="loginModal.content"
+      showCancelButton
+      @confirm="loginModal.confirm"
+      @cancel="loginModal.show = false"
+    />
   </view>
 </template>
 
@@ -165,77 +201,116 @@ export default {
       loginOutShow: false,
       // 用户信息
       userInfo: {},
+      // token
+      token: "",
+      // 登录模态框
+      loginModal: {
+        show: false,
+        title: "提示",
+        content: "请先进行登录",
+        confirm: () => {
+          // 跳转登录
+          uni.navigateTo({
+            url: "/pages/user/login",
+          });
+        },
+      },
     };
   },
   methods: {
     // 前往修改信息
     goEditData() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/editData",
       });
     },
     // 前往道具商城
     goProp() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
+      // 路由跳转
       uni.navigateTo({
         url: "/pages/user/prop",
       });
     },
     // 前往钱包
     goWaller() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/wallet",
       });
     },
     // 前往黑卡
     goBlackCard() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/blackCard",
       });
     },
     // 前往会员
     goVip() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/vip",
       });
     },
     // 前往我的发布
     goMyPost() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/myPost",
       });
     },
     // 前往担保记录
     goGuaranteeRecord() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/guaranteeRecord",
       });
     },
     // 前往业务订阅
     goBusinessSubscription() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/businessSubscription",
       });
     },
     // 前往邀请好友
     goInviteFriends() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/inviteFriends",
       });
     },
     // 前往实名认证
     goVerified() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/verified",
       });
     },
     // 前往意见反馈
     goFeedback() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/feedback",
       });
     },
     // 前往设置
     goSettings() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/settings",
       });
@@ -267,24 +342,33 @@ export default {
     },
     // 前往我的收藏
     toCollection() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/collection",
       });
     },
     // 前往我的道具
     toMyProp() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/user/myProp",
+      });
+    },
+    // 前往登录
+    toLogin() {
+      // 路由跳转
+      uni.navigateTo({
+        url: "/pages/user/login",
       });
     },
   },
   onLoad() {
     // 获取个人信息
     this.getUserInfo();
-    // 重新拉取用户信息
-    uni.$on("getUserInfo", () => {
-      this.getUserInfo();
-    });
+    // 获取token
+    this.token = uni.getStorageSync("token");
   },
   onUnload() {
     uni.$off("getUserInfo");

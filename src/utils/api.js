@@ -433,3 +433,21 @@ export const getMyFriend = data => {
     data
   });
 }
+// ? 通知
+export const getNotice = data => {
+  return request({
+    method: 'post',
+    url: '/friend/manageFriendapply',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 加好友请求处理
+export const handleFriend = data => {
+  return request({
+    method: 'post',
+    url: '/friend/agreeFriendapply',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

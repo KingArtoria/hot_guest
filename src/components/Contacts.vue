@@ -1,7 +1,12 @@
 <template>
   <view>
     <!-- 内容盒子 -->
-    <view class="contacts" v-for="(item, index) in data" :key="index">
+    <view
+      class="contacts"
+      v-for="(item, index) in data"
+      :key="index"
+      @click="goPersonal(item.id)"
+    >
       <!-- 头像 -->
       <image class="contacts_1" :src="item.head" />
       <!-- 信息盒子 -->
@@ -58,6 +63,10 @@ export default {
         // 提示
         showToast("申请发送成功");
       });
+    },
+    // 跳转到个人中心
+    goPersonal(id) {
+      uni.navigateTo({ url: `/pages/contacts/personal?id=${id}` });
     },
   },
 };

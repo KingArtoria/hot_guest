@@ -1,29 +1,73 @@
 <template>
   <view class="fr" @click="click">
     <view class="fr_1">
-      <image class="fr_1_1" src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png" />
+      <image
+        class="fr_1_1"
+        src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png"
+      />
       <view class="fr_1_2">
-        <view class="fr_1_2_1">好友请求：entity</view>
-        <view class="fr_1_2_2">杭州阿里巴巴网络科技有限公司&nbsp;&nbsp;&nbsp;&nbsp;商务经理</view>
-        <view class="fr_1_2_2">同行3个共同好友</view>
+        <view class="fr_1_2_1">好友请求：{{ data.nick_name }}</view>
+        <view class="fr_1_2_2"
+          >{{ data.company }}&nbsp;&nbsp;&nbsp;&nbsp;{{ data.position }}</view
+        >
+        <view class="fr_1_2_2">同行{{ data.count }}个共同好友</view>
       </view>
     </view>
     <view class="fr_2">
-      <view class="fr_2_1" style="margin-right: 32rpx">
-        <image class="fr_2_1_1" src="http://39.106.208.234/pic/img_/jujue.png" />
+      <view
+        class="fr_2_1"
+        style="margin-right: 32rpx"
+        @click.stop="handleFriend(2)"
+      >
+        <image
+          class="fr_2_1_1"
+          src="http://39.106.208.234/pic/img_/jujue.png"
+        />
       </view>
-      <view class="fr_2_1">
-        <image class="fr_2_1_2" src="http://39.106.208.234/pic/img_/tongyi.png" />
+      <view class="fr_2_1" @click.stop="handleFriend(1)">
+        <image
+          class="fr_2_1_2"
+          src="http://39.106.208.234/pic/img_/tongyi.png"
+        />
       </view>
     </view>
   </view>
 </template>
 
 <script>
+import { showToast } from "../utils";
+import { handleFriend } from "../utils/api";
 export default {
+  props: {
+    data: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  data() {
+    return {
+      // 加好友请求处理参数
+      params: {},
+    };
+  },
   methods: {
     click() {
-      this.$emit('click');
+      this.$emit("click");
+    },
+    // 加好友请求处理
+    handleFriend(status) {
+      // 参数赋值
+      this.params.status = status;
+      this.params.toid = this.data.member_id;
+      // 加好友请求处理API
+      handleFriend(this.params).then((res) => {
+        // 抛出异常
+        if (res.code != 1) return showToast(res.msg);
+        // 成功
+        showToast("处理成功");
+        // 刷新数据
+        uni.$emit("refresh");
+      });
     },
   },
 };

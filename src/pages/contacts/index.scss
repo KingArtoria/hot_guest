@@ -6,16 +6,19 @@
   padding-top: 85rpx;
   background: #f6f6f6;
   z-index: 5;
+
   .head_1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 80rpx;
+
     .head_1_1,
     .head_1_3 {
       width: 80rpx;
       height: 80rpx;
     }
+
     .head_1_2 {
       flex: 1;
       text-align: center;
@@ -25,12 +28,14 @@
       color: #2a2a2a;
       line-height: 1;
     }
+
     .head_1_3 {
       background: #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+
       .head_1_3_1 {
         width: 34rpx;
         height: 29rpx;
@@ -38,9 +43,11 @@
     }
   }
 }
+
 .content {
   padding-top: 180rpx;
   background: #f6f6f6;
+
   .content_1 {
     display: flex;
     align-items: center;
@@ -50,12 +57,14 @@
     background: #ffffff;
     border-radius: 35rpx;
     margin: 0 auto;
+
     .content_1_1 {
       width: 32rpx;
       height: 32rpx;
       margin-right: 11rpx;
     }
   }
+
   .content_2 {
     width: 750rpx;
     height: 116rpx;
@@ -66,14 +75,17 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 32rpx;
+
     .content_2_1 {
       display: flex;
       align-items: center;
+
       .content_2_1_1 {
         width: 60rpx;
         height: 60rpx;
         margin-right: 18rpx;
       }
+
       .content_2_1_2 {
         font-size: 28rpx;
         font-family: PingFang SC;
@@ -82,11 +94,13 @@
         line-height: 1;
       }
     }
+
     .content_2_2 {
       width: 10rpx;
       height: 20rpx;
     }
   }
+
   .content_3 {
     display: flex;
     justify-content: center;
@@ -98,9 +112,11 @@
     border-radius: 10rpx;
     margin: 0 auto;
     margin-top: 15rpx;
+
     .content_3_1 {
       flex: 1;
       padding-top: 37rpx;
+
       .content_3_1_1 {
         font-size: 28rpx;
         font-family: PingFang SC;
@@ -108,8 +124,10 @@
         color: #212121;
         line-height: 40rpx;
       }
+
       .content_3_1_2 {
         margin-bottom: 31rpx;
+
         .content_3_1_2_1,
         .content_3_1_2_2 {
           font-size: 28rpx;
@@ -117,13 +135,16 @@
           font-weight: 500;
           line-height: 40rpx;
         }
+
         .content_3_1_2_1 {
           color: #1f73f1;
         }
+
         .content_3_1_2_2 {
           color: #212121;
         }
       }
+
       .content_3_1_3 {
         font-size: 24rpx;
         font-family: PingFang SC;
@@ -132,11 +153,13 @@
         line-height: 32rpx;
       }
     }
+
     .content_3_2 {
       width: 413rpx;
       height: 256rpx;
     }
   }
+
   .content_4 {
     background: #fff;
     margin: 0 auto;
@@ -145,15 +168,18 @@
     height: 269rpx;
     background: #ffffff;
     border-radius: 10rpx;
+
     .content_4_1 {
       padding: 0 32rpx;
       display: flex;
       justify-content: space-between;
       align-items: center;
       height: 99rpx;
+
       .content_4_1_1 {
         display: flex;
         align-items: center;
+
         .content_4_1_1_1 {
           font-size: 28rpx;
           font-family: PingFang SC;
@@ -162,6 +188,7 @@
           line-height: 1;
           margin-right: 7rpx;
         }
+
         .content_4_1_1_2 {
           width: 34rpx;
           height: 34rpx;
@@ -175,9 +202,11 @@
           color: #ffffff;
         }
       }
+
       .content_4_1_2 {
         display: flex;
         align-items: center;
+
         .content_4_1_2_1 {
           font-size: 28rpx;
           font-family: PingFang SC;
@@ -186,6 +215,7 @@
           line-height: 1;
           margin-right: 14rpx;
         }
+
         .content_4_1_2_2 {
           width: 10rpx;
           height: 20rpx;
@@ -193,9 +223,11 @@
       }
     }
   }
+
   .content_5 {
     background: #fff;
     margin-top: 16rpx;
+
     .content_5_1 {
       display: flex;
       align-items: center;
@@ -203,16 +235,18 @@
       padding-left: 32rpx;
       padding-right: 37rpx;
       height: 84rpx;
+
       .content_5_1_1 {
         display: flex;
+
         .content_5_1_1_1 {
           font-size: 30rpx;
           font-family: PingFang SC;
-          font-weight: bold;
           color: #212121;
           margin-right: 42rpx;
         }
       }
+
       .content_5_1_2 {
         display: flex;
         align-items: center;

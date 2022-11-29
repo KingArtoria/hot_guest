@@ -29,7 +29,7 @@
             class="content_2_1_1"
             src="http://39.106.208.234/pic/img_/hylb2.png"
           />
-          <view class="content_2_1_2">好友列表（30）</view>
+          <view class="content_2_1_2">好友列表（{{ friendNum }}）</view>
         </view>
         <image
           class="content_2_2"
@@ -52,11 +52,11 @@
         />
       </view>
       <!-- 待处理请求 -->
-      <view class="content_4">
+      <view class="content_4" v-if="notice.length > 0">
         <view class="content_4_1">
           <view class="content_4_1_1">
             <view class="content_4_1_1_1">待处理请求</view>
-            <view class="content_4_1_1_2">3</view>
+            <view class="content_4_1_1_2">{{ notice.length }}</view>
           </view>
           <view class="content_4_1_2">
             <view class="content_4_1_2_1">管理我的请求</view>
@@ -66,20 +66,48 @@
             />
           </view>
         </view>
-        <FriendRequest @click="goPersonal" />
+        <FriendRequest @click="goPersonal" :data="notice[0]" />
       </view>
       <!-- Tabs -->
       <view class="content_5">
         <view class="content_5_1">
           <view class="content_5_1_1">
-            <view class="content_5_1_1_1">推荐人脉</view>
-            <view class="content_5_1_1_1">同行</view>
-            <view class="content_5_1_1_1">同城</view>
-            <view class="content_5_1_1_1">校友</view>
+            <view
+              class="content_5_1_1_1"
+              :style="
+                currentTab == 1 ? 'font-weight:bold' : 'font-weight: 400;'
+              "
+              @click="changeTab(1)"
+              >推荐人脉</view
+            >
+            <view
+              class="content_5_1_1_1"
+              :style="
+                currentTab == 2 ? 'font-weight:bold' : 'font-weight: 400;'
+              "
+              @click="changeTab(2)"
+              >同行</view
+            >
+            <view
+              class="content_5_1_1_1"
+              :style="
+                currentTab == 3 ? 'font-weight:bold' : 'font-weight: 400;'
+              "
+              @click="changeTab(3)"
+              >同城</view
+            >
+            <view
+              class="content_5_1_1_1"
+              :style="
+                currentTab == 4 ? 'font-weight:bold' : 'font-weight: 400;'
+              "
+              @click="changeTab(4)"
+              >校友</view
+            >
           </view>
           <view class="content_5_1_2">刷新</view>
         </view>
-        <Contacts />
+        <Contacts :data="recommend" />
       </view>
     </view>
   </view>
@@ -88,7 +116,20 @@
 <script>
 import FriendRequest from "@/components/FriendRequest";
 import Contacts from "@/components/Contacts";
+import { getMyFriend, getNotice, getRecommend } from "../../utils/api";
 export default {
+  data() {
+    return {
+      // 好友列表
+      friendNum: 0,
+      // 通知
+      notice: [],
+      // 当前选中的tab
+      currentTab: 1,
+      // 推荐人脉
+      recommend: [],
+    };
+  },
   methods: {
     // 前往好友列表
     goFriendList() {
@@ -114,6 +155,61 @@ export default {
         url: "/pages/contacts/addFriendAction",
       });
     },
+    // 我的好友
+    getMyFriend() {
+      // 我的好友API
+      getMyFriend().then((res) => {
+        // 赋值数量
+        this.friendNum = res.data.num;
+      });
+    },
+    // 通知
+    getNotice() {
+      // 通知API
+      getNotice({ type: 1 }).then((res) => {
+        // 通知赋值
+        this.notice = res.data;
+      });
+    },
+    // 推荐人脉
+    getRecommend() {
+      // 推荐人脉API
+      getRecommend({ type: this.currentTab }).then((res) => {
+        // 初始化数据
+        res.data.forEach((item) => {
+          // 初始化头像
+          if (item.head.indexOf("http") === -1) {
+            item.head = `${this._avatarUrl}${item.head}`;
+          }
+        });
+        // 赋值
+        this.recommend = res.data;
+      });
+    },
+    // 切换tab
+    changeTab(e) {
+      // 赋值
+      this.currentTab = e;
+      // 获取推荐人脉
+      this.getRecommend();
+    },
+  },
+  onLoad() {
+    uni.$on("refresh", () => {
+      // 我的好友
+      this.getMyFriend();
+      // 通知
+      this.getNotice();
+    });
+    // 我的好友
+    this.getMyFriend();
+    // 通知
+    this.getNotice();
+    // 推荐人脉
+    this.getRecommend();
+  },
+  onUnload() {
+    uni.$off("getUserInfo");
   },
   components: { FriendRequest, Contacts },
 };

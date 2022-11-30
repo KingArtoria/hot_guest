@@ -167,6 +167,12 @@ export default {
     getNotice() {
       // 通知API
       getNotice({ type: 1 }).then((res) => {
+        res.data.forEach((item) => {
+          // 初始化头像
+          if (item.head.indexOf("http") === -1) {
+            item.head = `${this._avatarUrl}${item.head}`;
+          }
+        });
         // 通知赋值
         this.notice = res.data;
       });

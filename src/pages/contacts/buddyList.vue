@@ -27,7 +27,12 @@
             bgColor="#f6f6f6"
             height="65rpx"
           />
-          <view v-for="(cell, index) in item" :key="index" class="content_2">
+          <view
+            v-for="(cell, index) in item"
+            :key="index"
+            class="content_2"
+            @click="goChat(cell)"
+          >
             <image class="content_2_1" :src="cell.head" />
             <view class="content_2_2">
               <view class="content_2_2_1">{{ cell.nick_name }}</view>
@@ -85,6 +90,15 @@ export default {
             }
           });
         });
+      });
+    },
+    // 前往聊天
+    goChat(item) {
+      // 保存信息
+      uni.setStorageSync("chat", item);
+      // 跳转到聊天页面
+      uni.navigateTo({
+        url: "/pages/news/privateChat",
       });
     },
   },

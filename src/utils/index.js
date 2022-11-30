@@ -1,3 +1,4 @@
+import GoEasy from 'goeasy'
 // * 时间戳转换为自定义格式
 export const formatTime = (time, format) => {
   if (!time) {
@@ -35,4 +36,42 @@ export const isNull = (value) => {
     }
   }
   return false;
+}
+// * 建立链接
+export const connect = (data) => {
+  data.goeasy.connect({
+    id: data.id,
+    data: { "avatar": data.avatar, "nickname": data.nickname },
+    onSuccess: () => {
+      console.log("链接成功")
+    },
+    onFailed: (error) => {
+      console.log(`链接失败:${error}`);
+    },
+    onProgress: (attempts) => {
+      console.log(`正在进行重连:${attempts}`);
+    }
+  });
+}
+// * 私聊信息
+export const privateChat = (data) => {
+  console.log(data)
+  var im = data.im;
+  let textMessage = im.createTextMessage({
+    text: data.text,
+    to: {
+      type: GoEasy.IM_SCENE.PRIVATE,
+      id: data.id,
+      data: { "avatar": data.head, "nickname": data.nickName }
+    }
+  });
+  im.sendMessage({
+    message: textMessage,
+    onSuccess: message => {
+      console.log("发送成功", message);
+    },
+    onFailed: error => {
+      console.log("发送失败", error);
+    }
+  });
 }

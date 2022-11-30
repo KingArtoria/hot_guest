@@ -1,10 +1,7 @@
 <template>
   <view class="fr" @click="click">
     <view class="fr_1">
-      <image
-        class="fr_1_1"
-        src="https://admin.bdhuoke.com//upload/20220808/687f5fda3f9928dd941c0409dad7270a.png"
-      />
+      <image class="fr_1_1" :src="data.head" />
       <view class="fr_1_2">
         <view class="fr_1_2_1">好友请求：{{ data.nick_name }}</view>
         <view class="fr_1_2_2"

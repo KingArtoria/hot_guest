@@ -1,10 +1,12 @@
 .content {
   padding-bottom: 102rpx;
+
   .content_1 {
     width: 750rpx;
     height: 620rpx;
     background: url('http://39.106.208.234/pic/img_/guanggaozz@2x.png') no-repeat;
     background-size: 100%;
+
     .content_1_1 {
       margin-top: 90rpx;
       margin-left: 21rpx;
@@ -12,23 +14,29 @@
       height: 32rpx;
     }
   }
+
   .content_2 {
     .content_2_1 {
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 27rpx;
+
       .content_2_1_1 {
         font-size: 26rpx;
         font-family: PingFang SC;
         font-weight: 500;
         color: #4b4b4b;
+        width: 140rpx;
+        text-align: end;
       }
+
       .content_2_1_2 {
         width: 474rpx;
       }
     }
   }
+
   .content_3 {
     width: 551rpx;
     height: 90rpx;
@@ -43,6 +51,7 @@
     font-weight: 500;
     color: #ffffff;
   }
+
   .content_4 {
     text-align: center;
     font-size: 26rpx;

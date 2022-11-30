@@ -451,3 +451,12 @@ export const handleFriend = data => {
     data
   });
 }
+// ? 申请广告
+export const applyAd = data => {
+  return request({
+    method: 'post',
+    url: '/Advertising/setAdverting',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

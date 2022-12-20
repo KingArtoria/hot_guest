@@ -44,8 +44,8 @@
           class="content_3_3"
           src="http://39.106.208.234/pic/img_/putongyonghu.png"
         />
-        <view class="content_3_4">去开通</view>
-        <view class="content_3_5">去购买</view>
+        <view class="content_3_4" @click="buyVip">去开通</view>
+        <view class="content_3_5" @click="createOrder">去购买</view>
       </view>
     </view>
     <!-- 关键词弹出层 -->
@@ -68,13 +68,22 @@
         <view class="keyWord_3" @click="addKeyword">确认添加</view>
       </view>
     </u-popup>
+    <!-- 购买成功 -->
+    <u-modal :show="modal.show" :title="modal.title" :content="modal.content" />
   </view>
 </template>
 
 <script>
-import Title from "../../components/Title.vue";
+import Title from "../../components/Title";
 import Head from "../../components/Head";
-import { addKeyword, deleteKeyword, getUserInfo } from "../../utils/api";
+import {
+  addKeyword,
+  createOrder,
+  deleteKeyword,
+  getInnerList,
+  getUserInfo,
+  wxPay,
+} from "../../utils/api";
 import { showToast } from "../../utils";
 export default {
   data() {
@@ -85,6 +94,22 @@ export default {
       show: false,
       // 用户信息
       userInfo: {},
+      // 道具API
+      innerList: {},
+      // sn
+      order_sn: "",
+      // 模态框对象
+      modal: {
+        show: false,
+        title: "支付成功",
+        content: "您已成功开通短信推送服务",
+        confirm: () => {
+          // 关闭模态框
+          this.modal.show = false;
+          // 返回上一级
+          uni.navigateBack();
+        },
+      },
     };
   },
   methods: {
@@ -127,10 +152,57 @@ export default {
         this.getUserInfo();
       });
     },
+    // 道具列表
+    getInnerList() {
+      // 道具列表API
+      getInnerList({ type: "DX" }).then((res) => {
+        // 数据赋值
+        this.innerList = res.data[0];
+      });
+    },
+    // 购买会员
+    buyVip() {
+      // 跳转到会员购买页面
+      uni.navigateTo({
+        url: "/pages/user/vip",
+      });
+    },
+    // 创建订单
+    createOrder() {
+      uni.showLoading({ title: "加载中" });
+      // 获取支付方式
+      let paytype = "wx";
+      // 获取商品id
+      let goods_id = this.innerList.id;
+      // 创建订单API
+      createOrder({ paytype, goods_id }).then((res) => {
+        // sn赋值
+        this.order_sn = res.data.sn;
+        // 微信支付
+        this.wxPay();
+      });
+    },
+    // 微信支付
+    wxPay() {
+      // 微信支付API
+      wxPay({ order_sn: this.order_sn }).then((res) => {
+        uni.hideLoading();
+        uni.requestPayment({
+          provider: "wxpay",
+          orderInfo: res,
+          success: () => {
+            // 支付成功
+            this.modal.show = true;
+          },
+        });
+      });
+    },
   },
   onLoad() {
     // 获取用户信息
     this.getUserInfo();
+    // 道具列表
+    this.getInnerList();
   },
   components: { Head, Title },
 };

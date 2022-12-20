@@ -29,13 +29,17 @@
       <view class="props_2_5" v-if="type == 3" @click="exchange(item.id)"
         >兑换</view
       >
+      <!-- 兑换时间 -->
+      <view class="props_2_6" v-if="type == 2 && status == 2"
+        >兑换时间:{{ item.create_time }}</view
+      >
     </view>
   </view>
 </template>
 
 <script>
 import { showToast } from "../utils";
-import { createOrder, exchange, usePropsOne } from "../utils/api";
+import { createOrder, exchange, usePropsOne, wxPay } from "../utils/api";
 export default {
   props: {
     item: {
@@ -51,14 +55,23 @@ export default {
       default: 0,
     },
   },
+  data() {
+    return {
+      // sn
+      order_sn: "",
+    };
+  },
   methods: {
     // 创建订单
     createOrder() {
+      // 加载中
+      uni.showLoading({ title: "加载中" });
       // 创建订单API
-      createOrder({ id: this.item.id, paytype: "wx" }).then((res) => {
-        console.log(res.data);
-        // 调用支付
-        // this.pay(res.data);
+      createOrder({ goods_id: this.item.id, paytype: "wx" }).then((res) => {
+        // sn赋值
+        this.order_sn = res.data.sn;
+        // 微信支付
+        this.wxPay();
       });
     },
     // 一级使用道具
@@ -86,6 +99,20 @@ export default {
         if (res.code != 1) return showToast(res.msg);
         // 兑换成功
         showToast("兑换成功");
+      });
+    },
+    // 微信支付
+    wxPay() {
+      // 微信支付API
+      wxPay({ order_sn: this.order_sn }).then((res) => {
+        uni.hideLoading();
+        uni.requestPayment({
+          provider: "wxpay",
+          orderInfo: res,
+          success: () => {
+            showToast("购买成功");
+          },
+        });
       });
     },
   },
@@ -214,6 +241,13 @@ export default {
       font-family: PingFang SC;
       font-weight: 500;
       color: #ffffff;
+      flex-shrink: 0;
+    }
+    .props_2_6 {
+      font-size: 24rpx;
+      font-family: PingFang SC;
+      font-weight: 400;
+      color: #1f73f1;
     }
   }
 }

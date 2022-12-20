@@ -51,7 +51,7 @@
 
     .content_1_2 {
       display: flex;
-      justify-content: space-between;
+      // justify-content: space-between;
       flex-wrap: wrap;
 
       .content_1_2_1 {
@@ -64,6 +64,7 @@
         font-weight: 400;
         color: #808080;
         margin-bottom: 30rpx;
+        margin-right: 20rpx;
       }
     }
   }

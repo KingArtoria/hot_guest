@@ -1,8 +1,8 @@
 // TODO 广告区图片常量
 export const ADVERTISING_IMG = [
-  'http://39.106.208.234/pic/img_/sahngwump.png',
-  'http://39.106.208.234/pic/img_/qiyechaxun.png',
-  'http://39.106.208.234/pic/img_/pingtjy.png',
+  'http://39.106.208.234/pic/img_/pingtaijy.png',
+  'http://39.106.208.234/pic/img_/qiycx.png',
+  'http://39.106.208.234/pic/img_/zzbl@3x.png',
 ]
 // TODO 宫格常量
 export const GRID_IMG = [
@@ -17,22 +17,23 @@ export const GRID_IMG = [
   { id: 8, src: "http://39.106.208.234/pic/img_/sy_xxgg@2x.png", text: "线下广告", type: 1 },
   { id: 12, src: "http://39.106.208.234/pic/img_/cgxq@2x.png", text: "采购需求", type: 1 },
   { id: 9, src: "http://39.106.208.234/pic/img_/sy_xxcd@2x.png", text: "线下场地", type: 1 },
-  { id: 1, src: "http://39.106.208.234/pic/img_/djzx@2x.png", text: "道具中心", type: 2, url: "/pages/user/prop" },
-  { id: 1, src: "http://39.106.208.234/pic/img_/yaoqingyl@2x.png", text: "邀请有礼", type: 2, url: "/pages/user/inviteFriends" },
+  { id: 13, src: "http://39.106.208.234/pic/img_/djzx@2x.png", text: "道具中心", type: 2, url: "/pages/user/prop" },
+  { id: 14, src: "http://39.106.208.234/pic/img_/yaoqingyl@2x.png", text: "邀请有礼", type: 2, url: "/pages/index/commissionRanking" },
 ]
 // TODO 标签常量
 export const LABEL_IMG = [
   { name: "推荐", value: 1 },
-  { name: "广告甲方", value: 2 },
-  { name: "流量乙方", value: 3 },
-  { name: "海外业务", value: 4 },
-  { name: "优质货源", value: 5 },
-  { name: "销售渠道", value: 6 },
-  { name: "资源互换", value: 7 },
-  { name: "流量互换", value: 8 },
-  { name: "招商加盟", value: 9 },
-  { name: "线下广告", value: 10 },
-  { name: "线下场地", value: 11 },
+  { name: "广告甲方", value: 2, id: 1 },
+  { name: "流量乙方", value: 3, id: 2 },
+  { name: "海外业务", value: 4, id: 11 },
+  { name: "优质货源", value: 5, id: 3 },
+  { name: "销售渠道", value: 6, id: 4 },
+  { name: "资源互换", value: 7, id: 5 },
+  { name: "流量互换", value: 8, id: 6 },
+  { name: "招商加盟", value: 9, id: 7 },
+  { name: "线下广告", value: 10, id: 8 },
+  { name: "线下场地", value: 11, id: 9 },
+  { name: "采购需求", value: 12, id: 187 },
 ]
 // TODO 道具常量
 export const PROPS_IMG = [
@@ -118,4 +119,49 @@ export const companyBackground = [
   { num: 0, src: 'http://39.106.208.234/pic/img/gdxx_icon_blue.png', title: '股东信息' },
   { num: 0, src: 'http://39.106.208.234/pic/img/dwtz_icon_blue.png', title: '对外投资' },
   { num: 0, src: 'http://39.106.208.234/pic/img/fzjg_icon_blue.png', title: '分支机构' },
+]
+// TODO 办证服务主列表
+export const SERVICE_LIST = [
+  { text: "增值电信", isSelect: true, id: 1 },
+  { text: "认证服务", isSelect: false, id: 2 },
+  { text: "知识产权", isSelect: false, id: 3 },
+]
+// TODO 办证服务子列表
+export const SERVICE_CHILD_LIST = [
+  {
+    id: 1, fId: 1, list: [
+      { text: "ICP办证", info: "互联网信息服务业务", icon: "https://asd.bdhuoke.com/logs/icon/icpxkz@2x.png" },
+      { text: "EDI许可证", info: "在线数据处理与交易业务", icon: "https://asd.bdhuoke.com/logs/icon/wdixkz@2x.png" },
+      { text: "SP许可证", info: "移动网信息服务业务", icon: "https://asd.bdhuoke.com/logs/icon/spxkz@2x.png" },
+      { text: "IDC许可证", info: "数据中心业务", icon: "https://asd.bdhuoke.com/logs/icon/idcxkz@2x.png" },
+      { text: "IP-VPN许可证", info: "虚拟专用网业务", icon: "https://asd.bdhuoke.com/logs/icon/ip-vpn@2x.png" },
+      { text: "ISP许可证", info: "互联网接入服务业务", icon: "https://asd.bdhuoke.com/logs/icon/ispxkz@2x.png" },
+      { text: "CDN许可证", info: "内容分发网络业务", icon: "https://asd.bdhuoke.com/logs/icon/cdnxkz@2x.png" },
+      { text: "固定网国内数据传送业务", info: "", icon: "https://asd.bdhuoke.com/logs/icon/gdwgn@2x.png" },
+      { text: "呼叫中心许可证", info: "提供坐席外包业务", icon: "https://asd.bdhuoke.com/logs/icon/hjzxxkz@2x.png" },
+      { text: "网络文化经营许可证", info: "文网文许可证", icon: "https://asd.bdhuoke.com/logs/icon/wlwhx@2x.png" },
+    ]
+  },
+  {
+    id: 2, fId: 2, list: [
+      { text: "3A认证", info: "信用体系认证", icon: "https://asd.bdhuoke.com/logs/icon/3A@2x.png" },
+    ]
+  },
+  {
+    id: 3, fId: 3, list: [
+      { text: "商标注册", info: "普通/加急/担保", icon: "https://asd.bdhuoke.com/logs/icon/sbzc@2x.png" },
+      { text: "专利申请", info: "发明/外观/实用", icon: "https://asd.bdhuoke.com/logs/icon/zlsq@2x.png" },
+      { text: "版权登记", info: "软件/美术/文集", icon: "https://asd.bdhuoke.com/logs/icon/bqdj@2x.png" },
+      { text: "商标许可备案", info: "商标使用许可合同", icon: "https://asd.bdhuoke.com/logs/icon/sbxkba@2x.png" },
+      { text: "商标驳回复审", info: "分析病症对症下药", icon: "https://asd.bdhuoke.com/logs/icon/sbbhfs@2x.png" },
+      { text: "商标答疑", info: "分析/解疑/拓展", icon: "https://asd.bdhuoke.com/logs/icon/sbdy@2x.png" },
+      { text: "商标异议", info: "文案/修改/担保", icon: "https://asd.bdhuoke.com/logs/icon/sbyy@2x.png" },
+      { text: "商标转让", info: "沟通/办理/转让", icon: "https://asd.bdhuoke.com/logs/icon/sbzr@2x.png" },
+      { text: "商标变更", info: "资质/更改/加急", icon: "https://asd.bdhuoke.com/logs/icon/sbbg@2x.png" },
+      { text: "商标注销", info: "无用商标注销", icon: "https://asd.bdhuoke.com/logs/icon/sbzx@2x.png" },
+      { text: "商标续展", info: "延期使用权", icon: "https://asd.bdhuoke.com/logs/icon/sbxz@2x.png" },
+      { text: "商标无效宣告", info: "依法失效", icon: "https://asd.bdhuoke.com/logs/icon/sbwxxg@2x.png" },
+      { text: "撤销三年不使用申请商标", info: "专业/可靠/正规", icon: "https://asd.bdhuoke.com/logs/icon/cxsnbsy@2x.png" },
+    ]
+  }
 ]

@@ -49,8 +49,8 @@
                 :name="item.url"
                 @click="goGrid(item)"
               >
-                <image class="content_4_1" :src="item.src" />
-                <text class="content_4_2">{{ item.text }}</text>
+                <image class="content_4_1" :src="item.img" />
+                <text class="content_4_2">{{ item.title }}</text>
               </u-grid-item>
             </u-grid>
           </swiper-item>
@@ -63,8 +63,8 @@
                 :name="item.url"
                 @click="goGrid(item)"
               >
-                <image class="content_4_1" :src="item.src" />
-                <text class="content_4_2">{{ item.text }}</text>
+                <image class="content_4_1" :src="item.img" />
+                <text class="content_4_2">{{ item.title }}</text>
               </u-grid-item>
             </u-grid>
           </swiper-item>
@@ -100,13 +100,22 @@
         <Project :list="list" />
       </view>
     </view>
+    <!-- 登录模态框 -->
+    <u-modal
+      showCancelButton
+      :show="loginModal.show"
+      :title="loginModal.title"
+      :content="loginModal.content"
+      @confirm="loginModal.confirm"
+      @cancel="loginModal.cancel"
+    />
   </view>
 </template>
 
 <script>
 import Project from "../../components/Project";
-import { getCategoryMenu, getHomeData } from "../../utils/api";
-import { ADVERTISING_IMG, GRID_IMG } from "../../utils/const";
+import { getCategoryMenu, getHomeData, getThemeIcon } from "../../utils/api";
+import { ADVERTISING_IMG } from "../../utils/const";
 export default {
   data() {
     return {
@@ -127,32 +136,51 @@ export default {
       list: [],
       // 分类菜单
       categoryMenu: [],
+      // 登录模态框
+      loginModal: {
+        title: "登录提示",
+        content: "您还未登录，是否前往登录？",
+        show: false,
+        confirm: () => {
+          // 前往登录
+          uni.navigateTo({
+            url: "/pages/user/login",
+          });
+        },
+        cancel: () => (this.loginModal.show = false),
+      },
     };
   },
   methods: {
     /* 初始化参数 */
     initParams() {
       this.advertisingImg = ADVERTISING_IMG;
-      this.gridImg = GRID_IMG;
     },
     /* 前往搜索 */
     goSearch() {
+      // 判断是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
+      // 路由跳转
       uni.navigateTo({
         url: "/pages/index/search",
       });
     },
     /* 前往签到 */
     goCheck() {
+      // 判断是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/index/check",
       });
     },
     // 前往功能区
     goFunction(index) {
+      // 是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
       switch (index) {
         case 0:
           uni.navigateTo({
-            url: "/pages/index/businessCard",
+            url: "/pages/index/platformTransaction",
           });
           break;
         case 1:
@@ -162,13 +190,15 @@ export default {
           break;
         case 2:
           uni.navigateTo({
-            url: "/pages/index/platformTransaction",
+            url: "/pages/index/qualification",
           });
           break;
       }
     },
     // 前往广告位招租
     goAdvertisingSpaceRental() {
+      // 是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
       uni.navigateTo({
         url: "/pages/index/advertisingSpaceRental",
       });
@@ -288,17 +318,20 @@ export default {
     },
     // 宫格跳转
     goGrid(item) {
-      // 类型1:跳转项目列表
-      if (item.type == 1) {
-        // 路由跳转
-        uni.navigateTo({
-          url: `/pages/index/list?title=${item.text}&id=${item.id}`,
-        });
-      } else {
-        // 类型2:跳转配置路由
-        uni.navigateTo({
-          url: item.url,
-        });
+      // 路由类型=2并且未登录
+      if (item.routeType == 2 && !uni.getStorageSync("token"))
+        return (this.loginModal.show = true);
+      switch (item.routeType) {
+        case 1:
+          uni.navigateTo({
+            url: `/pages/index/list?title=${item.title}&id=${item.type}`,
+          });
+          break;
+        case 2:
+          uni.navigateTo({
+            url: item.route,
+          });
+          break;
       }
     },
     // 标签选中
@@ -312,6 +345,14 @@ export default {
       // 获取首页数据
       this.getHomeData();
     },
+    // 获取主题图标
+    getThemeIcon() {
+      // 获取主题图标API
+      getThemeIcon({ themeType: 1 }).then((res) => {
+        // 赋值
+        this.gridImg = res.data;
+      });
+    },
   },
   onLoad() {
     /* 初始化参数 */ this.initParams();
@@ -319,6 +360,8 @@ export default {
     this.getHomeData();
     // 分类菜单
     this.getCategoryMenu();
+    // 获取主题图标
+    this.getThemeIcon();
   },
   // 滚动到底部
   onReachBottom() {

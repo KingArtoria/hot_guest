@@ -460,3 +460,84 @@ export const applyAd = data => {
     data
   });
 }
+// ? 获取排行榜
+export const getRank = data => {
+  return request({
+    method: 'post',
+    url: '/other/ranking_List',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 兑换记录
+export const getExchangeRecord = data => {
+  return request({
+    method: 'post',
+    url: '/member/coupons_log',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 主题图标
+export const getThemeIcon = data => {
+  return request({
+    method: 'post',
+    url: '/other/theme',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 下拉选项
+export const getSelect = data => {
+  return request({
+    method: 'post',
+    url: '/Comprehensive/typeList',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 发布项目
+export const publishProject = data => {
+  return request({
+    method: 'post',
+    url: '/Comprehensive/comprehensiveAdd',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 实名认证检测
+export const checkRealName = data => {
+  return request({
+    method: 'post',
+    url: '/other/authentication_verification',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 实名认证
+export const realName = data => {
+  return request({
+    method: 'post',
+    url: '/other/authentication',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 微信支付
+export const wxPay = data => {
+  return request({
+    method: 'post',
+    url: '/wxpay/pay',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 支付宝支付
+export const aliPay = data => {
+  return request({
+    method: 'post',
+    url: '/zfbpay/alipay',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

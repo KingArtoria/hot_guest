@@ -66,7 +66,7 @@
             />
           </view>
         </view>
-        <FriendRequest @click="goPersonal" :data="notice[0]" />
+        <FriendRequest @click="goPersonal(notice[0].member_id)" :data="notice[0]" />
       </view>
       <!-- Tabs -->
       <view class="content_5">
@@ -105,11 +105,20 @@
               >校友</view
             >
           </view>
-          <view class="content_5_1_2">刷新</view>
+          <view class="content_5_1_2" @click="getRecommend">刷新</view>
         </view>
         <Contacts :data="recommend" />
       </view>
     </view>
+    <!-- 登录模态框 -->
+    <u-modal
+      showCancelButton
+      :show="loginModal.show"
+      :title="loginModal.title"
+      :content="loginModal.content"
+      @confirm="loginModal.confirm"
+      @cancel="loginModal.cancel"
+    />
   </view>
 </template>
 
@@ -128,6 +137,14 @@ export default {
       currentTab: 1,
       // 推荐人脉
       recommend: [],
+      // 登录模态框
+      loginModal: {
+        title: "登录提示",
+        content: "您还未登录，是否前往登录？",
+        show: false,
+        confirm: () => uni.navigateTo({ url: "/pages/user/login" }),
+        cancel: () => uni.switchTab({ url: "/pages/index/index" }),
+      },
     };
   },
   methods: {
@@ -144,9 +161,9 @@ export default {
       });
     },
     // 前往好友个人页
-    goPersonal() {
+    goPersonal(id) {
       uni.navigateTo({
-        url: "/pages/contacts/personal",
+        url: `/pages/contacts/personal?id=${id}`,
       });
     },
     // 前往搜索好友
@@ -213,6 +230,10 @@ export default {
     this.getNotice();
     // 推荐人脉
     this.getRecommend();
+  },
+  onShow() {
+    // 判断是否登录
+    if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
   },
   onUnload() {
     uni.$off("getUserInfo");

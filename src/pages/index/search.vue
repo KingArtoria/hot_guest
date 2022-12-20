@@ -33,6 +33,7 @@
           <image
             class="content_1_1_2"
             src="http://39.106.208.234/pic/img_/shanchu2.png"
+            @click="clear"
           />
         </view>
         <!-- 内容盒子 -->
@@ -91,6 +92,8 @@ export default {
       this.history.push(this.params.title);
       // 搜索API
       search(this.params).then((res) => {
+        // res.data.list是否为空数组
+        if (res.data.list.length == 0) return showToast("暂无数据");
         // 保存搜索列表到缓存
         uni.setStorageSync("_history", this.history);
         // 初始化列表数据
@@ -162,6 +165,11 @@ export default {
         // 列表赋值
         this.list = res.data.list;
       });
+    },
+    // 清空搜索记录
+    clear() {
+      this.history = [];
+      uni.removeStorageSync("_history");
     },
   },
   onLoad() {

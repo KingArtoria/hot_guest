@@ -134,7 +134,6 @@
 
 <script>
 import GoEasy from "goeasy";
-import { privateChat } from "../../utils";
 import { getOtherUserInfo } from "../../utils/api";
 export default {
   data() {
@@ -190,16 +189,37 @@ export default {
     },
     // 发送消息
     privateChat() {
-      // 参数
-      let params = {
-        im: this.goeasy.im,
+      var im = this.goeasy.im;
+      //创建消息, 内容最长不超过3K，可以发送字符串，对象和json格式字符串
+      let textMessage = im.createTextMessage({
+        //消息内容
         text: this.text,
-        id: this.id,
-        head: this.info.head,
-        nickname: this.info.nick_name,
-      };
-      // 发送消息封装
-      privateChat(params);
+        to: {
+          //私聊还是群聊，群聊为GoEasy.IM_SCENE.GROUP
+          type: GoEasy.IM_SCENE.PRIVATE,
+          // 对方id
+          id: this.id,
+          //好友扩展数据, 任意格式的字符串或者对象，用于更新会话列表conversation.data
+          data: {
+            // 头像
+            head: this.info.head,
+            // 名字
+            nickName: this.info.nick_name,
+            // 公司
+            company: this.info.company,
+            // 职位
+            position: this.info.position,
+          },
+        },
+      });
+      //发送消息
+      im.sendMessage({
+        message: textMessage,
+        // 成功回调
+        onSuccess: (message) => console.log(`发送成功${message}`),
+        // 失败回调
+        onFailed: (error) => console.log(`发送失败${error.content}`),
+      });
       // 消息添加到列表
       this.list.push({
         text: this.text,
@@ -210,6 +230,15 @@ export default {
       this.text = "";
       // 保存聊天记录到缓存
       uni.setStorageSync(`chat${this.id}`, this.list);
+    },
+    // 消息已读
+    read() {
+      var im = this.goeasy.im;
+      im.markPrivateMessageAsRead({
+        userId: this.id, //聊天对象的userId
+        onSuccess: () => console.log("已读成功"),
+        onFailed: (error) => console.log(`已读失败:${error.content}`),
+      });
     },
   },
   onLoad() {
@@ -222,14 +251,15 @@ export default {
       console.log(message);
       // 判断发送人和当前聊天是不是为一个人
       if (message.senderId == this.id) {
-        // 保存聊天记录到缓存
-        uni.setStorageSync(`chat${this.id}`, this.list);
         // 消息添加到列表
         this.list.push({
           text: message.payload.text,
           type: 2,
           head: this.info.head,
         });
+        // 保存聊天记录到缓存
+        uni.setStorageSync(`chat${this.id}`, this.list);
+        console.log(uni.getStorageSync(`chat${this.id}`));
       }
     };
     this.goeasy.im.on(
@@ -238,6 +268,13 @@ export default {
     );
     // 获取聊天记录
     this.list = uni.getStorageSync(`chat${this.id}`) || [];
+    // 消息已读
+    this.read();
+  },
+  // 页面卸载
+  onUnload() {
+    // 消息已读
+    this.read();
   },
 };
 </script>

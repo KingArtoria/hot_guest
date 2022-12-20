@@ -151,7 +151,7 @@
             <image class="content_4_2_1_4" :src="`${_url}shezhi.webp`" />
             <view class="content_4_2_1_6">设置</view>
           </view>
-          <view class="content_4_2_1" @click="loginOutShow = true">
+          <view class="content_4_2_1" @click="loginOutShow = true" v-if="token">
             <image class="content_4_2_1_5" :src="`${_url}tuichu.webp`" />
             <view class="content_4_2_1_6">退出</view>
           </view>
@@ -175,6 +175,7 @@
       content="确定要退出登录吗"
       showCancelButton
       @confirm="goLoginOut"
+      @cancel="loginOutShow = false"
     />
     <!-- 登录模态框 -->
     <u-modal
@@ -192,7 +193,7 @@
 import Vue from "vue";
 import HY from "../../components/HY";
 import { showToast } from "../../utils";
-import { getUserInfo } from "../../utils/api";
+import { checkRealName, getUserInfo } from "../../utils/api";
 export default {
   data() {
     return {
@@ -288,15 +289,22 @@ export default {
       // 判断是否登录
       if (!this.token) return (this.loginModal.show = true);
       uni.navigateTo({
-        url: "/pages/user/inviteFriends",
+        url: "/pages/index/commissionRanking",
       });
     },
     // 前往实名认证
     goVerified() {
       // 判断是否登录
       if (!this.token) return (this.loginModal.show = true);
-      uni.navigateTo({
-        url: "/pages/user/verified",
+      checkRealName().then((res) => {
+        if (res.code == 1)
+          return uni.navigateTo({
+            url: "/pages/user/verifiedOk",
+          });
+        // 未实名
+        uni.navigateTo({
+          url: "/pages/user/verified",
+        });
       });
     },
     // 前往意见反馈
@@ -318,7 +326,7 @@ export default {
     // 退出登录
     goLoginOut() {
       uni.removeStorageSync("token");
-      uni.reLaunch({
+      uni.navigateTo({
         url: "/pages/user/login",
       });
     },
@@ -364,7 +372,8 @@ export default {
       });
     },
   },
-  onLoad() {
+  onLoad() {},
+  onShow() {
     // 获取个人信息
     this.getUserInfo();
     // 获取token

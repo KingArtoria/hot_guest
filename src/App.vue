@@ -2,7 +2,6 @@
 import Vue from "vue";
 import GoEasy from "goeasy";
 import { getUserInfo } from "./utils/api";
-import { connect } from "./utils";
 export default {
   methods: {
     // 获取用户信息
@@ -14,15 +13,28 @@ export default {
           res.data.head = `${this._avatarUrl}${res.data.head}`;
         }
         Vue.prototype._userInfo = res.data;
-        // 创建GoEasy参数
-        let params = {
-          goeasy: this.goeasy,
-          id: res.data.id,
-          nickname: res.data.nick_name,
-          head: res.data.head,
-        };
-        // 建立GoEasy链接
-        connect(params);
+        // 建立连接;
+        this.goeasy.connect({
+          // id标识
+          id: this._userInfo.id,
+          // 自定义数据
+          data: {
+            // 头像
+            head: this._userInfo.head,
+            // 名字
+            nickName: this._userInfo.nick_name,
+            // 公司
+            company: this._userInfo.company,
+            // 职位
+            position: this._userInfo.position,
+          },
+          // 成功回调
+          onSuccess: () => console.log("链接成功"),
+          // 失败回调
+          onFailed: (error) => console.log(`链接失败${error.content}`),
+          // 重连
+          onProgress: (attempts) => console.log(`重连中${attempts}`),
+        });
       });
     },
   },
@@ -32,7 +44,7 @@ export default {
     // 声明全局来源
     Vue.prototype._source = "小米";
     // 声明全局类型
-    Vue.prototype._type = "android";
+    Vue.prototype._type = "ios";
     // 声明头像资源路径
     Vue.prototype._avatarUrl = "https://admin.bdhuoke.com";
     // 接口地址
@@ -43,19 +55,28 @@ export default {
     Vue.prototype._propUrl = "http://39.106.208.234";
     // 初始化全局用户信息
     Vue.prototype._userInfo = {};
-    // 获取用户信息
-    this.getUserInfo();
     // 初始化GoEasy
     Vue.prototype.goeasy = GoEasy.getInstance({
       host: "hangzhou.goeasy.io",
       appkey: "BC-ad662406fecb4b58bcd6e609416cf61f",
       modules: ["pubsub", "im"],
     });
+    // 获取用户信息
+    this.getUserInfo();
+    //? 监听中间按钮
+    uni.onTabBarMidButtonTap(() => {
+      uni.navigateTo({
+        url: "/pages/release/index",
+      });
+    });
   },
 };
 </script>
 
 <style lang="scss">
+.placeholderClass {
+  color: red;
+}
 @import "uview-ui/index.scss";
 </style>
 <style>

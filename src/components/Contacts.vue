@@ -21,7 +21,7 @@
             >
           </view>
           <!-- 按钮 -->
-          <view class="contacts_2_1_2" @click="addFriend(item.id)">
+          <view class="contacts_2_1_2" @click.stop="addFriend(item.id)">
             <image
               class="contacts_2_1_2_1"
               src="http://39.106.208.234/pic/img_/haoyou.png"

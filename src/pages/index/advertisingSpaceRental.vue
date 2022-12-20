@@ -83,6 +83,7 @@
       :columns="place.columns"
       keyName="name"
       @confirm="place.confirm"
+      @cancel="place.cancel"
     />
     <!-- 投放周期选择器 -->
     <u-picker
@@ -90,6 +91,7 @@
       :columns="cycle.columns"
       keyName="name"
       @confirm="cycle.confirm"
+      @cancel="cycle.cancel"
     />
     <!-- 申请成功模态框 -->
     <u-modal
@@ -133,6 +135,10 @@ export default {
           // 关闭选择器
           this.place.show = false;
         },
+        // 关闭回调
+        cancel: () => {
+          this.place.show = false;
+        },
       },
       // 投放周期选择器
       cycle: {
@@ -155,6 +161,10 @@ export default {
           // 展示赋值
           this.advertisingSpaceRental.cycle_name = res.value[0].name;
           // 关闭选择器
+          this.cycle.show = false;
+        },
+        // 关闭回调
+        cancel: () => {
           this.cycle.show = false;
         },
       },

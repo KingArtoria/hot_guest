@@ -1,41 +1,53 @@
 <template>
   <view>
-    <view class="head">
-      <Fh_b />
-      <view class="head_2">
-        <view class="head_2_1" style="color:#fff">待使用</view>
-        <view class="head_2_1" style="color:#2a2a2a">已使用</view>
-        <view class="head_2_2" />
-      </view>
-      <view class="head_3" />
-    </view>
+    <Head title="兑换记录" />
     <view class="content">
-      <Props :item="item" v-for="(item, index) in propsData" :key="index" :type="2" />
+      <Props
+        v-for="(item, index) in list"
+        :key="index"
+        :item="item"
+        :type="2"
+        :status="2"
+      />
     </view>
   </view>
 </template>
 
 <script>
-import Fh_b from '../../components/Fh_b'
-import Props from '../../components/Props'
-import { PROPS_IMG } from '../../utils/const'
+import Head from "../../components/Head";
+import Props from "../../components/Props";
+import { getExchangeRecord } from "../../utils/api";
 export default {
   data() {
     return {
-      propsData: []
-    }
+      // 待使用
+      list: [],
+    };
   },
   methods: {
-    initParams() {
-      this.propsData = PROPS_IMG
-    }
+    // 兑换记录
+    getExchangeRecord() {
+      // 兑换记录API
+      getExchangeRecord().then((res) => {
+        // 初始化数据
+        res.data.forEach((item) => {
+          // 初始化道具图片
+          item.image = `http://39.106.208.234${item.image}`;
+          // 兑换时间保留年月日
+          item.create_time = item.create_time.slice(0, 10);
+        });
+        // 赋值
+        this.list = res.data;
+      });
+    },
   },
   onLoad() {
-    this.initParams()
+    // 兑换记录
+    this.getExchangeRecord();
   },
-  components: { Fh_b, Props }
-}
+  components: { Head, Props },
+};
 </script>   
 <style lang="scss" scoped>
-@import './exchangeRecords.scss';
+@import "./exchangeRecords.scss";
 </style>

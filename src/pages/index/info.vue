@@ -1,6 +1,6 @@
 <template>
   <view>
-    <Head title="流量乙方" />
+    <Head :title="title" />
     <view class="content">
       <!-- 项目标题 -->
       <view class="content_1">
@@ -29,9 +29,16 @@
         </view>
       </view>
       <!-- 平台交易 -->
-      <view class="content_8" v-if="projectDetail.platform == 1" @click="goTradingRules">
+      <view
+        class="content_8"
+        v-if="projectDetail.platform == 1"
+        @click="goTradingRules"
+      >
         <!-- 图标 -->
-        <image class="content_8_1" src="http://39.106.208.234/pic/img_/baozhang@2x.png" />
+        <image
+          class="content_8_1"
+          src="http://39.106.208.234/pic/img_/baozhang@2x.png"
+        />
         <!-- 文本1 -->
         <view class="content_8_2">已加入平台交易</view>
         <!-- 文本2 -->
@@ -44,7 +51,12 @@
         <!-- 内容盒子 -->
         <view class="content_3_1">
           <!-- 单个内容 -->
-          <view class="content_3_1_1" v-for="(item, index) in projectDetail.kv" :key="index">{{ item }}</view>
+          <view
+            class="content_3_1_1"
+            v-for="(item, index) in projectDetail.kv"
+            :key="index"
+            >{{ item }}</view
+          >
         </view>
       </view>
       <!-- 联系方式 -->
@@ -72,11 +84,17 @@
         <!-- 未查看 -->
         <view class="content_4_2" v-show="!projectDetail.lock">
           <!-- 查看按钮 -->
-          <view class="content_4_2_1" @click="getContact">点击查看联系方式</view>
+          <view class="content_4_2_1" @click="getContact"
+            >点击查看联系方式</view
+          >
         </view>
       </view>
       <!-- 资源详情 -->
-      <view class="content_5" v-for="(item, index) in projectDetail.infoArray" :key="index">
+      <view
+        class="content_5"
+        v-for="(item, index) in projectDetail.infoArray"
+        :key="index"
+      >
         <!-- 标题 -->
         <Title :title="item.title" />
         <!-- 内容富文本 -->
@@ -89,7 +107,12 @@
         <!-- 列表 -->
         <view class="content_6_1">
           <!-- 信息 -->
-          <view class="content_6_1_1" v-for="(item, index) in projectDetail.visitors.slice(0, 3)" :key="index" @click="goPersonal(item.member_id)">
+          <view
+            class="content_6_1_1"
+            v-for="(item, index) in projectDetail.visitors.slice(0, 3)"
+            :key="index"
+            @click="goPersonal(item.member_id)"
+          >
             <!-- 头像 -->
             <image class="content_6_1_1_1" :src="item.head" />
             <!-- 文本信息 -->
@@ -102,13 +125,20 @@
               <!-- 下盒子 -->
               <view class="content_6_1_1_2_2">
                 <!-- 职位 -->
-                <view class="content_6_1_1_2_2_1">{{ item.position }}{{ item.company }}</view>
+                <view class="content_6_1_1_2_2_1"
+                  >{{ item.position }}{{ item.company }}</view
+                >
               </view>
             </view>
           </view>
         </view>
         <!-- 查看更多 -->
-        <view class="content_6_2" v-show="projectDetail.visitors.length > 3" @click="getMoreView">查看更多</view>
+        <view
+          class="content_6_2"
+          v-show="projectDetail.visitors.length > 3"
+          @click="getMoreView"
+          >查看更多</view
+        >
       </view>
       <!-- 评论 -->
       <view class="content_7">
@@ -117,30 +147,52 @@
         <!-- 列表 -->
         <view class="content_7_1">
           <!-- 单条评论 -->
-          <view class="content_7_1_1" v-for="(item, index) in projectDetail.comment" :key="index">
+          <view
+            class="content_7_1_1"
+            v-for="(item, index) in projectDetail.comment"
+            :key="index"
+          >
             <!-- 信息盒子 -->
             <view class="content_7_1_1_1">
               <!-- 头像 -->
-              <image class="content_7_1_1_1_1" :src="item.head" @click="goPersonal(item.member_id)" />
+              <image
+                class="content_7_1_1_1_1"
+                :src="item.head"
+                @click="goPersonal(item.member_id)"
+              />
               <!-- 信息 -->
               <view class="content_7_1_1_1_2">
                 <!-- 上盒子 -->
                 <view class="content_7_1_1_1_2_1">
                   <!-- 名字 -->
-                  <view class="content_7_1_1_1_2_1_1">{{ item.nick_name }}</view>
+                  <view class="content_7_1_1_1_2_1_1">{{
+                    item.nick_name
+                  }}</view>
                   <!-- 发布时间 -->
-                  <view class="content_7_1_1_1_2_1_2">{{ item.createtime }}</view>
+                  <view class="content_7_1_1_1_2_1_2">{{
+                    item.createtime
+                  }}</view>
                 </view>
                 <!-- 工作信息 -->
-                <view class="content_7_1_1_1_2_2">{{ item.position }}{{ item.company }}</view>
+                <view class="content_7_1_1_1_2_2"
+                  >{{ item.position }}{{ item.company }}</view
+                >
               </view>
             </view>
             <!-- 评论盒子 -->
             <view class="content_7_1_1_2">
               <!-- 单条评论 -->
-              <view class="content_7_1_1_4_1" @click="comment(item.id, item.member_id, item.id, 2)">{{ item.content }}</view>
+              <view
+                class="content_7_1_1_4_1"
+                @click="comment(item.id, item.member_id, item.id, 2)"
+                >{{ item.content }}</view
+              >
               <!-- 回复 -->
-              <view class="content_7_1_1_4_2" v-for="(item2, index2) in item.child" :key="index2">
+              <view
+                class="content_7_1_1_4_2"
+                v-for="(item2, index2) in item.child"
+                :key="index2"
+              >
                 <text style="color: #303030">{{ item2.nick_name }}</text>
                 <text style="color: #3875e9">：{{ item2.content }}</text>
               </view>
@@ -154,20 +206,44 @@
       <!-- 收藏 -->
       <view class="functionBoard_1" @click="collect">
         <!-- 图标 -->
-        <image class="functionBoard_1_1" src="http://39.106.208.234/pic/img_/shoucang@2x.png" v-show="projectDetail.keep != 1" />
-        <image class="functionBoard_1_1" src="http://39.106.208.234/pic/img_/yishoucang@2x.png" v-show="projectDetail.keep == 1" />
+        <image
+          class="functionBoard_1_1"
+          src="http://39.106.208.234/pic/img_/shoucang@2x.png"
+          v-show="projectDetail.keep != 1"
+        />
+        <image
+          class="functionBoard_1_1"
+          src="http://39.106.208.234/pic/img_/yishoucang@2x.png"
+          v-show="projectDetail.keep == 1"
+        />
         <!-- 文本 -->
         <view class="functionBoard_1_2">收藏</view>
       </view>
       <!-- 评论 -->
-      <view class="functionBoard_2" @click="comment(0, 0, 0, 1)">点击此处即可留言</view>
+      <view class="functionBoard_2" @click="comment(0, 0, 0, 1)"
+        >点击此处即可留言</view
+      >
     </view>
     <!-- 底部弹出层 -->
-    <u-popup :show="bottomPopupShow" mode="bottom" @close="bottomPopupShow = false">
+    <u-popup
+      :show="bottomPopupShow"
+      mode="bottom"
+      @close="bottomPopupShow = false"
+    >
       <view class="bottomPopup">
         <!-- 文本框 -->
         <view class="bottomPopup_1">
-          <u--textarea placeholder="请输入内容" autoHeight maxlength="-1" border="none" style="background: transparent" confirmType="send" @confirm="publishComment" v-model="commentParams.content" :disabled="_userInfo.maxvip=='ordinary'"/>
+          <u--textarea
+            placeholder="请输入内容"
+            autoHeight
+            maxlength="-1"
+            border="none"
+            style="background: transparent"
+            confirmType="send"
+            @confirm="publishComment"
+            v-model="commentParams.content"
+            :disabled="_userInfo.maxvip == 'ordinary'"
+          />
         </view>
         <!-- 回复按钮 -->
         <view class="bottomPopup_2" @click="publishComment">回复</view>
@@ -176,7 +252,13 @@
         <!-- 列表 -->
         <view class="bottomPopup_4">
           <!-- tag -->
-          <view class="bottomPopup_4_1" v-for="(item, index) in commentDefault" :key="index" @click="quickSelect(item)">{{ item.content }}</view>
+          <view
+            class="bottomPopup_4_1"
+            v-for="(item, index) in commentDefault"
+            :key="index"
+            @click="quickSelect(item)"
+            >{{ item.content }}</view
+          >
         </view>
       </view>
     </u-popup>
@@ -185,13 +267,24 @@
       <!-- 盒子 -->
       <view class="noPermission">
         <!-- 图片 -->
-        <image class="noPermission_1" src="http://39.106.208.234/pic/img_/huiyts_ta.png" />
+        <image
+          class="noPermission_1"
+          src="http://39.106.208.234/pic/img_/huiyts_ta.png"
+        />
         <!-- 文本 -->
-        <view class="noPermission_2">会员用户可以查看最多<text style="color: red">1000</text>位浏览用户</view>
+        <view class="noPermission_2"
+          >会员用户可以查看最多<text style="color: red">1000</text
+          >位浏览用户</view
+        >
         <!-- 文本 -->
-        <view class="noPermission_2">普通用户只能查看最新的<text style="color: red">3</text>位浏览用户</view>
+        <view class="noPermission_2"
+          >普通用户只能查看最新的<text style="color: red">3</text
+          >位浏览用户</view
+        >
         <!-- 按钮 -->
-        <view class="noPermission_3">升级会员获得更多查看机会</view>
+        <view class="noPermission_3" @click="goBuyVip"
+          >升级会员查看更多浏览记录</view
+        >
       </view>
     </u-popup>
     <!-- 次数不足 -->
@@ -199,65 +292,103 @@
       <!-- 盒子 -->
       <view class="noTimes">
         <!-- 图片 -->
-        <image class="noTimes_1" src="http://39.106.208.234/pic/img_/huiyts_ta.png" />
+        <image
+          class="noTimes_1"
+          src="http://39.106.208.234/pic/img_/huiyts_ta.png"
+        />
         <!-- 文本 -->
-        <view class="noTimes_2">本月免费查看次数已用完，是否购买会员获得更多查看机会?</view>
+        <view class="noTimes_2"
+          >免费查看次数已用完，是否升级会员获得更多查看机会?</view
+        >
         <!-- 按钮 -->
-        <view class="noTimes_3">开通会员获得更多查看机会</view>
+        <view class="noTimes_3" @click="goBuyVip"
+          >开通会员获得更多查看机会</view
+        >
         <!-- 按钮2 -->
-        <view class="noTImes_4">分享朋友圈获得额外次数</view>
+        <view class="noTImes_4">邀请新用户获得更多查看机会</view>
       </view>
     </u-popup>
+    <!-- 登录模态框 -->
+    <u-modal
+      showCancelButton
+      :show="loginModal.show"
+      :title="loginModal.title"
+      :content="loginModal.content"
+      @confirm="loginModal.confirm"
+      @cancel="loginModal.cancel"
+    />
   </view>
 </template>
 
 <script>
-import Head from '../../components/Head';
-import Title from '../../components/Title.vue';
-import HY from '../../components/HY.vue';
-import { collect, comment, getCommentDefault, getContact, getProjectDetail } from '../../utils/api';
-import { showToast } from '../../utils';
+import Head from "../../components/Head";
+import Title from "../../components/Title.vue";
+import HY from "../../components/HY.vue";
+import { LABEL_IMG } from "../../utils/const";
+import {
+  collect,
+  comment,
+  getCommentDefault,
+  getContact,
+  getProjectDetail,
+} from "../../utils/api";
+import { showToast } from "../../utils";
 export default {
   data() {
     return {
       // 项目详情
       projectDetail: { visitors: [], comment: [] },
       // op
-      op: '',
+      op: "",
       // 底部弹出层
       bottomPopupShow: false,
       // 评论默认文本
-      commentDefault: '',
+      commentDefault: "",
       // 评论参数
-      commentParams: { content: '' },
+      commentParams: { content: "" },
       // 权限不足
       noPermission: false,
       // 次数不足
       noTimes: false,
+      // 登录模态框
+      loginModal: {
+        title: "登录提示",
+        content: "您还未登录，是否前往登录？",
+        show: false,
+        confirm: () => {
+          // 前往登录
+          uni.navigateTo({
+            url: "/pages/user/login",
+          });
+        },
+        cancel: () => (this.loginModal.show = false),
+      },
+      // 标题
+      title: "",
     };
   },
   methods: {
     // 获取项目详情
     getProjectDetail(op) {
       // 项目详情API
-      getProjectDetail({ fid: op.id }).then(res => {
+      getProjectDetail({ fid: op.id }).then((res) => {
         // 时间删除后3位
         res.data.addtime = res.data.addtime.slice(0, -3);
         // 头像格式化
-        if (res.data.head.indexOf('http') === -1) {
+        if (res.data.head.indexOf("http") === -1) {
           res.data.head = `${this._avatarUrl}${res.data.head}`;
         }
         // 格式化浏览数据
-        res.data.visitors.forEach(item => {
+        res.data.visitors.forEach((item) => {
           // 头像格式化
-          if (item.head.indexOf('http') === -1) {
+          if (item.head.indexOf("http") === -1) {
             item.head = `${this._avatarUrl}${item.head}`;
           }
         });
         // 格式化评论数据
-        res.data.comment.forEach(item => {
+        res.data.comment.forEach((item) => {
           // 头像格式化
-          if (item.head.indexOf('http') === -1) {
+          if (item.head.indexOf("http") === -1) {
             item.head = `${this._avatarUrl}${item.head}`;
           }
           // 时间删除后3位
@@ -268,63 +399,126 @@ export default {
           case 1:
           case 2:
           case 11:
-            res.data.kv = [`结算方式：${res.data.settmod_id}`, `结算单价：${res.data.price == '0.00' ? '可议' : res.data.price}`, `结算周期：${res.data.settcycle_id}`, `推广方式：${res.data.promotion}`, `合作类型：${res.data.cooptype_id}`, `合作地区：${res.data.area}`];
-            res.data.infoArray = [{ title: '考核标准', value: res.data.info }];
+            res.data.kv = [
+              `结算方式：${res.data.settmod_id}`,
+              `结算单价：${res.data.price == "0.00" ? "可议" : res.data.price}`,
+              `结算周期：${res.data.settcycle_id}`,
+              `推广方式：${res.data.promotion}`,
+              `合作类型：${res.data.cooptype_id}`,
+              `合作地区：${res.data.area}`,
+            ];
+            res.data.infoArray = [{ title: "考核标准", value: res.data.info }];
             break;
           case 3:
-            res.data.kv = [`产品类型：${res.data.product}`, `资源类型：${res.data.source}`, `客单价：${res.data.price == '0.00' ? '可议' : res.data.price}`, `产品名称：${res.data.product_name}`, `一件代发：${res.data.issuing}`, `相关资质：${res.data.supplement}`, `合作地区：${res.data.area}`];
+            res.data.kv = [
+              `产品类型：${res.data.product}`,
+              `资源类型：${res.data.source}`,
+              `客单价：${res.data.price == "0.00" ? "可议" : res.data.price}`,
+              `产品名称：${res.data.product_name}`,
+              `一件代发：${res.data.issuing}`,
+              `相关资质：${res.data.supplement}`,
+              `合作地区：${res.data.area}`,
+            ];
             res.data.infoArray = [
-              { title: '产品优势', value: res.data.product_advantage },
-              { title: '产品名称', value: res.data.product_name },
+              { title: "产品优势", value: res.data.product_advantage },
+              { title: "产品名称", value: res.data.product_name },
             ];
             break;
           case 4:
-            res.data.kv = [`类型：${res.data.source}`, `产品类型：${res.data.product}`, `结算周期：${res.data.settcycle_id}`, `销货能力：${res.data.assessment}`, `合作模式：${res.data.alliance}`, `一件代发：${res.data.issuing}`, `其他补充：${res.data.supplement}``合作地区：${res.data.area}`];
+            res.data.kv = [
+              `类型：${res.data.source}`,
+              `产品类型：${res.data.product}`,
+              `结算周期：${res.data.settcycle_id}`,
+              `销货能力：${res.data.assessment}`,
+              `合作模式：${res.data.alliance}`,
+              `一件代发：${res.data.issuing}`,
+              `其他补充：${res.data.supplement}`,
+              `合作地区：${res.data.area}`,
+            ];
             res.data.infoArray = [
-              { title: '渠道简介', value: res.data.introduce },
-              { title: '产品要求', value: res.data.product_advantage },
+              { title: "渠道简介", value: res.data.introduce },
+              { title: "产品要求", value: res.data.product_advantage },
             ];
             break;
           case 5:
-            res.data.kv = [`提供类型：${res.data.source}`, `需求类型：${res.data.comprehensive}`, `合作要求：${res.data.assessment}`, `其他补充：${res.data.supplement}`, `合作地区：${res.data.area}`];
+            res.data.kv = [
+              `提供类型：${res.data.source}`,
+              `需求类型：${res.data.comprehensive}`,
+              `合作要求：${res.data.assessment}`,
+              `其他补充：${res.data.supplement}`,
+              `合作地区：${res.data.area}`,
+            ];
             res.data.infoArray = [
-              { title: '提供的资源', value: res.data.product_advantage },
-              { title: '需求的资源', value: res.data.info },
+              { title: "提供的资源", value: res.data.product_advantage },
+              { title: "需求的资源", value: res.data.info },
             ];
             break;
           case 6:
-            res.data.kv = [`提供用户类型：${res.data.source}`, `需求用户类型：${res.data.comprehensive}`, `用户量：${res.data.user_number}`, `流量载体类型：${res.data.product_advantage}`, `可互换位置：${res.data.introduce}`, `其他补充：${res.data.supplement}`, `合作地区：${res.data.area}`];
+            res.data.kv = [
+              `提供用户类型：${res.data.source}`,
+              `需求用户类型：${res.data.comprehensive}`,
+              `用户量：${res.data.user_number}`,
+              `流量载体类型：${res.data.product_advantage}`,
+              `可互换位置：${res.data.introduce}`,
+              `其他补充：${res.data.supplement}`,
+              `合作地区：${res.data.area}`,
+            ];
             res.data.infoArray = [
-              { title: '合作模式', value: res.data.alliance },
-              { title: '合作要求', value: res.data.assessment },
+              { title: "合作模式", value: res.data.alliance },
+              { title: "合作要求", value: res.data.assessment },
             ];
             break;
           case 7:
-            res.data.kv = [`项目类型：${res.data.product}`, `加盟费：${res.data.comprehensive}`, `预计年利润：${res.data.profits}`, `项目名称：${res.data.product_name}`, `加盟扶持政策：${res.data.introduce}`, `其他要求：${res.data.supplement}`, `合作地区：${res.data.area}`];
+            res.data.kv = [
+              `项目类型：${res.data.product}`,
+              `加盟费：${res.data.comprehensive}`,
+              `预计年利润：${res.data.profits}`,
+              `项目名称：${res.data.product_name}`,
+              `加盟扶持政策：${res.data.introduce}`,
+              `其他要求：${res.data.supplement}`,
+              `合作地区：${res.data.area}`,
+            ];
             res.data.infoArray = [
-              { title: '项目简介', value: res.data.product_advantage },
-              { title: '加盟条件', value: res.data.alliance },
+              { title: "项目简介", value: res.data.product_advantage },
+              { title: "加盟条件", value: res.data.alliance },
             ];
             break;
           case 8:
-            res.data.kv = [`广告位场景：${res.data.product}`, `日曝光量：${res.data.user_number}`, `广告位数量：${res.data.quantity}`, `合作方式：${res.data.info}`, `合作地区：${res.data.area}`];
+            res.data.kv = [
+              `广告位场景：${res.data.product}`,
+              `日曝光量：${res.data.user_number}`,
+              `广告位数量：${res.data.quantity}`,
+              `合作方式：${res.data.info}`,
+              `合作地区：${res.data.area}`,
+            ];
             res.data.infoArray = [
-              { title: '广告位资源描述', value: res.data.assessment },
-              { title: '合作要求', value: res.data.alliance },
+              { title: "广告位资源描述", value: res.data.assessment },
+              { title: "合作要求", value: res.data.alliance },
             ];
             break;
           case 9:
-            res.data.kv = [`场地类型：${res.data.product}`, `合作模式：${res.data.comprehensive}`, `线下场地数量：${res.data.amount}`, `场地所在区域：${res.data.issuing}`, `合作地区：${res.data.area}`];
+            res.data.kv = [
+              `场地类型：${res.data.product}`,
+              `合作模式：${res.data.comprehensive}`,
+              `线下场地数量：${res.data.amount}`,
+              `场地所在区域：${res.data.issuing}`,
+              `合作地区：${res.data.area}`,
+            ];
             res.data.infoArray = [
-              { title: '场地概况', value: res.data.supplement },
-              { title: '需求资源', value: res.data.info },
+              { title: "场地概况", value: res.data.supplement },
+              { title: "需求资源", value: res.data.info },
             ];
             break;
           case 10:
-            res.data.kv = [`场地类型：${res.data.product}`, `合作模式：${res.data.alliance}`, `线下场地数量：${res.data.supplement}`, `合作地区：${res.data.area}`];
+            res.data.kv = [
+              `场地类型：${res.data.product}`,
+              `合作模式：${res.data.alliance}`,
+              `线下场地数量：${res.data.supplement}`,
+              `合作地区：${res.data.area}`,
+            ];
             res.data.infoArray = [
-              { title: '资源描述', value: res.data.product_advantage },
-              { title: '合作要求', value: res.data.assessment },
+              { title: "资源描述", value: res.data.product_advantage },
+              { title: "合作要求", value: res.data.assessment },
             ];
             break;
         }
@@ -335,13 +529,23 @@ export default {
         this.commentParams.art_m_id = res.data.member_id;
         // 项目id
         this.commentParams.article_id = res.data.id;
+        // 循环标签
+        LABEL_IMG.forEach((item) => {
+          // 判断类型
+          if (item.id == res.data.type) {
+            // 赋值标题
+            this.title = item.name;
+          }
+        });
         // 保存全部浏览人数
-        uni.setStorageSync('visitors', res.data.visitors);
+        uni.setStorageSync("visitors", res.data.visitors);
       });
     },
     // 查看联系方式
     getContact() {
-      getContact({ fid: this.op.id }).then(res => {
+      // 判断是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
+      getContact({ fid: this.op.id }).then((res) => {
         // 抛出异常
         if (res.code != 1 && res.code != -3) return showToast(res.msg);
         // 次数不足
@@ -362,6 +566,8 @@ export default {
     },
     // 收藏
     collect() {
+      // 判断是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
       // 参数赋值
       let params = {
         // 项目id
@@ -370,7 +576,7 @@ export default {
         type: this.projectDetail.type,
       };
       // 收藏API
-      collect(params).then(res => {
+      collect(params).then((res) => {
         // 打印异常
         if (res.code != 1) return showToast(res.msg);
         // 收藏取反
@@ -379,7 +585,10 @@ export default {
     },
     // 评论前置
     comment(pid, re_member, c_id, type) {
-      if (type == 2 && this._userInfo.id != this.projectDetail.member_id) return showToast('只有发布人才回复');
+      // 判断是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
+      if (type == 2 && this._userInfo.id != this.projectDetail.member_id)
+        return showToast("只有发布人才回复");
       // 展示评论框
       this.bottomPopupShow = true;
       // 如果参数不为null,则赋值
@@ -393,7 +602,7 @@ export default {
     // 发布评论
     publishComment() {
       // 评论API
-      comment(this.commentParams).then(res => {
+      comment(this.commentParams).then((res) => {
         // 打印异常
         if (res.code != 1) return showToast(res.msg);
         // 评论成功
@@ -401,13 +610,13 @@ export default {
         // 评论框隐藏
         this.bottomPopupShow = false;
         // 参数默认
-        this.commentParams = { content: '' };
+        this.commentParams = { content: "" };
       });
     },
     // 获取评论默认文本
     getCommentDefault() {
       // 获取评论默认文本API
-      getCommentDefault().then(res => {
+      getCommentDefault().then((res) => {
         // 赋值
         this.commentDefault = res.data;
       });
@@ -421,6 +630,8 @@ export default {
     },
     // 前往个人页
     goPersonal(id) {
+      // 判断是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
       uni.navigateTo({
         url: `/pages/contacts/personal?id=${id}`,
       });
@@ -428,7 +639,7 @@ export default {
     // 前往平台交易
     goTradingRules() {
       uni.navigateTo({
-        url: '/pages/index/tradingRules',
+        url: "/pages/index/tradingRules",
       });
     },
     // 拨打电话
@@ -442,20 +653,28 @@ export default {
       uni.setClipboardData({
         data,
         success: () => {
-          showToast('复制成功');
+          showToast("复制成功");
         },
       });
     },
     // 查看更多浏览人数
     getMoreView() {
+      // 判断是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
       // 判断是否为普通用户
-      if (this._userInfo.maxvip == 'ordinary') {
+      if (this._userInfo.maxvip == "ordinary") {
         // 权限不足弹窗
         this.noPermission = true;
         return;
       }
       uni.navigateTo({
-        url: '/pages/index/browse',
+        url: "/pages/index/browse",
+      });
+    },
+    // 前往购买会员
+    goBuyVip() {
+      uni.navigateTo({
+        url: "/pages/user/vip",
       });
     },
   },
@@ -466,12 +685,11 @@ export default {
     this.op = op;
     // 获取评论默认文本
     this.getCommentDefault();
-    console.log(this._userInfo);
   },
   components: { Head, Title, HY },
 };
 </script>
 
 <style lang="scss" scoped>
-@import './info.scss';
+@import "./info.scss";
 </style>

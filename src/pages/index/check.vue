@@ -22,57 +22,33 @@
       <!-- 签到天数 -->
       <view class="content_2">
         <view class="content_2_1">
-          <!-- <view
-            class="content_2_1_1"
-            v-for="(item, index) in signInfo.integrallsst"
-            :key="index"
-          >
-            <view class="content_2_1_1_1">
-              <image
-                class="content_2_1_1_1_1"
-                src="http://39.106.208.234/pic/img_/xz_w_g.png"
-              />
-            </view>
-            <view class="content_2_1_1_2">第{{ index + 1 }}天</view>
-          </view>
-          <view class="content_2_1_1">
-            <view class="content_2_1_1_1">
-              <image
-                class="content_2_1_1_1_1"
-                src="http://39.106.208.234/pic/img_/xz_w_g.png"
-              />
-            </view>
-            <view class="content_2_1_1_2">第2天</view>
-          </view>
-          <view class="content_2_1_1">
-            <view class="content_2_1_1_1">+100</view>
-            <view class="content_2_1_1_2">第3天</view>
-          </view>
-          <view class="content_2_1_1">
-            <view class="content_2_1_1_3">+88</view>
-            <view class="content_2_1_1_2">第4天</view>
-          </view>
-          <view class="content_2_1_1">
-            <view class="content_2_1_1_3">+88</view>
-            <view class="content_2_1_1_2">第5天</view>
-          </view> -->
           <view
             class="content_2_1_1"
             v-for="(item, index) in signInfo.integrallsst"
             :key="index"
           >
-            <view class="content_2_1_1_3">{{ item.number }}</view>
-            <view class="content_2_1_1_2">第{{ item.id }}天</view>
-          </view>
-          <!-- <view class="content_2_1_1">
-            <view class="content_2_1_1_4">
+            <view class="content_2_1_1_1" v-if="index < signInfo.dayslog">
+              <image
+                class="content_2_1_1_1_1"
+                src="http://39.106.208.234/pic/img_/xz_w_g.png"
+              />
+            </view>
+            <view
+              class="content_2_1_1_3"
+              v-if="index >= signInfo.dayslog && index != 6"
+              >{{ item.number }}</view
+            >
+            <view
+              class="content_2_1_1_4"
+              v-if="index == 6 && signInfo.dayslog != 7"
+            >
               <image
                 class="content_2_1_1_4_1"
                 src="http://39.106.208.234/pic/img_/libao.png"
               />
             </view>
-            <view class="content_2_1_1_2">第7天</view>
-          </view> -->
+            <view class="content_2_1_1_2">第{{ item.id }}天</view>
+          </view>
         </view>
         <view class="content_2_2" @click="sign">签到</view>
       </view>

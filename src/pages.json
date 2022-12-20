@@ -503,6 +503,48 @@
       "style": {
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/index/commissionRanking",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/qualification",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/release/index",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/release/edit",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/release/cooperativeArea",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/verifiedOk",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/contacts/pendingRequest",
+      "style": {
+        "navigationStyle": "custom"
+      }
     }
   ],
   "globalStyle": {
@@ -541,6 +583,13 @@
         "selectedIconPath": "static/gerenzx_xz.png",
         "text": "我的"
       }
-    ]
+    ],
+    "midButton": {
+      "text": "发布",
+      "iconPath": "/static/fabu.png",
+      "height": "80px",
+      "width": "80px",
+      "iconWidth": "57px"
+    }
   }
 }

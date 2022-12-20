@@ -31,7 +31,9 @@
             <view class="content_1_1_1_4">{{ item.position }}</view>
           </view>
           <!-- 项目标题 -->
-          <view class="content_1_1_2"> {{ item.title }}</view>
+          <view class="content_1_1_2" :style="`color:${item.color}`">
+            {{ item.title }}</view
+          >
           <!-- 添加日期 -->
           <view class="content_1_1_3"
             >{{ item.addtime }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{

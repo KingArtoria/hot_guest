@@ -62,12 +62,17 @@
   background: #f6f6f6;
   padding-top: 180rpx;
   min-height: calc(100vh - 180rpx);
+  position: relative;
 
   .content_1 {
     display: flex;
     justify-content: space-around;
-    margin-top: 30rpx;
     margin-bottom: 28rpx;
+    position: fixed;
+    width: 100%;
+    background: #f6f6f6;
+    z-index: 3;
+    padding-bottom: 20rpx;
 
     .content_1_1 {
       text-align: center;
@@ -98,6 +103,7 @@
     background: #e6ecfa;
     align-items: center;
     position: fixed;
+    top: 290rpx;
     z-index: 3;
 
     .content_2_1 {
@@ -130,10 +136,8 @@
   .content_3 {
     position: relative;
     padding: 0 17rpx;
-    padding-top: 60rpx;
-    padding-bottom: 50rpx;
-    overflow: auto;
-    height: calc(100vh - 153rpx - 60rpx - 180rpx);
+    padding-top: 200rpx;
+    padding-bottom: 120rpx;
 
     .content_3_1 {
       display: flex;

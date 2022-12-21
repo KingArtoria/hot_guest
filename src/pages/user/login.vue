@@ -377,6 +377,28 @@ export default {
           res.data.head = `${this._avatarUrl}${res.data.head}`;
         }
         Vue.prototype._userInfo = res.data;
+        // 建立连接;
+        this.goeasy.connect({
+          // id标识
+          id: this._userInfo.id,
+          // 自定义数据
+          data: {
+            // 头像
+            head: this._userInfo.head,
+            // 名字
+            nickName: this._userInfo.nick_name,
+            // 公司
+            company: this._userInfo.company,
+            // 职位
+            position: this._userInfo.position,
+          },
+          // 成功回调
+          onSuccess: () => console.log("链接成功"),
+          // 失败回调
+          onFailed: (error) => console.log(`链接失败${error.content}`),
+          // 重连
+          onProgress: (attempts) => console.log(`重连中${attempts}`),
+        });
         // 返回上一级
         this.back();
       });

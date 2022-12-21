@@ -58,7 +58,7 @@
             <view class="content_4_1_1_1">待处理请求</view>
             <view class="content_4_1_1_2">{{ notice.length }}</view>
           </view>
-          <view class="content_4_1_2">
+          <view class="content_4_1_2" @click="goFriendRequest">
             <view class="content_4_1_2_1">管理我的请求</view>
             <image
               class="content_4_1_2_2"
@@ -66,7 +66,10 @@
             />
           </view>
         </view>
-        <FriendRequest @click="goPersonal(notice[0].member_id)" :data="notice[0]" />
+        <FriendRequest
+          @click="goPersonal(notice[0].member_id)"
+          :data="notice[0]"
+        />
       </view>
       <!-- Tabs -->
       <view class="content_5">
@@ -215,6 +218,12 @@ export default {
       this.currentTab = e;
       // 获取推荐人脉
       this.getRecommend();
+    },
+    // 前往好友请求
+    goFriendRequest() {
+      uni.navigateTo({
+        url: "/pages/contacts/pendingRequest",
+      });
     },
   },
   onLoad() {

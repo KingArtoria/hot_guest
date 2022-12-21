@@ -1,12 +1,24 @@
 <template>
   <view>
-    <Head title="合作信息" style="background: #f6f6f6">
-      <image slot="head_3_1" :style="slotStyle" src="http://39.106.208.234/pic/img_/xiaoxi@2x.png" />
-    </Head>
+    <Head title="合作信息" style="background: #f6f6f6" />
     <view class="content">
-      <u-tabs :list="labelImg" :activeStyle="tabsStyle[0]" :inactiveStyle="tabsStyle[1]" :itemStyle="tabsStyle[2]" lineColor="#3875E9" lineWidth="92rpx" lineHeight="4rpx" @click="tabsClick" />
+      <u-tabs
+        :list="labelImg"
+        :activeStyle="tabsStyle[0]"
+        :inactiveStyle="tabsStyle[1]"
+        :itemStyle="tabsStyle[2]"
+        lineColor="#3875E9"
+        lineWidth="92rpx"
+        lineHeight="4rpx"
+        @click="tabsClick"
+      />
       <view class="content_1">
-        <ProjectB v-for="(item, index) in myRelease" :key="index" :item="item" />
+        <ProjectB
+          v-for="(item, index) in myRelease"
+          :key="index"
+          :item="item"
+          :typeShow="false"
+        />
       </view>
       <!-- 内容为空 -->
       <u-empty mode="list" textSize="24rpx" :show="myRelease.length == 0" />
@@ -15,19 +27,28 @@
 </template>
 
 <script>
-import Head from '../../components/Head';
-import ProjectB from '../../components/ProjectB';
-import { getMyRelease } from '../../utils/api';
-import { LABEL_IMG } from '../../utils/const';
+import Head from "../../components/Head";
+import ProjectB from "../../components/ProjectB";
+import { getMyRelease } from "../../utils/api";
+import { LABEL_IMG } from "../../utils/const";
 export default {
   data() {
     return {
       // 插槽样式
-      slotStyle: { width: '80rpx', height: '80rpx' },
+      slotStyle: { width: "80rpx", height: "80rpx" },
       // tabs数值
       labelImg: [],
       // tabs样式
-      tabsStyle: [{ color: '#1A1A1A', fontWeight: 'bold', 'font-size': '28rpx', padding: '0 20rpx' }, { color: '#1A1A1A', fontSize: '28rpx', padding: '0 20rpx' }, { height: '80rpx' }],
+      tabsStyle: [
+        {
+          color: "#1A1A1A",
+          fontWeight: "bold",
+          "font-size": "28rpx",
+          padding: "0 20rpx",
+        },
+        { color: "#1A1A1A", fontSize: "28rpx", padding: "0 20rpx" },
+        { height: "80rpx" },
+      ],
       // 我发布的
       myRelease: [],
     };
@@ -43,9 +64,9 @@ export default {
     // 获取我发布的
     getMyRelease(type = 1) {
       // 获取我发布的API
-      getMyRelease({ type }).then(res => {
+      getMyRelease({ type }).then((res) => {
         // 初始化数据
-        res.data.forEach(item => {
+        res.data.forEach((item) => {
           // 删除年份
           item.addtime = item.addtime.slice(5);
           // 删除秒
@@ -71,5 +92,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './myPost.scss';
+@import "./myPost.scss";
 </style>

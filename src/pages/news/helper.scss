@@ -1,0 +1,43 @@
+.content {
+  padding-top: 210rpx;
+  background: #f6f6f6;
+  min-height: 100vh;
+
+  .content_1 {
+    .content_2 {
+      display: flex;
+      margin-bottom: 20rpx;
+
+      .content_2_1 {
+        width: 90rpx;
+        height: 90rpx;
+        border-radius: 10rpx;
+        margin-left: 18rpx;
+        margin-right: 18rpx;
+      }
+
+      .content_2_2 {
+        background: #fff;
+        border-radius: 10rpx;
+        margin-left: 14rpx;
+        display: flex;
+        padding: 30rpx 16rpx;
+        max-width: 570rpx;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+
+        .content_2_2_1 {
+          font-size: 28rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #2d2d2d;
+        }
+
+        .content_2_2_2 {
+          width: 570rpx;
+          margin-top: 30rpx;
+        }
+      }
+    }
+  }
+}

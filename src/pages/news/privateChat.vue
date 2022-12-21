@@ -20,7 +20,7 @@
           <view class="head_1_2_2">{{ info.company }}</view>
         </view>
         <!-- 更多 -->
-        <view class="head_1_3">
+        <view class="head_1_3" @click="goChatDetail">
           <!-- 图标 -->
           <image
             class="head_1_3_1"
@@ -34,7 +34,7 @@
       <!-- 联系方式 -->
       <view class="content_1">
         <!-- 单个盒子 -->
-        <view class="content_1_1">
+        <view class="content_1_1" @click="call">
           <!-- 图标 -->
           <image
             class="content_1_1_1"
@@ -44,7 +44,7 @@
           <view class="content_1_1_2">打电话</view>
         </view>
         <!-- 单个盒子 -->
-        <view class="content_1_1">
+        <view class="content_1_1" @click="copy">
           <!-- 图标 -->
           <image
             class="content_1_1_1"
@@ -54,7 +54,7 @@
           <view class="content_1_1_2">加微信</view>
         </view>
         <!-- 单个盒子 -->
-        <view class="content_1_1">
+        <view class="content_1_1" @click="goTrade">
           <!-- 图标 -->
           <image
             class="content_1_1_1"
@@ -88,23 +88,23 @@
           <view
             class="content_3_1"
             style="justify-content: flex-start"
-            v-if="item.type == 2"
+            v-if="item.typeText == 2"
           >
             <!-- 头像 -->
-            <image class="content_3_1_1" :src="item.head" />
+            <image class="content_3_1_1" :src="info.head" />
             <!-- 信息 -->
-            <view class="content_3_1_2">{{ item.text }}</view>
+            <view class="content_3_1_2">{{ item.payload.text }}</view>
           </view>
           <!-- 右 -->
           <view
             class="content_3_1"
             style="justify-content: flex-end"
-            v-if="item.type == 1"
+            v-if="item.typeText == 1"
           >
             <!-- 信息 -->
-            <view class="content_3_1_2">{{ item.text }}</view>
+            <view class="content_3_1_2">{{ item.payload.text }}</view>
             <!-- 头像 -->
-            <image class="content_3_1_1" :src="item.head" />
+            <image class="content_3_1_1" :src="_userInfo.head" />
           </view>
         </view>
       </view>
@@ -135,6 +135,7 @@
 <script>
 import GoEasy from "goeasy";
 import { getOtherUserInfo } from "../../utils/api";
+import { showToast } from "../../utils";
 export default {
   data() {
     return {
@@ -148,6 +149,8 @@ export default {
       list: [],
       // 提示
       tip: true,
+      // 滚动位置
+      scrollTop: 10000,
     };
   },
   methods: {
@@ -164,14 +167,16 @@ export default {
     },
     // 复制微信
     copy() {
+      // 微信是否为空
+      if (this.info.wechat_name == "") {
+        showToast("对方暂未填写微信");
+        return;
+      }
       // 复制微信
       uni.setClipboardData({
-        data: this.info.wechat,
-        success: function () {
-          uni.showToast({
-            title: "复制成功",
-            icon: "none",
-          });
+        data: this.info.wechat_name,
+        success: () => {
+          showToast("复制成功");
         },
       });
     },
@@ -187,19 +192,45 @@ export default {
         this.info = res.data;
       });
     },
+    // 前往平台交易
+    goTrade() {
+      uni.navigateTo({
+        url: "/pages/index/platformTransaction",
+      });
+    },
+    // 前往聊天详情
+    goChatDetail() {
+      uni.navigateTo({
+        url: `/pages/news/chatDetails?id=${this.id}`,
+      });
+    },
+    // 获取历史消息
+    getHistory() {
+      this.goeasy.im.history({
+        userId: this.id + "",
+        lastTimestamp: null,
+        limit: 30,
+        onSuccess: (result) => {
+          // 初始化数据
+          result.content.forEach((item) => {
+            // 判断发送人是否为自己
+            if (item.senderId == this._userInfo.id) item.typeText = 1;
+            else item.typeText = 2;
+          });
+          // 赋值
+          this.list = result.content;
+        },
+        onFailed: (error) => console.log(`获取失败${error.content}`),
+      });
+    },
     // 发送消息
     privateChat() {
       var im = this.goeasy.im;
-      //创建消息, 内容最长不超过3K，可以发送字符串，对象和json格式字符串
       let textMessage = im.createTextMessage({
-        //消息内容
         text: this.text,
         to: {
-          //私聊还是群聊，群聊为GoEasy.IM_SCENE.GROUP
           type: GoEasy.IM_SCENE.PRIVATE,
-          // 对方id
-          id: this.id,
-          //好友扩展数据, 任意格式的字符串或者对象，用于更新会话列表conversation.data
+          id: this.id + "",
           data: {
             // 头像
             head: this.info.head,
@@ -212,69 +243,75 @@ export default {
           },
         },
       });
+      // 清空输入框
+      this.text = "";
       //发送消息
       im.sendMessage({
         message: textMessage,
-        // 成功回调
-        onSuccess: (message) => console.log(`发送成功${message}`),
-        // 失败回调
+        onSuccess: (message) => {
+          console.log("发送成功", message);
+          // 添加消息
+          message.typeText = 1;
+          this.list.push(message);
+          // 滚动到页面底部
+          this.scrollTop += 1000;
+          setTimeout(() => {
+            uni.pageScrollTo({ scrollTop: this.scrollTop, duration: 0 });
+          }, 50);
+        },
         onFailed: (error) => console.log(`发送失败${error.content}`),
       });
-      // 消息添加到列表
-      this.list.push({
-        text: this.text,
-        type: 1,
-        head: this._userInfo.head,
-      });
-      // 清空输入框
-      this.text = "";
-      // 保存聊天记录到缓存
-      uni.setStorageSync(`chat${this.id}`, this.list);
     },
-    // 消息已读
-    read() {
-      var im = this.goeasy.im;
-      im.markPrivateMessageAsRead({
-        userId: this.id, //聊天对象的userId
+    // 接收私聊消息
+    receivePrivateChat() {
+      var onPrivateMessageReceived = (message) => {
+        // 如果接受的id和当前聊天人id一样就添加到数组
+        if (message.senderId == this.id) {
+          // 添加消息
+          message.typeText = 2;
+          this.list.push(message);
+          // 滚动到页面底部
+          this.scrollTop += 1000;
+          setTimeout(() => {
+            uni.pageScrollTo({ scrollTop: this.scrollTop, duration: 0 });
+          }, 50);
+        }
+      };
+      //监听和接收单聊消息
+      this.goeasy.im.on(
+        GoEasy.IM_EVENT.PRIVATE_MESSAGE_RECEIVED,
+        onPrivateMessageReceived
+      );
+    },
+    // 已读消息
+    readMessage() {
+      this.goeasy.im.markPrivateMessageAsRead({
+        userId: this.id + "", //聊天对象的userId
         onSuccess: () => console.log("已读成功"),
-        onFailed: (error) => console.log(`已读失败:${error.content}`),
+        onFailed: (error) => console.log(`已读失败${error.content}}`),
       });
     },
   },
-  onLoad() {
-    // 获取信息
-    this.id = uni.getStorageSync("chat").id;
+  onLoad(op) {
+    // 获取id
+    this.id = op.id;
     // 他人个人信息
     this.getOtherUserInfo();
-    // * 接收私聊消息
-    let onPrivateMessageReceived = (message) => {
-      console.log(message);
-      // 判断发送人和当前聊天是不是为一个人
-      if (message.senderId == this.id) {
-        // 消息添加到列表
-        this.list.push({
-          text: message.payload.text,
-          type: 2,
-          head: this.info.head,
-        });
-        // 保存聊天记录到缓存
-        uni.setStorageSync(`chat${this.id}`, this.list);
-        console.log(uni.getStorageSync(`chat${this.id}`));
-      }
-    };
-    this.goeasy.im.on(
-      GoEasy.IM_EVENT.PRIVATE_MESSAGE_RECEIVED,
-      onPrivateMessageReceived
-    );
-    // 获取聊天记录
-    this.list = uni.getStorageSync(`chat${this.id}`) || [];
-    // 消息已读
-    this.read();
+    // 获取历史消息
+    this.getHistory();
+    // 接收私聊消息
+    this.receivePrivateChat();
+    // 已读
+    this.readMessage();
+    // 滚动到页面底部
+    setTimeout(() => {
+      uni.pageScrollTo({ scrollTop: this.scrollTop, duration: 0 });
+    }, 50);
   },
   // 页面卸载
   onUnload() {
-    // 消息已读
-    this.read();
+    // 已读
+    this.readMessage();
   },
 };
 </script>

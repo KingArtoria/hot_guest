@@ -94,11 +94,9 @@ export default {
     },
     // 前往聊天
     goChat(item) {
-      // 保存信息
-      uni.setStorageSync("chat", item);
       // 跳转到聊天页面
       uni.navigateTo({
-        url: "/pages/news/privateChat",
+        url: `/pages/news/privateChat?id=${item.id}`,
       });
     },
   },

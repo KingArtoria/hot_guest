@@ -325,20 +325,30 @@ export default {
     },
     // 退出登录
     goLoginOut() {
+      // 断开链接
+      this.goeasy.disconnect({
+        onSuccess: () => console.log("已断开链接"),
+        onFailed: (error) => console.log(`断开链接失败${error.content}`),
+      });
+      // 关闭遮罩
+      this.loginOutShow = false;
+      // 删除token
       uni.removeStorageSync("token");
+      // 路由跳转
       uni.navigateTo({
         url: "/pages/user/login",
       });
     },
-    // 获取个人信息
+    // 获取用户信息
     getUserInfo() {
+      // 获取用户信息API
       getUserInfo().then((res) => {
         // head是否包含http
         if (res.data.head.indexOf("http") === -1) {
           res.data.head = `${this._avatarUrl}${res.data.head}`;
         }
-        this.userInfo = res.data;
         Vue.prototype._userInfo = res.data;
+        this.userInfo = res.data;
       });
     },
     // 复制邀请码

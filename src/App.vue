@@ -16,7 +16,7 @@ export default {
         // 建立连接;
         this.goeasy.connect({
           // id标识
-          id: this._userInfo.id,
+          id: this._userInfo.id + "",
           // 自定义数据
           data: {
             // 头像

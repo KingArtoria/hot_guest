@@ -22,7 +22,7 @@
           <view class="content_4_1_3" />
           <view class="content_4_1_4">{{ item.position }}</view>
         </view>
-        <view class="content_4_2">{{ item.typeName }}</view>
+        <view class="content_4_2" v-if="typeShow">{{ item.typeName }}</view>
       </view>
     </view>
   </view>
@@ -34,6 +34,10 @@ export default {
     item: {
       type: Object,
       default: () => {},
+    },
+    typeShow: {
+      type: Boolean,
+      default: true,
     },
   },
   methods: {

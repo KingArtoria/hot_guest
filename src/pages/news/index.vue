@@ -30,7 +30,7 @@
       </view>
       <!-- 提示助手 -->
       <view class="content_2">
-        <view class="content_2_1">
+        <view class="content_2_1" @click="goAssistant">
           <image
             class="content_2_1_1"
             src="http://39.106.208.234/pic/img_/zs.png"
@@ -38,12 +38,11 @@
           <view class="content_2_1_2">
             <view class="content_2_1_2_1">
               <view class="content_2_1_2_1_1">火客小助手</view>
-              <view class="content_2_1_2_1_2">昨天</view>
             </view>
             <view class="content_2_1_2_2">您的私人小助手</view>
           </view>
         </view>
-        <view class="content_2_1">
+        <view class="content_2_1" @click="goFriendRequest">
           <image
             class="content_2_1_1"
             src="http://39.106.208.234/pic/img_/xxzs.png"
@@ -51,9 +50,8 @@
           <view class="content_2_1_2">
             <view class="content_2_1_2_1">
               <view class="content_2_1_2_1_1">消息通知小助手</view>
-              <view class="content_2_1_2_1_2">16:20</view>
             </view>
-            <view class="content_2_1_2_2">有2条好友申请待处理</view>
+            <view class="content_2_1_2_2">有{{ notice }}条好友申请待处理</view>
           </view>
         </view>
       </view>
@@ -61,9 +59,9 @@
       <view class="content_3">
         <view
           class="content_3_1"
-          @click="goPrivateChat"
           v-for="(item, index) in chatList"
           :key="index"
+          @click="goPrivateChat(item)"
         >
           <view class="content_3_1_1">
             <image class="content_3_1_1_1" :src="item.data.head" />
@@ -109,6 +107,7 @@
 <script>
 import GoEasy from "goeasy";
 import { formatTime } from "../../utils";
+import { getNotice } from "../../utils/api";
 export default {
   data() {
     return {
@@ -122,24 +121,26 @@ export default {
       },
       // 会话列表
       chatList: [],
+      // 好友请求
+      notice: 0,
     };
   },
   methods: {
     // 前往私聊
-    goPrivateChat() {
+    goPrivateChat(item) {
+      // 路由跳转
       uni.navigateTo({
-        url: "/pages/news/privateChat",
+        url: `/pages/news/privateChat?id=${item.userId}`,
       });
     },
     // 获取会话列表
     getChatList() {
-      console.log("1");
+      console.log("获取会话列表");
       var im = this.goeasy.im;
       im.latestConversations({
         onSuccess: (res) => {
           // 赋值
           this.chatList = res.content.conversations;
-          console.log(this.chatList);
           // 初始化值
           this.chatList.forEach((item) => {
             // 时间格式化
@@ -151,23 +152,54 @@ export default {
     },
     // 监听会话列表
     onConversationList() {
+      console.log("会话列表发生变化");
       var im = this.goeasy.im;
       var onConversationsUpdated = (res) => {
-        console.log(res);
+        // 赋值
+        this.chatList = res.conversations;
+        // 初始化值
+        this.chatList.forEach((item) => {
+          // 时间格式化
+          item.lastMessage.timestamp = formatTime(item.lastMessage.timestamp);
+        });
       };
       //监听会话列表更新
       im.on(GoEasy.IM_EVENT.CONVERSATIONS_UPDATED, onConversationsUpdated);
+    },
+    // 好友请求
+    getNotice() {
+      // 好友请求API
+      getNotice({ type: 1 }).then((res) => {
+        // 赋值
+        this.notice = res.data.length;
+      });
+    },
+    // 前往好友请求
+    goFriendRequest() {
+      uni.navigateTo({
+        url: "/pages/contacts/pendingRequest",
+      });
+    },
+    // 前往助手
+    goAssistant() {
+      uni.navigateTo({
+        url: "/pages/news/helper",
+      });
     },
   },
   onLoad() {
     // 监听会话列表
     this.onConversationList();
-  },
-  onShow() {
     // 获取会话列表
     this.getChatList();
+    // 好友请求
+    this.getNotice();
+  },
+  onShow() {
     // 判断是否登录
     if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
+    // 获取会话列表
+    this.getChatList();
   },
 };
 </script>

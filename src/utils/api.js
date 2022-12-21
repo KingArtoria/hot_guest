@@ -541,3 +541,30 @@ export const aliPay = data => {
     data
   });
 }
+// ? 删除好友
+export const deleteFriend = data => {
+  return request({
+    method: 'post',
+    url: '/friend/putDelFriend',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 修改备注
+export const editRemark = data => {
+  return request({
+    method: 'post',
+    url: '/friend/saveName',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 系统通知
+export const getSystemNotice = data => {
+  return request({
+    method: 'post',
+    url: '/member/getMessage',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

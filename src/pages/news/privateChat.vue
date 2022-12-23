@@ -173,7 +173,7 @@
         <!-- 功能区 -->
         <view class="input_3_2">
           <!-- 添加 -->
-          <view class="input_3_2_1">
+          <view class="input_3_2_1" @click="goAddCommon">
             <!-- 图标 -->
             <image
               class="input_3_2_1_1"
@@ -183,7 +183,7 @@
             <view class="input_3_2_1_2">添加</view>
           </view>
           <!-- 管理 -->
-          <view class="input_3_2_1">
+          <view class="input_3_2_1" @click="editCommon">
             <!-- 图标 -->
             <image
               class="input_3_2_1_1"
@@ -363,6 +363,18 @@ export default {
         },
       });
     },
+    // 前往添加常用语
+    goAddCommon() {
+      uni.navigateTo({
+        url: "/pages/news/addPhrases",
+      });
+    },
+    // 编辑常用语
+    editCommon() {
+      uni.navigateTo({
+        url: "/pages/news/managementIdioms",
+      });
+    },
   },
   onLoad(op) {
     // 获取id
@@ -375,12 +387,14 @@ export default {
     this.receivePrivateChat();
     // 已读
     this.readMessage();
-    // 获取常用语
-    this.common = uni.getStorageSync("common");
     // 滚动到页面底部
     setTimeout(() => {
       uni.pageScrollTo({ scrollTop: this.scrollTop, duration: 0 });
     }, 50);
+  },
+  onShow() {
+    // 获取常用语
+    this.common = uni.getStorageSync("common");
   },
   // 页面卸载
   onUnload() {

@@ -62,11 +62,12 @@ export default {
       modules: ["pubsub", "im"],
     });
     // 声明全局常用语变量
-    uni.setStorageSync("common", [
-      "你好，我有您需要的资源，可合作",
-      "你好，我想了解这个资源，方便聊聊吗？",
-      "你好，合作有什么要求吗？",
-    ]);
+    if (!uni.getStorageSync("common"))
+      uni.setStorageSync("common", [
+        "你好，我有您需要的资源，可合作",
+        "你好，我想了解这个资源，方便聊聊吗？",
+        "你好，合作有什么要求吗？",
+      ]);
     // 获取用户信息
     this.getUserInfo();
     //? 监听中间按钮

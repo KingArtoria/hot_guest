@@ -242,6 +242,7 @@
     background: #FFFFFF;
     position: relative;
     overflow: auto;
+    padding-bottom: 136rpx;
 
     .input_3_1 {
       padding: 0 24rpx;
@@ -264,6 +265,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 3;
+      background: #fff;
 
       .input_3_2_1 {
         flex: 1;

@@ -563,6 +563,18 @@
       "style": {
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/news/addPhrases",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/news/managementIdioms",
+      "style": {
+        "navigationStyle": "custom"
+      }
     }
   ],
   "globalStyle": {

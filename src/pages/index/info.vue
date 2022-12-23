@@ -40,7 +40,7 @@
           src="http://39.106.208.234/pic/img_/baozhang@2x.png"
         />
         <!-- 文本1 -->
-        <view class="content_8_2">已加入平台交易</view>
+        <view class="content_8_2">该项目可进行平台交易</view>
         <!-- 文本2 -->
         <view class="content_8_3">交易双方资金安全保障</view>
       </view>
@@ -401,19 +401,26 @@ export default {
           case 11:
             res.data.kv = [
               `结算方式：${res.data.settmod_id}`,
-              `结算单价：${res.data.price == "0.00" ? "可议" : res.data.price}`,
               `结算周期：${res.data.settcycle_id}`,
               `推广方式：${res.data.promotion}`,
               `合作类型：${res.data.cooptype_id}`,
               `合作地区：${res.data.area}`,
             ];
+            // 初始化结算单价
+            if (
+              res.data.price == "" ||
+              res.data.price == null ||
+              res.data.price == "0.00"
+            )
+              res.data.price = "可议";
+            // 在kv第1下标插入单价
+            res.data.kv.splice(1, 0, `结算单价：${res.data.price}`);
             res.data.infoArray = [{ title: "考核标准", value: res.data.info }];
             break;
           case 3:
             res.data.kv = [
               `产品类型：${res.data.product}`,
               `资源类型：${res.data.source}`,
-              `客单价：${res.data.price == "0.00" ? "可议" : res.data.price}`,
               `产品名称：${res.data.product_name}`,
               `一件代发：${res.data.issuing}`,
               `相关资质：${res.data.supplement}`,
@@ -423,6 +430,15 @@ export default {
               { title: "产品优势", value: res.data.product_advantage },
               { title: "产品名称", value: res.data.product_name },
             ];
+            // 初始化结算单价
+            if (
+              res.data.price == "" ||
+              res.data.price == null ||
+              res.data.price == "0.00"
+            )
+              res.data.price = "可议";
+            // 在kv第2下标插入单价
+            res.data.kv.splice(2, 0, `客单价：${res.data.price}`);
             break;
           case 4:
             res.data.kv = [

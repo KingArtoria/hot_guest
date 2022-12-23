@@ -17,6 +17,7 @@
           bgColor="rgba(255,255,255,0.5)"
           fontSize="22rpx"
           style="border-radius: 24rpx"
+          icon=""
         />
       </view>
       <!-- 二维码 -->

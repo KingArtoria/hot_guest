@@ -20,6 +20,7 @@ const request = (config) => {
           uni.removeStorageSync('token');
           return
         }
+        console.log(JSON.stringify(config.data), config.url)
         resolve(response);
       }
     }).catch(error => {

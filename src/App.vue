@@ -44,7 +44,7 @@ export default {
     // 声明全局来源
     Vue.prototype._source = "小米";
     // 声明全局类型
-    Vue.prototype._type = "ios";
+    Vue.prototype._type = "and";
     // 声明头像资源路径
     Vue.prototype._avatarUrl = "https://admin.bdhuoke.com";
     // 接口地址
@@ -61,6 +61,12 @@ export default {
       appkey: "BC-ad662406fecb4b58bcd6e609416cf61f",
       modules: ["pubsub", "im"],
     });
+    // 声明全局常用语变量
+    uni.setStorageSync("common", [
+      "你好，我有您需要的资源，可合作",
+      "你好，我想了解这个资源，方便聊聊吗？",
+      "你好，合作有什么要求吗？",
+    ]);
     // 获取用户信息
     this.getUserInfo();
     //? 监听中间按钮

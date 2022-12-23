@@ -1,6 +1,13 @@
 <template>
   <view>
-    <Head title="合作信息" style="background: #f6f6f6" />
+    <Head title="合作信息" style="background: #f6f6f6">
+      <image
+        slot="head_3_1"
+        :style="slotStyle"
+        src="http://39.106.208.234/pic/img_/xiaoxi@2x.png"
+        @click="toMyComment"
+      />
+    </Head>
     <view class="content">
       <u-tabs
         :list="labelImg"
@@ -21,7 +28,13 @@
         />
       </view>
       <!-- 内容为空 -->
-      <u-empty mode="list" textSize="24rpx" :show="myRelease.length == 0" />
+      <u-empty
+        mode="list"
+        textSize="24rpx"
+        :show="myRelease.length == 0"
+        iconSize="140rpx"
+        marginTop="180rpx"
+      />
     </view>
   </view>
 </template>
@@ -79,6 +92,12 @@ export default {
     // tabs点击事件
     tabsClick(item) {
       this.getMyRelease(item.index + 1);
+    },
+    // 前往我的评论
+    toMyComment() {
+      uni.navigateTo({
+        url: "/pages/user/collaborativeReview",
+      });
     },
   },
   onLoad() {

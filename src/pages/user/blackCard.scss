@@ -4,25 +4,32 @@
   background: #101010;
   padding-bottom: 147rpx;
 }
+
 .content {
   background: #101010;
+
   .content_1 {
     background: url('http://39.106.208.234/pic/img_/bg_heika.png') no-repeat;
+    background-size: 100%;
     height: 921rpx;
+
     .content_1_1 {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0 30rpx;
+
       .content_1_1_1,
       .content_1_1_2,
       .content_1_1_3 {
         flex: 1;
+
         .content_1_1_1_1 {
           width: 40rpx;
           height: 40rpx;
         }
       }
+
       .content_1_1_2 {
         text-align: center;
         font-size: 30rpx;
@@ -32,6 +39,7 @@
         line-height: 1;
       }
     }
+
     .content_1_2 {
       background: url('http://39.106.208.234/pic/img_/heiuka.png') no-repeat;
       background-size: 100%;
@@ -40,6 +48,7 @@
       margin: 0 auto;
       margin-top: 281rpx;
       position: relative;
+
       .content_1_2_1 {
         width: 91rpx;
         height: 36rpx;
@@ -55,12 +64,14 @@
         right: 24rpx;
         top: 25rpx;
       }
+
       .content_1_2_2 {
         display: flex;
         align-items: flex-end;
         position: absolute;
         bottom: 88rpx;
         left: 61rpx;
+
         .content_1_2_2_1 {
           font-size: 44rpx;
           font-family: PingFang SC;
@@ -69,6 +80,7 @@
           color: #ffeea6;
           line-height: 1;
         }
+
         .content_1_2_2_2 {
           font-size: 22rpx;
           font-family: PingFang SC;
@@ -78,6 +90,7 @@
         }
       }
     }
+
     .content_1_3 {
       display: block;
       width: 332rpx;
@@ -86,6 +99,7 @@
       margin-top: 130rpx;
     }
   }
+
   .content_2 {
     .content_2_1 {
       width: 690rpx;
@@ -99,6 +113,7 @@
       align-items: center;
       margin-bottom: 40rpx;
     }
+
     .content_2_2 {
       margin-top: 22rpx;
       width: 510rpx;
@@ -114,6 +129,7 @@
       text-align: center;
     }
   }
+
   .content_3 {
     width: 690rpx;
     height: 939rpx;
@@ -121,6 +137,7 @@
     margin: 0 auto;
     margin-top: 133rpx;
   }
+
   .content_4 {
     width: 699rpx;
     height: 1162rpx;

@@ -140,7 +140,8 @@ export default {
       im.latestConversations({
         onSuccess: (res) => {
           // 赋值
-          this.chatList = res.content.conversations;
+          this.chatList = JSON.parse(JSON.stringify(res.content.conversations));
+          console.log(this.chatList, "获取会话列表");
           // 初始化值
           this.chatList.forEach((item) => {
             // 时间格式化
@@ -156,7 +157,8 @@ export default {
       var im = this.goeasy.im;
       var onConversationsUpdated = (res) => {
         // 赋值
-        this.chatList = res.conversations;
+        this.chatList = JSON.parse(JSON.stringify(res.conversations));
+        console.log(this.chatList, "监听会话列表");
         // 初始化值
         this.chatList.forEach((item) => {
           // 时间格式化
@@ -198,6 +200,7 @@ export default {
   onShow() {
     // 判断是否登录
     if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
+    else this.loginModal.show = false;
     // 获取会话列表
     this.getChatList();
   },

@@ -98,7 +98,7 @@ export default {
   margin: 0 auto;
   .content_1 {
     background: #fff;
-    margin-bottom: 15rpx;
+    margin-bottom: 20rpx;
     border-radius: 9rpx;
     position: relative;
     .content_1_2 {
@@ -165,6 +165,7 @@ export default {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+        line-height: 45rpx;
       }
 
       .content_1_1_3 {

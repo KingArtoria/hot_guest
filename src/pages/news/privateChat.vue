@@ -82,7 +82,7 @@
         <view class="content_2_2" @click="tip = false">x</view>
       </view>
       <!-- 聊天界面 -->
-      <view class="content_3">
+      <view class="content_3" style="padding-bottom: 150rpx">
         <view v-for="(item, index) in list" :key="index">
           <!-- 左 -->
           <view
@@ -111,23 +111,89 @@
     </view>
     <!-- 输入框 -->
     <view class="input">
-      <!-- 常用语 -->
-      <view class="input_1">常用语</view>
-      <!-- 输入框盒子 -->
-      <view class="input_2">
-        <!-- 输入框 -->
-        <u-input
-          placeholder="新信息"
-          border="none"
-          fontSize="28rpx"
-          style="height: 70rpx"
-          v-model="text"
-          confirmType="send"
-          @confirm="privateChat"
+      <!-- 输入 -->
+      <view class="input_1">
+        <!-- 常用语 -->
+        <view class="input_1_1">常用语</view>
+        <!-- 输入框盒子 -->
+        <view class="input_1_2">
+          <!-- 输入框 -->
+          <u-input
+            placeholder="新信息"
+            border="none"
+            fontSize="28rpx"
+            style="height: 70rpx"
+            v-model="text"
+            confirmType="send"
+            @confirm="privateChat"
+          />
+        </view>
+        <!-- 更多 -->
+        <image
+          class="input_1_3"
+          src="http://39.106.208.234/pic/img_/jianhao.png"
         />
       </view>
       <!-- 更多 -->
-      <image class="input_3" src="http://39.106.208.234/pic/img_/jianhao.png" />
+      <view class="input_2">
+        <!-- 拍摄 -->
+        <view class="input_2_1">
+          <!-- 图标 -->
+          <image
+            class="input_2_1_1"
+            src="http://39.106.208.234/pic/img_/paishe.png"
+          />
+          <!-- 文本 -->
+          <view class="input_2_1_2">拍摄</view>
+        </view>
+        <!-- 照片 -->
+        <view class="input_2_1">
+          <!-- 图标 -->
+          <image
+            class="input_2_1_1"
+            src="http://39.106.208.234/pic/img_/zhaopian.png"
+          />
+          <!-- 文本 -->
+          <view class="input_2_1_2">照片</view>
+        </view>
+      </view>
+      <!-- 常用语 -->
+      <view class="input_3">
+        <!-- 列表 -->
+        <view class="input_3_1">
+          <!-- 单个常用语 -->
+          <view
+            class="input_3_1_1"
+            v-for="(item, index) in common"
+            :key="index"
+          >
+            {{ item }}
+          </view>
+        </view>
+        <!-- 功能区 -->
+        <view class="input_3_2">
+          <!-- 添加 -->
+          <view class="input_3_2_1">
+            <!-- 图标 -->
+            <image
+              class="input_3_2_1_1"
+              src="http://39.106.208.234/pic/img_/tianjai@2x.png"
+            />
+            <!-- 添加 -->
+            <view class="input_3_2_1_2">添加</view>
+          </view>
+          <!-- 管理 -->
+          <view class="input_3_2_1">
+            <!-- 图标 -->
+            <image
+              class="input_3_2_1_1"
+              src="http://39.106.208.234/pic/img_/guanli.png"
+            />
+            <!-- 添加 -->
+            <view class="input_3_2_1_2">管理</view>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
 </template>
@@ -151,6 +217,8 @@ export default {
       tip: true,
       // 滚动位置
       scrollTop: 10000,
+      // 常用语
+      common: [],
     };
   },
   methods: {
@@ -249,7 +317,6 @@ export default {
       im.sendMessage({
         message: textMessage,
         onSuccess: (message) => {
-          console.log("发送成功", message);
           // 添加消息
           message.typeText = 1;
           this.list.push(message);
@@ -285,10 +352,15 @@ export default {
     },
     // 已读消息
     readMessage() {
-      this.goeasy.im.markPrivateMessageAsRead({
-        userId: this.id + "", //聊天对象的userId
-        onSuccess: () => console.log("已读成功"),
-        onFailed: (error) => console.log(`已读失败${error.content}}`),
+      this.goeasy.im.markMessageAsRead({
+        id: this.id + "",
+        type: GoEasy.IM_SCENE.PRIVATE,
+        onSuccess: function () {
+          console.log("标记私聊已读成功");
+        },
+        onFailed: function (error) {
+          console.log("标记私聊已读失败", error);
+        },
       });
     },
   },
@@ -303,6 +375,8 @@ export default {
     this.receivePrivateChat();
     // 已读
     this.readMessage();
+    // 获取常用语
+    this.common = uni.getStorageSync("common");
     // 滚动到页面底部
     setTimeout(() => {
       uni.pageScrollTo({ scrollTop: this.scrollTop, duration: 0 });

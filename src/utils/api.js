@@ -568,3 +568,39 @@ export const getSystemNotice = data => {
     data
   });
 }
+// ? 微信登录
+export const wxLogin = data => {
+  return request({
+    method: 'post',
+    url: '/login/wxlogin',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 绑定手机号
+export const bindPhone = data => {
+  return request({
+    method: 'post',
+    url: '/login/phonebind',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 一键登录
+export const oneKeyLogin = data => {
+  return request({
+    method: 'post',
+    url: '/login/phoneaKeyBind',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 获取合作评论
+export const getCooperationComment = data => {
+  return request({
+    method: 'post',
+    url: '/member/mycomment',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

@@ -45,7 +45,8 @@
         <u--input
           placeholder="请选择地区"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -67,7 +68,8 @@
         <u--input
           placeholder="选择合作类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -89,7 +91,8 @@
         <u--input
           placeholder="选择推广方式"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -111,7 +114,8 @@
         <u--input
           placeholder="选择结算方式"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -133,7 +137,8 @@
         <u--input
           placeholder="选择结算周期"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -155,7 +160,8 @@
         <u--input
           placeholder="选择产品类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -177,7 +183,8 @@
         <u--input
           placeholder="选择项目类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -199,7 +206,8 @@
         <u--input
           placeholder="选择广告位场景"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -221,7 +229,8 @@
         <u--input
           placeholder="选择场地类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -243,7 +252,8 @@
         <u--input
           placeholder="选择渠道类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -265,7 +275,8 @@
         <u--input
           placeholder="选择货源类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -287,7 +298,8 @@
         <u--input
           placeholder="选择提供资源类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -309,7 +321,8 @@
         <u--input
           placeholder="选择提供用户类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -331,7 +344,8 @@
         <u--input
           placeholder="选择加盟费"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -353,7 +367,8 @@
         <u--input
           placeholder="选择需求资源类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -375,7 +390,8 @@
         <u--input
           placeholder="选择需求用户类型"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -397,7 +413,8 @@
         <u--input
           placeholder="选择需求合作模式"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -419,7 +436,8 @@
         <u--input
           placeholder="选择用户量"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -441,7 +459,8 @@
         <u--input
           placeholder="选择日曝光量"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -463,7 +482,8 @@
         <u--input
           placeholder="选择渠道优势"
           border="none"
-          style="height: 99rpx"
+          style="height: 99rpx; background: #fff !important"
+          disabled
           fontSize="28rpx"
           inputAlign="end"
           suffixIcon="arrow-right"
@@ -1816,6 +1836,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped> 
+<style lang="scss" scoped>
 @import "./edit.scss";
 </style> 

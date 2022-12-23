@@ -11,6 +11,7 @@
           class="content_2"
           v-for="(item, index) in systemNotice"
           :key="index"
+          @click="goActivity"
         >
           <!-- 头像 -->
           <image
@@ -48,6 +49,13 @@ export default {
         // 赋值
         this.systemNotice = res.data;
       });
+    },
+    // 前往活动页面
+    goActivity(item) {
+      // 非空校验
+      if (!item.url) return;
+      // 跳转
+      plus.runtime.openURL(item.url);
     },
   },
   onLoad() {

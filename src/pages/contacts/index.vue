@@ -243,6 +243,7 @@ export default {
   onShow() {
     // 判断是否登录
     if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
+    else this.loginModal.show = false;
   },
   onUnload() {
     uni.$off("getUserInfo");

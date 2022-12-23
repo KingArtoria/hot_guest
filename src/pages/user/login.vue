@@ -17,7 +17,7 @@
         <!-- 小标题 -->
         <view class="content_2_2">找资源更容易</view>
         <!-- 微信登录按钮 -->
-        <view class="content_2_3">
+        <view class="content_2_3" @click="wechatLogin">
           <!-- 微信登录图标 -->
           <image
             class="content_2_3_1"
@@ -30,15 +30,24 @@
       <!-- 手机号登录 -->
       <view class="content_4" v-show="currentLogin.type != 1">
         <!-- 标题 -->
-        <view class="content_4_1" v-show="currentLogin.type == 2"
-          >手机号码登录</view
+        <view
+          class="content_4_1"
+          v-show="currentLogin.type == 2 && openid == ''"
         >
-        <view class="content_4_1" v-show="currentLogin.type == 3"
-          >密码登录</view
+          手机号码登录
+        </view>
+        <view
+          class="content_4_1"
+          v-show="currentLogin.type == 2 && openid != ''"
         >
-        <view class="content_4_1" v-show="currentLogin.type == 4"
-          >注册账号</view
-        >
+          绑定手机号
+        </view>
+        <view class="content_4_1" v-show="currentLogin.type == 3">
+          密码登录
+        </view>
+        <view class="content_4_1" v-show="currentLogin.type == 4">
+          注册账号
+        </view>
         <!-- 表单 -->
         <view class="content_4_2">
           <!-- 手机号盒子 -->
@@ -193,11 +202,14 @@
 import Vue from "vue";
 import { isNull, showToast } from "../../utils/index";
 import {
+  bindPhone,
   getUserInfo,
   getVerificationCode,
+  oneKeyLogin,
   passwordLogin,
   phoneLogin,
   register,
+  wxLogin,
 } from "../../utils/api";
 export default {
   data() {
@@ -238,11 +250,14 @@ export default {
       Invitation_code: "",
       // 确认密码
       againpass: "",
+      // 微信openid
+      openid: "",
     };
   },
   methods: {
     // 切换登录方式
     changeLogin(item) {
+      this.openid = "";
       // 讲currentLogin赋值给loginOptions中当前的item
       this.loginOptions.forEach((i, index) => {
         if (i.type === item.type) {
@@ -256,18 +271,18 @@ export default {
     preLogin() {
       uni.preLogin({
         provider: "univerify",
-        success: (res) => {
+        success: () => {
           this.login();
         },
       });
     },
     // 登录授权
     login() {
+      let _this = this;
       uni.login({
         provider: "univerify",
         success(loginRes) {
           let e = loginRes.authResult;
-          console.log(e, "e");
           uniCloud.callFunction({
             name: "getPhoneNumber",
             data: {
@@ -275,9 +290,20 @@ export default {
               openid: e.openid,
             },
             success: (res) => {
-              uni.closeAuthView();
-              // 获取用户信息
-              this.getUserInfo();
+              // 一键登录API
+              oneKeyLogin({ phone: res.result.phoneNumber }).then(
+                (oneKeyLoginRes) => {
+                  // 抛出异常
+                  if (oneKeyLoginRes.code != 1)
+                    return showToast(oneKeyLoginRes.msg);
+                  // 关闭授权页面
+                  uni.closeAuthView();
+                  // 保存token
+                  uni.setStorageSync("token", oneKeyLoginRes.data.token);
+                  // 获取用户信息
+                  _this.getUserInfo();
+                }
+              );
             },
           });
         },
@@ -301,9 +327,11 @@ export default {
     loginFn() {
       switch (this.currentLogin.type) {
         case 3:
+          // 密码登录
           this.passwordLogin();
           break;
         case 2:
+          // 手机号登录
           this.phoneLogin();
           break;
       }
@@ -311,6 +339,7 @@ export default {
     // 获取验证码
     getVerificationCode() {
       let type = this.currentLogin.type == 2 ? "login" : "sign";
+      if (this.openid != "") type = "newphone";
       // 参数赋值
       let params = { phone: this.phone, type };
       // 获取验证码
@@ -331,6 +360,23 @@ export default {
     phoneLogin() {
       // 参数赋值
       let params = { phone: this.phone, code: this.code };
+      // openid是否存在
+      if (this.openid != "") {
+        // 参数赋值
+        params.wechat_openid = this.openid;
+        // 绑定手机号
+        bindPhone(params).then((res) => {
+          // 抛出异常
+          if (res.code != 1 && res.code != -9) return showToast(res.msg);
+          // 提示绑定
+          if (res.code == -9) return showToast("账号已被绑定");
+          // 保存token
+          uni.setStorageSync("token", res.data.token);
+          // 获取用户信息
+          this.getUserInfo();
+        });
+        return;
+      }
       // 手机号登录
       phoneLogin(params).then((res) => {
         // 抛出异常
@@ -370,6 +416,7 @@ export default {
     },
     // 获取用户信息
     getUserInfo() {
+      console.log("获取用户信息");
       // 获取用户信息API
       getUserInfo().then((res) => {
         // head是否包含http
@@ -401,6 +448,32 @@ export default {
         });
         // 返回上一级
         this.back();
+      });
+    },
+    // 微信登录
+    wechatLogin() {
+      uni.login({
+        provider: "weixin",
+        success: (event) => {
+          // 微信登录API
+          wxLogin({ openid: event.authResult.openid }).then((res) => {
+            // 抛出异常
+            if (res.code != 1 && res.code != 2) return showToast(res.msg);
+            // 没绑定账号
+            if (res.code == 2) {
+              // 保存openid
+              this.openid = event.authResult.openid;
+              // 登录方式改为手机号登录
+              this.currentLogin.type = 2;
+              return;
+            }
+            // 保存token
+            uni.setStorageSync("token", res.data.token);
+            // 获取用户信息
+            this.getUserInfo();
+          });
+        },
+        fail: (err) => console.log(`微信登录失败${err}`),
       });
     },
   },

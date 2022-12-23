@@ -29,6 +29,14 @@
           <view class="content_1_1_2">{{ item.title }}</view>
         </view>
       </view>
+      <!-- 内容为空 -->
+      <u-empty
+        mode="list"
+        textSize="24rpx"
+        :show="useProps.length == 0"
+        iconSize="140rpx"
+        marginTop="180rpx"
+      />
     </view>
     <!-- 使用按钮 -->
     <view class="use" @click="usePropsTwo">使用</view>

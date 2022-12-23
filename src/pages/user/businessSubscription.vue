@@ -135,8 +135,10 @@ export default {
       getUserInfo().then((res) => {
         // 抛出异常
         if (res.code != 1) return showToast(res.msg);
+        // 判断关键词是否为空
+        if (res.data.keywords == "") res.data.keywords = [];
         // 关键词更改为数组格式
-        res.data.keywords = res.data.keywords.split(",");
+        else res.data.keywords = res.data.keywords.split(",");
         // 赋值
         this.userInfo = res.data;
       });

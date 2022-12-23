@@ -1,0 +1,95 @@
+.content {
+  padding-top: 180rpx;
+  background: #f6f6f6;
+  min-height: 100vh;
+
+  .content_1 {
+    display: flex;
+    align-items: center;
+    height: 94rpx;
+    padding-left: 30rpx;
+
+    .content_1_1 {
+      font-size: 26rpx;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #7A7A7A;
+      transition: all .3s;
+    }
+  }
+
+  .content_2 {
+    .content_2_1 {
+      margin-bottom: 16rpx;
+      width: 750rpx;
+      background: #FFFFFF;
+      box-shadow: 0px 0px 10rpx 0px rgba(172, 172, 172, 0.11);
+      padding: 20rpx 20rpx 32rpx 20rpx;
+
+      .content_2_1_1 {
+        display: flex;
+        align-items: center;
+
+        .content_2_1_1_1 {
+          width: 60rpx;
+          height: 60rpx;
+          border-radius: 30rpx;
+          margin-right: 15rpx;
+        }
+
+        .content_2_1_1_2 {
+          height: 60rpx;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .content_2_1_1_2_1 {
+            font-size: 26rpx;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: #1A1A1A;
+          }
+
+          .content_2_1_1_2_2 {
+            font-size: 20rpx;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: #898989;
+          }
+        }
+      }
+
+      .content_2_1_2 {
+        margin-top: 22rpx;
+        font-size: 26rpx;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #1A1A1A;
+        line-height: 40rpx;
+        margin-bottom: 17rpx;
+      }
+
+      .content_2_1_3 {
+        width: 710rpx;
+        background: #F3F3F3;
+        padding: 24rpx 79rpx 25rpx 27rpx;
+
+        .content_2_1_3_1 {
+          font-size: 30rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #1A1A1A;
+          line-height: 40rpx;
+          margin-bottom: 24rpx;
+        }
+
+        .content_2_1_3_2 {
+          font-size: 22rpx;
+          font-family: PingFang SC;
+          font-weight: 500;
+          color: #A4A4A4;
+        }
+      }
+    }
+  }
+}

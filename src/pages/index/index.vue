@@ -109,12 +109,26 @@
       @confirm="loginModal.confirm"
       @cancel="loginModal.cancel"
     />
+    <!-- 首页弹窗 -->
+    <u-overlay :show="homeModal.show" @click="homeModal.show = false">
+      <image
+        class="homeModal"
+        :src="homeModal.src"
+        :style="homeModal.style"
+        @click="modalClick"
+      />
+    </u-overlay>
   </view>
 </template>
 
 <script>
 import Project from "../../components/Project";
-import { getCategoryMenu, getHomeData, getThemeIcon } from "../../utils/api";
+import {
+  getActivityPopup,
+  getCategoryMenu,
+  getHomeData,
+  getThemeIcon,
+} from "../../utils/api";
 import { ADVERTISING_IMG } from "../../utils/const";
 export default {
   data() {
@@ -149,6 +163,8 @@ export default {
         },
         cancel: () => (this.loginModal.show = false),
       },
+      // 首页弹窗
+      homeModal: {},
     };
   },
   methods: {
@@ -353,15 +369,35 @@ export default {
         this.gridImg = res.data;
       });
     },
+    // 获取活动弹窗
+    getActivityPopup(id = 1) {
+      // 活动弹窗API
+      getActivityPopup({ id }).then((res) => {
+        // 弹窗赋值
+        this.homeModal = res.data;
+        // 弹窗显示
+        this.$set(this.homeModal, "show", true);
+      });
+    },
+    // 弹窗点击事件
+    modalClick() {
+      // 跳转
+      uni.navigateTo({
+        url: this.homeModal.url,
+      });
+    },
   },
   onLoad() {
-    /* 初始化参数 */ this.initParams();
+    /* 初始化参数 */
+    this.initParams();
     // 首页数据
     this.getHomeData();
     // 分类菜单
     this.getCategoryMenu();
     // 获取主题图标
     this.getThemeIcon();
+    // 获取活动弹窗
+    this.getActivityPopup();
   },
   // 滚动到底部
   onReachBottom() {

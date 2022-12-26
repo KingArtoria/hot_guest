@@ -604,3 +604,12 @@ export const getCooperationComment = data => {
     data
   });
 }
+// ? 获取活动弹窗
+export const getActivityPopup = data => {
+  return request({
+    method: 'post',
+    url: '/Version/popup',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

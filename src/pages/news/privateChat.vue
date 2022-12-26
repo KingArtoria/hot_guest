@@ -114,7 +114,7 @@
       <!-- 输入 -->
       <view class="input_1">
         <!-- 常用语 -->
-        <view class="input_1_1">常用语</view>
+        <view class="input_1_1" @click="openCommon">常用语</view>
         <!-- 输入框盒子 -->
         <view class="input_1_2">
           <!-- 输入框 -->
@@ -132,12 +132,13 @@
         <image
           class="input_1_3"
           src="http://39.106.208.234/pic/img_/jianhao.png"
+          @click="openMore"
         />
       </view>
       <!-- 更多 -->
-      <view class="input_2">
+      <view class="input_2" v-show="moreOpen">
         <!-- 拍摄 -->
-        <view class="input_2_1">
+        <view class="input_2_1" @click="openAlbum">
           <!-- 图标 -->
           <image
             class="input_2_1_1"
@@ -147,7 +148,7 @@
           <view class="input_2_1_2">拍摄</view>
         </view>
         <!-- 照片 -->
-        <view class="input_2_1">
+        <view class="input_2_1" @click="openAlbum">
           <!-- 图标 -->
           <image
             class="input_2_1_1"
@@ -158,7 +159,7 @@
         </view>
       </view>
       <!-- 常用语 -->
-      <view class="input_3">
+      <view class="input_3" v-show="commonOpen">
         <!-- 列表 -->
         <view class="input_3_1">
           <!-- 单个常用语 -->
@@ -166,6 +167,7 @@
             class="input_3_1_1"
             v-for="(item, index) in common"
             :key="index"
+            @click="selectCommon(item)"
           >
             {{ item }}
           </view>
@@ -219,6 +221,10 @@ export default {
       scrollTop: 10000,
       // 常用语
       common: [],
+      // 常用语是否打开
+      commonOpen: false,
+      // 更多是否打开
+      moreOpen: false,
     };
   },
   methods: {
@@ -373,6 +379,70 @@ export default {
     editCommon() {
       uni.navigateTo({
         url: "/pages/news/managementIdioms",
+      });
+    },
+    // 打开常用语
+    openCommon() {
+      // 打开常用语
+      this.commonOpen = !this.commonOpen;
+      // 关闭更多
+      this.moreOpen = false;
+    },
+    // 打开更多
+    openMore() {
+      // 打开更多
+      this.moreOpen = !this.moreOpen;
+      // 关闭常用语
+      this.commonOpen = false;
+    },
+    // 选中常用语
+    selectCommon(item) {
+      // 添加到输入框
+      this.text += item;
+      // 发送私信
+      this.privateChat();
+      // 关闭常用语
+      this.commonOpen = false;
+    },
+    // 打开相册
+    openAlbum() {
+      // 关闭更多
+      this.moreOpen = false;
+      // 打开相册
+      uni.chooseImage({
+        count: 1,
+        sizeType: ["original", "compressed"],
+        sourceType: ["album"],
+        success: (res) => {
+          let im = this.goeasy.im;
+          console.log(res, "选中图片");
+          //图片消息
+          let message = im.createImageMessage({
+            file: res.tempFilePaths,
+            to: {
+              type: GoEasy.IM_SCENE.PRIVATE,
+              id: this.id + "",
+              data: {
+                // 头像
+                head: this.info.head,
+                // 名字
+                nickName: this.info.nick_name,
+                // 公司
+                company: this.info.company,
+                // 职位
+                position: this.info.position,
+              },
+            },
+          });
+          //发送单聊消息
+          im.sendMessage({
+            message,
+            onSuccess: (message) => {
+              //发送成功
+              console.log("Message sent successfully.", message);
+            },
+          });
+        },
       });
     },
   },

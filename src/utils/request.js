@@ -17,7 +17,7 @@ const request = (config) => {
         let response = responses[1].data;
         if (response.code == -2) {
           // 删除token
-          uni.removeStorageSync('token');
+          // uni.removeStorageSync('token');
           return
         }
         console.log(JSON.stringify(config.data), config.url)

@@ -87,6 +87,9 @@ export default {
       this.text = op.text;
       // 初始化标题
       this.title = "编辑常用语";
+    } else {
+      // 初始化标题
+      this.title = "添加常用语";
     }
   },
   components: { Head },

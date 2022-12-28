@@ -99,6 +99,8 @@ export default {
         if (res.code != 1) return showToast(res.msg);
         // 兑换成功
         showToast("兑换成功");
+        // 刷新页面
+        this.$emit("refresh");
       });
     },
     // 微信支付

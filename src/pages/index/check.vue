@@ -1,6 +1,5 @@
 <template>
   <view>
-
     <Head title="签到中心" />
     <view class="content">
       <!-- 签到信息 -->
@@ -9,7 +8,12 @@
         <view class="content_1_2">2022年已连续签到</view>
         <view class="content_1_3">
           <view class="content_1_3_1">
-            <view class="content_1_3_1_1" v-for="(item, index) in signInfo.days" :key="index">{{ item }}</view>
+            <view
+              class="content_1_3_1_1"
+              v-for="(item, index) in signInfo.days"
+              :key="index"
+              >{{ item }}</view
+            >
           </view>
           <view class="content_1_3_2">天</view>
         </view>
@@ -18,13 +22,30 @@
       <!-- 签到天数 -->
       <view class="content_2">
         <view class="content_2_1">
-          <view class="content_2_1_1" v-for="(item, index) in signInfo.integrallsst" :key="index">
+          <view
+            class="content_2_1_1"
+            v-for="(item, index) in signInfo.integrallsst"
+            :key="index"
+          >
             <view class="content_2_1_1_1" v-if="index < signInfo.dayslog">
-              <image class="content_2_1_1_1_1" src="http://39.106.208.234/pic/img_/xz_w_g.png" />
+              <image
+                class="content_2_1_1_1_1"
+                src="http://39.106.208.234/pic/img_/xz_w_g.png"
+              />
             </view>
-            <view class="content_2_1_1_3" v-if="index >= signInfo.dayslog && index != 6">{{ item.number }}</view>
-            <view class="content_2_1_1_4" v-if="index == 6 && signInfo.dayslog != 7">
-              <image class="content_2_1_1_4_1" src="http://39.106.208.234/pic/img_/libao.png" />
+            <view
+              class="content_2_1_1_3"
+              v-if="index >= signInfo.dayslog && index != 6"
+              >{{ item.number }}</view
+            >
+            <view
+              class="content_2_1_1_4"
+              v-if="index == 6 && signInfo.dayslog != 7"
+            >
+              <image
+                class="content_2_1_1_4_1"
+                src="http://39.106.208.234/pic/img_/libao.png"
+              />
             </view>
             <view class="content_2_1_1_2">第{{ item.id }}天</view>
           </view>
@@ -37,11 +58,20 @@
           <view class="content_3_1_1">积分兑换</view>
           <view class="content_3_1_2" @click="goExchangeRecords">
             <view class="content_3_1_2_1">兑换记录</view>
-            <image class="content_3_1_2_2" src="http://39.106.208.234/pic/img_/jinr.png" />
+            <image
+              class="content_3_1_2_2"
+              src="http://39.106.208.234/pic/img_/jinr.png"
+            />
           </view>
         </view>
         <view class="content_3_2">
-          <Props v-for="(item, index) in exchangeList" :key="index" :item="item" :type="3" />
+          <Props
+            v-for="(item, index) in exchangeList"
+            :key="index"
+            :item="item"
+            :type="3"
+            @refresh="getSignInfo"
+          />
         </view>
       </view>
     </view>
@@ -104,7 +134,7 @@ export default {
         // 签到成功
         showToast("签到成功");
         // 回显数据
-        this.getSignInfo()
+        this.getSignInfo();
       });
     },
     // 兑换列表

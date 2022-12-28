@@ -44,7 +44,7 @@ export default {
     // 声明全局来源
     Vue.prototype._source = "小米";
     // 声明全局类型
-    Vue.prototype._type = "ios";
+    Vue.prototype._type = "and";
     // 声明头像资源路径
     Vue.prototype._avatarUrl = "https://admin.bdhuoke.com";
     // 接口地址

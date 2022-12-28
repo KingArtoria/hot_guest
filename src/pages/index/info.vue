@@ -1,7 +1,7 @@
 <template>
   <view>
     <Head :title="title" />
-    <view class="content">
+    <view class="content" v-if="isRender">
       <!-- 项目标题 -->
       <view class="content_1">
         <!-- 标题 -->
@@ -47,7 +47,7 @@
       <!-- 我能提供 -->
       <view class="content_3">
         <!-- 标题 -->
-        <Title title="我能提供"></Title>
+        <Title title="我能提供" />
         <!-- 内容盒子 -->
         <view class="content_3_1">
           <!-- 单个内容 -->
@@ -62,7 +62,7 @@
       <!-- 联系方式 -->
       <view class="content_4">
         <!-- 标题 -->
-        <Title title="联系方式"></Title>
+        <Title title="联系方式" />
         <!-- 联系方式盒子 -->
         <view class="content_4_1" v-show="projectDetail.lock">
           <!-- 电话 -->
@@ -96,7 +96,7 @@
         :key="index"
       >
         <!-- 标题 -->
-        <Title :title="item.title"></Title>
+        <Title :title="item.title" />
         <!-- 内容富文本 -->
         <view class="content_5_1" v-html="item.value" />
       </view>
@@ -367,6 +367,8 @@ export default {
       },
       // 标题
       title: "",
+      // 接口是否渲染完成
+      isRender: false,
     };
   },
   methods: {
@@ -557,6 +559,8 @@ export default {
         });
         // 保存全部浏览人数
         uni.setStorageSync("visitors", res.data.visitors);
+        // 接口渲染完成
+        this.isRender = true;
       });
     },
     // 查看联系方式

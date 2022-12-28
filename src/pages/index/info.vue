@@ -65,20 +65,32 @@
         <Title title="联系方式" />
         <!-- 联系方式盒子 -->
         <view class="content_4_1" v-show="projectDetail.lock">
-          <!-- 电话 -->
-          <view class="content_4_1_1" @click="callPhone">
-            <text style="color: #161616">电话：</text>
-            <text style="color: #1f73f1">{{ projectDetail.contact }}</text>
-          </view>
-          <!-- 微信 -->
-          <view class="content_4_1_1" @click="copyWxQq(projectDetail.wx)">
-            <text style="color: #161616">微信：</text>
-            <text style="color: #1f73f1">{{ projectDetail.wx }}(点击复制)</text>
+          <view style="display: flex; flex-wrap: wrap">
+            <!-- 电话 -->
+            <view
+              class="content_4_1_1"
+              @click="callPhone"
+              style="margin-right: 30rpx"
+            >
+              <text style="color: #161616">电话：</text>
+              <text style="color: #1f73f1">{{
+                projectDetail.contact || "暂未填写"
+              }}</text>
+            </view>
+            <!-- 微信 -->
+            <view class="content_4_1_1" @click="copyWxQq(projectDetail.wx)">
+              <text style="color: #161616">微信：</text>
+              <text style="color: #1f73f1">{{
+                projectDetail.wx || "暂未填写"
+              }}</text>
+            </view>
           </view>
           <!-- QQ -->
           <view class="content_4_1_1" @click="copyWxQq(projectDetail.qq)">
             <text style="color: #161616">QQ：</text>
-            <text style="color: #1f73f1">{{ projectDetail.qq }}(点击复制)</text>
+            <text style="color: #1f73f1">{{
+              projectDetail.qq || "暂未填写"
+            }}</text>
           </view>
         </view>
         <!-- 未查看 -->

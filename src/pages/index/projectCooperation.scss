@@ -1,7 +1,10 @@
 .head {
+  width: 40rpx;
+  height: 40rpx;
   position: fixed;
-  top: 93rpx;
   left: 21rpx;
+  top: 92rpx;
+  z-index: 5;
 }
 
 .content {

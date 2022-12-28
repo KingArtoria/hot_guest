@@ -19,7 +19,12 @@
     <view class="content">
       <!-- 轮播图 -->
       <view class="content_1">
-        <u-swiper :list="swiperList" height="200rpx" />
+        <u-swiper
+          :list="swiperList"
+          height="200rpx"
+          keyName="src"
+          @click="swiperClick"
+        />
       </view>
       <!-- 功能区 -->
       <view class="content_2">
@@ -41,7 +46,7 @@
       <view class="content_4">
         <swiper
           class="swiper"
-          style="height: 358rpx"
+          style="height: 370rpx"
           indicator-dots
           indicator-color="#E3E3E3"
           indicator-active-color="#1F73F1"
@@ -122,7 +127,7 @@
         class="homeModal"
         :src="hm1.src"
         :style="hm1.style"
-        @click="modalClick"
+        @click.stop="modalClick"
       />
     </u-overlay>
     <!-- 首页弹窗模板2 -->
@@ -168,7 +173,6 @@
         activeColor="rgb(25, 190, 107)"
       />
     </u-popup>
-    <!-- 弹窗模板2 -->
   </view>
 </template>
 
@@ -178,6 +182,7 @@ import { showToast } from "../../utils";
 import {
   checkVersion,
   getActivityPopup,
+  getBanner,
   getCategoryMenu,
   getHomeData,
   getThemeIcon,
@@ -186,11 +191,7 @@ import { ADVERTISING_IMG } from "../../utils/const";
 export default {
   data() {
     return {
-      swiperList: [
-        "http://39.106.208.234/pic/img_/banner_3.png",
-        "http://39.106.208.234/pic/img_/banner_2.png",
-        "http://39.106.208.234/pic/img_/banner_1.png",
-      ],
+      swiperList: [],
       advertisingImg: [],
       gridImg: [],
       labelImg: [],
@@ -521,6 +522,23 @@ export default {
         },
       });
     },
+    // 获取轮播
+    getBanner() {
+      // 获取轮播API
+      getBanner().then((res) => {
+        // 赋值
+        this.swiperList = res.data;
+      });
+    },
+    // 轮播点击
+    swiperClick(index) {
+      // 是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
+      // 跳转
+      uni.navigateTo({
+        url: `${this.swiperList[index].url}&userId=${this._userInfo.id}`,
+      });
+    },
   },
   onLoad() {
     /* 初始化参数 */
@@ -533,6 +551,8 @@ export default {
     this.getThemeIcon();
     // 获取活动弹窗
     this.getActivityPopup();
+    // 获取轮播
+    this.getBanner();
   },
   // 滚动到底部
   onReachBottom() {

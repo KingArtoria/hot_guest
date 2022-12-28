@@ -1,7 +1,7 @@
 <template>
   <view>
     <!-- 返回按钮 -->
-    <image class="head" :src="`${_url}black_icon_w.png`" />
+    <image class="head" :src="`${_url}black_icon_w.png`" @click="goBack" />
     <!-- 内容 -->
     <view class="content">
       <!-- 背景层 -->
@@ -93,6 +93,7 @@
                 border="none"
                 style="height: 100%; padding: 0 20rpx"
                 fontSize="30rpx"
+                v-model="cityAgentParams.name"
               />
             </view>
           </view>
@@ -107,6 +108,8 @@
                 border="none"
                 style="height: 100%; padding: 0 20rpx"
                 fontSize="30rpx"
+                v-model="cityAgentParams.phone"
+                type="number"
               />
             </view>
           </view>
@@ -123,6 +126,7 @@
                 style="height: 100%; padding: 0 20rpx; background: #fff"
                 fontSize="30rpx"
                 inputAlign="center"
+                v-model="cityAgentParams.province"
               />
               <!-- 输入框 -->
               <u-input
@@ -136,6 +140,7 @@
                 "
                 fontSize="30rpx"
                 inputAlign="center"
+                v-model="cityAgentParams.city"
               />
               <!-- 输入框 -->
               <u-input
@@ -144,6 +149,7 @@
                 style="height: 100%; padding: 0 20rpx; background: #fff"
                 fontSize="30rpx"
                 inputAlign="center"
+                v-model="cityAgentParams.district"
               />
             </view>
           </view>
@@ -157,19 +163,69 @@
               <u-input
                 style="height: 100%; padding: 0 20rpx"
                 fontSize="30rpx"
+                type="number"
+                v-model="cityAgentParams.team"
               />
             </view>
           </view>
           <!-- 按钮 -->
-          <view class="content_1_3_3">立即申请</view>
+          <view class="content_1_3_3" @click="applyCityAgent">立即申请</view>
         </view>
       </view>
     </view>
+    <!-- 申请成功模态框 -->
+    <u-modal
+      :show="applySuccessModal.show"
+      :title="applySuccessModal.title"
+      :content="applySuccessModal.content"
+      @confirm="applySuccessModal.confirm"
+    />
   </view>
 </template>
 
 <script>
-export default {};
+import { showToast } from "../../utils";
+import { applyCityAgent } from "../../utils/api";
+export default {
+  data() {
+    return {
+      // 城市代理参数
+      cityAgentParams: {},
+      // 申请成功模态框对象
+      applySuccessModal: {
+        // 是否显示
+        show: false,
+        // 标题
+        title: "申请成功",
+        // 内容
+        content: "我们将尽快与您取得联系",
+        // 按钮点击事件
+        confirm: () => {
+          // 关闭模态框
+          this.applySuccessModal.show = false;
+          // 返回上一页
+          uni.navigateBack();
+        },
+      },
+    };
+  },
+  methods: {
+    // 城市代理
+    applyCityAgent() {
+      // 城市代理API
+      applyCityAgent(this.cityAgentParams).then((res) => {
+        // 抛出异常
+        if (res.code != 1) return showToast(res.msg);
+        // 申请成功
+        this.applySuccessModal.show = true;
+      });
+    },
+    // 返回上一级
+    goBack() {
+      uni.navigateBack();
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

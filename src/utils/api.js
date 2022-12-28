@@ -658,3 +658,30 @@ export const applePayCheck = data => {
     data
   });
 }
+// ? 获取轮播
+export const getBanner = data => {
+  return request({
+    method: 'post',
+    url: '/other/swiper',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 申请城市代理
+export const applyCityAgent = data => {
+  return request({
+    method: 'post',
+    url: '/Advertising/setAgent',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 申请项目合作
+export const applyProjectCooperation = data => {
+  return request({
+    method: 'post',
+    url: '/Advertising/setProject',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

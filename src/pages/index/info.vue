@@ -1,6 +1,5 @@
 <template>
   <view>
-
     <Head :title="title" />
     <view class="content">
       <!-- 项目标题 -->
@@ -30,9 +29,16 @@
         </view>
       </view>
       <!-- 平台交易 -->
-      <view class="content_8" v-if="projectDetail.platform == 1" @click="goTradingRules">
+      <view
+        class="content_8"
+        v-if="projectDetail.platform == 1"
+        @click="goTradingRules"
+      >
         <!-- 图标 -->
-        <image class="content_8_1" src="http://39.106.208.234/pic/img_/baozhang@2x.png" />
+        <image
+          class="content_8_1"
+          src="http://39.106.208.234/pic/img_/baozhang@2x.png"
+        />
         <!-- 文本1 -->
         <view class="content_8_2">该项目可进行平台交易</view>
         <!-- 文本2 -->
@@ -41,17 +47,22 @@
       <!-- 我能提供 -->
       <view class="content_3">
         <!-- 标题 -->
-        <Title title="我能提供" />
+        <Title title="我能提供"></Title>
         <!-- 内容盒子 -->
         <view class="content_3_1">
           <!-- 单个内容 -->
-          <view class="content_3_1_1" v-for="(item, index) in projectDetail.kv" :key="index">{{ item }}</view>
+          <view
+            class="content_3_1_1"
+            v-for="(item, index) in projectDetail.kv"
+            :key="index"
+            >{{ item }}</view
+          >
         </view>
       </view>
       <!-- 联系方式 -->
       <view class="content_4">
         <!-- 标题 -->
-        <Title title="联系方式" />
+        <Title title="联系方式"></Title>
         <!-- 联系方式盒子 -->
         <view class="content_4_1" v-show="projectDetail.lock">
           <!-- 电话 -->
@@ -73,25 +84,35 @@
         <!-- 未查看 -->
         <view class="content_4_2" v-show="!projectDetail.lock">
           <!-- 查看按钮 -->
-          <view class="content_4_2_1" @click="getContact">点击查看联系方式</view>
+          <view class="content_4_2_1" @click="getContact"
+            >点击查看联系方式</view
+          >
         </view>
       </view>
       <!-- 资源详情 -->
-      <view class="content_5" v-for="(item, index) in projectDetail.infoArray" :key="index">
+      <view
+        class="content_5"
+        v-for="(item, index) in projectDetail.infoArray"
+        :key="index"
+      >
         <!-- 标题 -->
-        <Title :title="item.title" />
+        <Title :title="item.title"></Title>
         <!-- 内容富文本 -->
         <view class="content_5_1" v-html="item.value" />
       </view>
       <!-- 浏览人数 -->
       <view class="content_6">
         <!-- 标题 -->
-        <Title :title="`浏览人数(${projectDetail.visitors.length})`" />
+        <Title :title="`浏览人数(${projectDetail.visitors.length})`"></Title>
         <!-- 列表 -->
         <view class="content_6_1">
           <!-- 信息 -->
-          <view class="content_6_1_1" v-for="(item, index) in projectDetail.visitors.slice(0, 3)" :key="index"
-            @click="goPersonal(item.member_id)">
+          <view
+            class="content_6_1_1"
+            v-for="(item, index) in projectDetail.visitors.slice(0, 3)"
+            :key="index"
+            @click="goPersonal(item.member_id)"
+          >
             <!-- 头像 -->
             <image class="content_6_1_1_1" :src="item.head" />
             <!-- 文本信息 -->
@@ -104,50 +125,74 @@
               <!-- 下盒子 -->
               <view class="content_6_1_1_2_2">
                 <!-- 职位 -->
-                <view class="content_6_1_1_2_2_1">{{ item.position }}{{ item.company }}</view>
+                <view class="content_6_1_1_2_2_1"
+                  >{{ item.position }}{{ item.company }}</view
+                >
               </view>
             </view>
           </view>
         </view>
         <!-- 查看更多 -->
-        <view class="content_6_2" v-show="projectDetail.visitors.length > 3" @click="getMoreView">查看更多</view>
+        <view
+          class="content_6_2"
+          v-show="projectDetail.visitors.length > 3"
+          @click="getMoreView"
+          >查看更多</view
+        >
       </view>
       <!-- 评论 -->
       <view class="content_7" v-if="projectDetail.comment.length > 0">
         <!-- 标题 -->
-        <Title :title="`全部回复(${projectDetail.comment.length})`" />
+        <Title :title="`全部回复(${projectDetail.comment.length})`"></Title>
         <!-- 列表 -->
         <view class="content_7_1">
           <!-- 单条评论 -->
-          <view class="content_7_1_1" v-for="(item, index) in projectDetail.comment" :key="index">
+          <view
+            class="content_7_1_1"
+            v-for="(item, index) in projectDetail.comment"
+            :key="index"
+          >
             <!-- 信息盒子 -->
             <view class="content_7_1_1_1">
               <!-- 头像 -->
-              <image class="content_7_1_1_1_1" :src="item.head" @click="goPersonal(item.member_id)" />
+              <image
+                class="content_7_1_1_1_1"
+                :src="item.head"
+                @click="goPersonal(item.member_id)"
+              />
               <!-- 信息 -->
               <view class="content_7_1_1_1_2">
                 <!-- 上盒子 -->
                 <view class="content_7_1_1_1_2_1">
                   <!-- 名字 -->
                   <view class="content_7_1_1_1_2_1_1">{{
-                      item.nick_name
+                    item.nick_name
                   }}</view>
                   <!-- 发布时间 -->
                   <view class="content_7_1_1_1_2_1_2">{{
-                      item.createtime
+                    item.createtime
                   }}</view>
                 </view>
                 <!-- 工作信息 -->
-                <view class="content_7_1_1_1_2_2">{{ item.position }}{{ item.company }}</view>
+                <view class="content_7_1_1_1_2_2"
+                  >{{ item.position }}{{ item.company }}</view
+                >
               </view>
             </view>
             <!-- 评论盒子 -->
             <view class="content_7_1_1_2">
               <!-- 单条评论 -->
-              <view class="content_7_1_1_4_1" @click="comment(item.id, item.member_id, item.id, 2)">{{ item.content }}
+              <view
+                class="content_7_1_1_4_1"
+                @click="comment(item.id, item.member_id, item.id, 2)"
+                >{{ item.content }}
               </view>
               <!-- 回复 -->
-              <view class="content_7_1_1_4_2" v-for="(item2, index2) in item.child" :key="index2">
+              <view
+                class="content_7_1_1_4_2"
+                v-for="(item2, index2) in item.child"
+                :key="index2"
+              >
                 <text style="color: #303030">{{ item2.nick_name }}</text>
                 <text style="color: #3875e9">：{{ item2.content }}</text>
               </view>
@@ -161,24 +206,44 @@
       <!-- 收藏 -->
       <view class="functionBoard_1" @click="collect">
         <!-- 图标 -->
-        <image class="functionBoard_1_1" src="http://39.106.208.234/pic/img_/shoucang@2x.png"
-          v-show="projectDetail.keep != 1" />
-        <image class="functionBoard_1_1" src="http://39.106.208.234/pic/img_/yishoucang@2x.png"
-          v-show="projectDetail.keep == 1" />
+        <image
+          class="functionBoard_1_1"
+          src="http://39.106.208.234/pic/img_/shoucang@2x.png"
+          v-show="projectDetail.keep != 1"
+        />
+        <image
+          class="functionBoard_1_1"
+          src="http://39.106.208.234/pic/img_/yishoucang@2x.png"
+          v-show="projectDetail.keep == 1"
+        />
         <!-- 文本 -->
         <view class="functionBoard_1_2">收藏</view>
       </view>
       <!-- 评论 -->
-      <view class="functionBoard_2" @click="comment(0, 0, 0, 1)">点击此处即可留言</view>
+      <view class="functionBoard_2" @click="comment(0, 0, 0, 1)"
+        >点击此处即可留言</view
+      >
     </view>
     <!-- 底部弹出层 -->
-    <u-popup :show="bottomPopupShow" mode="bottom" @close="bottomPopupShow = false">
+    <u-popup
+      :show="bottomPopupShow"
+      mode="bottom"
+      @close="bottomPopupShow = false"
+    >
       <view class="bottomPopup">
         <!-- 文本框 -->
         <view class="bottomPopup_1">
-          <u--textarea placeholder="请输入内容" autoHeight maxlength="-1" border="none" style="background: transparent"
-            confirmType="send" @confirm="publishComment" v-model="commentParams.content"
-            :disabled="_userInfo.maxvip == 'ordinary'" />
+          <u--textarea
+            placeholder="请输入内容"
+            autoHeight
+            maxlength="-1"
+            border="none"
+            style="background: transparent"
+            confirmType="send"
+            @confirm="publishComment"
+            v-model="commentParams.content"
+            :disabled="_userInfo.maxvip == 'ordinary'"
+          />
         </view>
         <!-- 回复按钮 -->
         <view class="bottomPopup_2" @click="publishComment">回复</view>
@@ -187,8 +252,14 @@
         <!-- 列表 -->
         <view class="bottomPopup_4">
           <!-- tag -->
-          <view class="bottomPopup_4_1" v-for="(item, index) in commentDefault" :key="index" @click="quickSelect(item)">
-            {{ item.content }}</view>
+          <view
+            class="bottomPopup_4_1"
+            v-for="(item, index) in commentDefault"
+            :key="index"
+            @click="quickSelect(item)"
+          >
+            {{ item.content }}</view
+          >
         </view>
       </view>
     </u-popup>
@@ -197,13 +268,24 @@
       <!-- 盒子 -->
       <view class="noPermission">
         <!-- 图片 -->
-        <image class="noPermission_1" src="http://39.106.208.234/pic/img_/huiyts_ta.png" />
+        <image
+          class="noPermission_1"
+          src="http://39.106.208.234/pic/img_/huiyts_ta.png"
+        />
         <!-- 文本 -->
-        <view class="noPermission_2">会员用户可以查看最多<text style="color: red">1000</text>位浏览用户</view>
+        <view class="noPermission_2"
+          >会员用户可以查看最多<text style="color: red">1000</text
+          >位浏览用户</view
+        >
         <!-- 文本 -->
-        <view class="noPermission_2">普通用户只能查看最新的<text style="color: red">3</text>位浏览用户</view>
+        <view class="noPermission_2"
+          >普通用户只能查看最新的<text style="color: red">3</text
+          >位浏览用户</view
+        >
         <!-- 按钮 -->
-        <view class="noPermission_3" @click="goBuyVip">升级会员查看更多浏览记录</view>
+        <view class="noPermission_3" @click="goBuyVip"
+          >升级会员查看更多浏览记录</view
+        >
       </view>
     </u-popup>
     <!-- 次数不足 -->
@@ -211,25 +293,38 @@
       <!-- 盒子 -->
       <view class="noTimes">
         <!-- 图片 -->
-        <image class="noTimes_1" src="http://39.106.208.234/pic/img_/huiyts_ta.png" />
+        <image
+          class="noTimes_1"
+          src="http://39.106.208.234/pic/img_/huiyts_ta.png"
+        />
         <!-- 文本 -->
-        <view class="noTimes_2">免费查看次数已用完，是否升级会员获得更多查看机会?</view>
+        <view class="noTimes_2"
+          >免费查看次数已用完，是否升级会员获得更多查看机会?</view
+        >
         <!-- 按钮 -->
-        <view class="noTimes_3" @click="goBuyVip">开通会员获得更多查看机会</view>
+        <view class="noTimes_3" @click="goBuyVip"
+          >开通会员获得更多查看机会</view
+        >
         <!-- 按钮2 -->
         <view class="noTImes_4">邀请新用户获得更多查看机会</view>
       </view>
     </u-popup>
     <!-- 登录模态框 -->
-    <u-modal showCancelButton :show="loginModal.show" :title="loginModal.title" :content="loginModal.content"
-      @confirm="loginModal.confirm" @cancel="loginModal.cancel" />
+    <u-modal
+      showCancelButton
+      :show="loginModal.show"
+      :title="loginModal.title"
+      :content="loginModal.content"
+      @confirm="loginModal.confirm"
+      @cancel="loginModal.cancel"
+    />
   </view>
 </template>
 
 <script>
 import Head from "../../components/Head";
-import Title from "../../components/Title.vue";
-import HY from "../../components/HY.vue";
+import Title from "../../components/Title";
+import HY from "../../components/HY";
 import { LABEL_IMG } from "../../utils/const";
 import {
   collect,

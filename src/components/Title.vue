@@ -10,7 +10,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '',
+      default: "",
     },
   },
 };
@@ -26,7 +26,7 @@ export default {
   background: #fff;
   .title_1 {
     margin-right: 11rpx;
-    width: 4rpx;
+    width: 6rpx;
     height: 25rpx;
     background: #1f73f1;
   }

@@ -44,7 +44,7 @@ export default {
     // 声明全局来源
     Vue.prototype._source = "小米";
     // 声明全局类型
-    Vue.prototype._type = "and";
+    Vue.prototype._type = "ios";
     // 声明头像资源路径
     Vue.prototype._avatarUrl = "https://admin.bdhuoke.com";
     // 接口地址
@@ -76,6 +76,10 @@ export default {
         url: "/pages/release/index",
       });
     });
+    let a, b;
+    b = (a = 3 * 5, a * 4)
+    a + 15
+    console.log(b)
   },
 };
 </script>
@@ -84,6 +88,7 @@ export default {
 .placeholderClass {
   color: red;
 }
+
 @import "uview-ui/index.scss";
 </style>
 <style>

@@ -613,3 +613,48 @@ export const getActivityPopup = data => {
     data
   });
 }
+// ? 获取通讯录好友
+export const getContactFriend = data => {
+  return request({
+    method: 'post',
+    url: '/friend/detectionApply',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data: qs.stringify(data)
+  });
+}
+// ? 短信邀请
+export const smsInvite = data => {
+  return request({
+    method: 'post',
+    url: '/friend/addBookNonFriendapply',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 版本检测
+export const checkVersion = data => {
+  return request({
+    method: 'post',
+    url: '/Version/appActive',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 热更新检测接口
+export const checkHotUpdate = data => {
+  return request({
+    method: 'post',
+    url: '/Version/hot',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 苹果支付校验接口
+export const applePayCheck = data => {
+  return request({
+    method: 'post',
+    url: '/verify/applepay',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

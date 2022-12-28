@@ -1,19 +1,12 @@
 <template>
   <view>
     <view class="content" @click="goProjectDetail">
-      <view class="content_1"> {{ item.title }}</view>
-      <view class="content_2"
-        >{{ item.addtime }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
+      <view class="content_1" :style="`color:${item.color}`"> {{ item.title }}</view>
+      <view class="content_2">{{ item.addtime }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
           item.company
-        }}</view
-      >
+      }}</view>
       <view class="content_3">
-        <view
-          class="content_3_1"
-          v-for="(item2, index2) in item.k"
-          :key="index2"
-          >{{ item2 }}</view
-        >
+        <view class="content_3_1" v-for="(item2, index2) in item.k" :key="index2">{{ item2 }}</view>
       </view>
       <view class="content_4">
         <view class="content_4_1">
@@ -33,7 +26,7 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
     typeShow: {
       type: Boolean,

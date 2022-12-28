@@ -26,6 +26,7 @@
           }"
           :itemStyle="{ height: '80rpx' }"
           @click="changeMember"
+          :current="index"
         />
       </view>
     </view>
@@ -53,7 +54,7 @@
                   class="content_1_1_2_1_2_1"
                   :style="`color:${memberCard.sizeColor}`"
                 >
-                  {{ _userInfo.maxvip_endtime }}到期
+                  {{ _userInfo.maxvip_endtime }}
                 </view>
               </view>
             </view>
@@ -80,8 +81,8 @@
       </view>
       <!-- 支付方式 -->
       <view class="content_4">
-        <view class="content_4_1">选择支付方式</view>
-        <view class="content_4_2" @click="payType = 1">
+        <view class="content_4_1" v-if="_type == 'and'">选择支付方式</view>
+        <view class="content_4_2" @click="payType = 1" v-if="_type == 'and'">
           <view class="content_4_2_1">
             <image
               class="content_4_2_1_1"
@@ -100,7 +101,7 @@
             v-show="payType == 0"
           />
         </view>
-        <view class="content_4_2" @click="payType = 0">
+        <view class="content_4_2" @click="payType = 0" v-if="_type == 'and'">
           <view class="content_4_2_1">
             <image
               class="content_4_2_1_1"
@@ -119,14 +120,16 @@
             v-show="payType == 1"
           />
         </view>
-        <view class="content_4_3">到期后自动续费，可随时取消</view>
+        <view class="content_4_3" v-if="_type == 'ios'"
+          >到期后自动续费，可随时取消</view
+        >
         <view class="content_4_4" @click="createOrder">
           限时特惠{{ memberCard.price - memberCard.discount }}元开通
         </view>
         <view class="content_4_5">
-          <u-checkbox-group activeColor="#C38E5B" inactiveColor="#C38E5B">
+          <!-- <u-checkbox-group activeColor="#C38E5B" inactiveColor="#C38E5B">
             <u-checkbox />
-          </u-checkbox-group>
+          </u-checkbox-group> -->
           <view class="content_4_5_1">
             <view class="content_4_5_1_1">我已阅读开通VIP的</view>
             <view class="content_4_5_1_2" @click="goMemberAgreement">
@@ -152,7 +155,13 @@
 
 <script>
 import { formatTime } from "../../utils";
-import { aliPay, createOrder, getInnerList, wxPay } from "../../utils/api";
+import {
+  aliPay,
+  applePayCheck,
+  createOrder,
+  getInnerList,
+  wxPay,
+} from "../../utils/api";
 import { MEMBER_CARD, MEMBER_TYPE } from "../../utils/const";
 export default {
   data() {
@@ -189,7 +198,7 @@ export default {
       this.memberCard = MEMBER_CARD[0];
     },
     // 内购列表
-    getInnerList() {
+    getInnerList(op) {
       getInnerList({ type: "HY" }).then((res) => {
         // 内购列表赋值
         this.innerList = res.data;
@@ -199,8 +208,11 @@ export default {
         this.memberCard.discount = Number(res.data[this.index + 1].discount);
         // 会员id赋值
         this.memberCard.id = res.data[this.index + 1].id;
-        // 会员id赋值
+        // 会员key赋值
         this.memberCard.key = res.data[this.index + 1].key;
+        // 调用切换列表
+        op.index = op.index || 0;
+        this.changeMember({ index: op.index });
         // 刷新数据
         this.$forceUpdate();
       });
@@ -210,11 +222,15 @@ export default {
       // 赋值卡片
       this.memberCard = MEMBER_CARD[e.index];
       // 赋值价格
-      this.memberCard.price = Number(this.innerList[e.index + 1].price);
+      this.memberCard.price = Number(this.innerList[Number(e.index) + 1].price);
       // 优惠价格赋值
-      this.memberCard.discount = Number(this.innerList[e.index + 1].discount);
+      this.memberCard.discount = Number(
+        this.innerList[Number(e.index) + 1].discount
+      );
       // 会员id赋值
-      this.memberCard.id = this.innerList[e.index + 1].id;
+      this.memberCard.id = this.innerList[Number(e.index) + 1].id;
+      // 会员key赋值
+      this.memberCard.key = this.innerList[Number(e.index) + 1].key;
       // 赋值下标
       this.index = e.index;
     },
@@ -291,7 +307,9 @@ export default {
             item.requestOrder(
               ids,
               () => {
+                console.log("商品key", this.memberCard.key);
                 let productid = this.memberCard.key;
+                console.log("会员id", this._userInfo.id);
                 plus.payment.request(
                   item,
                   {
@@ -300,6 +318,15 @@ export default {
                     optimize: false,
                   },
                   (result) => {
+                    // 苹果支付校验API
+                    applePayCheck({
+                      receipt_data: JSON.stringify(result),
+                      type: productid,
+                    }).then((res) => {
+                      console.log(res, "res");
+                      // 抛出异常
+                      if (res.code != 1) return showToast(res.msg);
+                    });
                     console.log(result, "result");
                     uni.hideLoading();
                   },
@@ -313,16 +340,19 @@ export default {
       });
     },
   },
-  onLoad() {
+  onLoad(op) {
     // 初始化参数
     this.initParams();
     // 内购列表
-    this.getInnerList();
+    this.getInnerList(op);
     // 初始化会员到期时间
-    this._userInfo.maxvip_endtime = formatTime(
-      this._userInfo.maxvip_endtime * 1000,
-      "yyyy-MM-dd"
-    );
+    if (this._userInfo.maxvip_endtime != 0) {
+      let end = this._userInfo.maxvip_endtime;
+      this._userInfo.maxvip_endtime = `${formatTime(
+        end * 1000,
+        "yyyy-MM-dd"
+      )}到期`;
+    } else this._userInfo.maxvip_endtime = "未开通";
   },
 };
 </script>

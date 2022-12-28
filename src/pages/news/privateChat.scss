@@ -73,6 +73,7 @@
     background: #f6f6f6;
     z-index: 3;
     padding-bottom: 20rpx;
+    top: 190rpx;
 
     .content_1_1 {
       text-align: center;
@@ -204,6 +205,7 @@
     .input_1_3 {
       width: 70rpx;
       height: 70rpx;
+      transition: all .3s;
     }
   }
 

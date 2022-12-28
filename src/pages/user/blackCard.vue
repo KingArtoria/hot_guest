@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="head" />
+    <view class="head" @click="back" />
     <view class="content">
       <view class="content_1">
         <view class="content_1_1">
@@ -11,7 +11,8 @@
           <view class="content_1_1_3" />
         </view>
         <view class="content_1_2">
-          <view class="content_1_2_1">未解锁</view>
+          <view class="content_1_2_1" v-if="_userInfo.maxvip != 'bvip'">未解锁</view>
+          <view class="content_1_2_1" v-if="_userInfo.maxvip == 'bvip'">已解锁</view>
           <view class="content_1_2_2">
             <view class="content_1_2_2_1">19,999</view>
             <view class="content_1_2_2_2">元/年</view>
@@ -21,10 +22,12 @@
       </view>
       <view class="content_2">
         <view class="content_2_1">
-          <u--input placeholder="请输入您的称呼" border="none" fontSize="26rpx" clearable v-model="applyBlackCardParams.name" />
+          <u--input placeholder="请输入您的称呼" border="none" fontSize="26rpx" clearable v-model="applyBlackCardParams.name"
+          color="#ffeea6" />
         </view>
         <view class="content_2_1">
-          <u--input placeholder="请输入您的联系方式" border="none" fontSize="26rpx" clearable v-model="applyBlackCardParams.mobile" />
+          <u--input placeholder="请输入您的联系方式" border="none" fontSize="26rpx" clearable
+            v-model="applyBlackCardParams.mobile" color="#ffeea6" />
         </view>
         <view class="content_2_2" @click="applyBlackCard">提交申请</view>
       </view>
@@ -32,7 +35,8 @@
       <image class="content_4" src="http://39.106.208.234/pic/img_/fuwuliucheng.png" />
     </view>
     <!-- 申请成功 -->
-    <u-modal :show="applyBlackCardModal.show" :title="applyBlackCardModal.title" :content="applyBlackCardModal.content" @confirm="applyBlackCardModal.confirm" />
+    <u-modal :show="applyBlackCardModal.show" :title="applyBlackCardModal.title" :content="applyBlackCardModal.content"
+      @confirm="applyBlackCardModal.confirm" />
   </view>
 </template>
 
@@ -66,6 +70,10 @@ export default {
         // 弹出申请成功模态框
         this.applyBlackCardModal.show = true;
       });
+    },
+    // 返回上一页
+    back() {
+      uni.navigateBack();
     },
   },
 };

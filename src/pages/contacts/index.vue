@@ -6,38 +6,26 @@
         <view class="head_1_1" />
         <view class="head_1_2">人脉</view>
         <view class="head_1_3" @click="goAddFriend">
-          <image
-            class="head_1_3_1"
-            src="http://39.106.208.234/pic/img_/tianjia2.png"
-          />
+          <image class="head_1_3_1" src="http://39.106.208.234/pic/img_/tianjia2.png" />
         </view>
       </view>
     </view>
     <view class="content">
       <!-- 搜索框 -->
       <view class="content_1" @click="goSearch">
-        <image
-          class="content_1_1"
-          src="http://39.106.208.234/pic/img_/sousuo_rm.png"
-        />
+        <image class="content_1_1" src="http://39.106.208.234/pic/img_/sousuo_rm.png" />
         <u-input border="none" fontSize="28rpx" placeholder="搜索人脉" />
       </view>
       <!-- 好友列表 -->
       <view class="content_2" @click="goFriendList">
         <view class="content_2_1">
-          <image
-            class="content_2_1_1"
-            src="http://39.106.208.234/pic/img_/hylb2.png"
-          />
+          <image class="content_2_1_1" src="http://39.106.208.234/pic/img_/hylb2.png" />
           <view class="content_2_1_2">好友列表（{{ friendNum }}）</view>
         </view>
-        <image
-          class="content_2_2"
-          src="http://39.106.208.234/pic/img_/jinr.png"
-        />
+        <image class="content_2_2" src="http://39.106.208.234/pic/img_/jinr.png" />
       </view>
       <!-- 开启通讯录 -->
-      <view class="content_3">
+      <view class="content_3" @click="goAddress">
         <view class="content_3_1">
           <view class="content_3_1_1">开启通讯录</view>
           <view class="content_3_1_2">
@@ -46,10 +34,7 @@
           </view>
           <view class="content_3_1_3">看看你的好友都有哪些人脉资源</view>
         </view>
-        <image
-          class="content_3_2"
-          src="http://39.106.208.234/pic/img_/kaiqitongxunl.png"
-        />
+        <image class="content_3_2" src="http://39.106.208.234/pic/img_/kaiqitongxunl.png" />
       </view>
       <!-- 待处理请求 -->
       <view class="content_4" v-if="notice.length > 0">
@@ -60,53 +45,27 @@
           </view>
           <view class="content_4_1_2" @click="goFriendRequest">
             <view class="content_4_1_2_1">管理我的请求</view>
-            <image
-              class="content_4_1_2_2"
-              src="http://39.106.208.234/pic/img_/jinr.png"
-            />
+            <image class="content_4_1_2_2" src="http://39.106.208.234/pic/img_/jinr.png" />
           </view>
         </view>
-        <FriendRequest
-          @click="goPersonal(notice[0].member_id)"
-          :data="notice[0]"
-        />
+        <FriendRequest @click="goPersonal(notice[0].member_id)" :data="notice[0]" />
       </view>
       <!-- Tabs -->
       <view class="content_5">
         <view class="content_5_1">
           <view class="content_5_1_1">
-            <view
-              class="content_5_1_1_1"
-              :style="
-                currentTab == 1 ? 'font-weight:bold' : 'font-weight: 400;'
-              "
-              @click="changeTab(1)"
-              >推荐人脉</view
-            >
-            <view
-              class="content_5_1_1_1"
-              :style="
-                currentTab == 2 ? 'font-weight:bold' : 'font-weight: 400;'
-              "
-              @click="changeTab(2)"
-              >同行</view
-            >
-            <view
-              class="content_5_1_1_1"
-              :style="
-                currentTab == 3 ? 'font-weight:bold' : 'font-weight: 400;'
-              "
-              @click="changeTab(3)"
-              >同城</view
-            >
-            <view
-              class="content_5_1_1_1"
-              :style="
-                currentTab == 4 ? 'font-weight:bold' : 'font-weight: 400;'
-              "
-              @click="changeTab(4)"
-              >校友</view
-            >
+            <view class="content_5_1_1_1" :style="
+              currentTab == 1 ? 'font-weight:bold' : 'font-weight: 400;'
+            " @click="changeTab(1)">推荐人脉</view>
+            <view class="content_5_1_1_1" :style="
+              currentTab == 2 ? 'font-weight:bold' : 'font-weight: 400;'
+            " @click="changeTab(2)">同行</view>
+            <view class="content_5_1_1_1" :style="
+              currentTab == 3 ? 'font-weight:bold' : 'font-weight: 400;'
+            " @click="changeTab(3)">同城</view>
+            <view class="content_5_1_1_1" :style="
+              currentTab == 4 ? 'font-weight:bold' : 'font-weight: 400;'
+            " @click="changeTab(4)">校友</view>
           </view>
           <view class="content_5_1_2" @click="getRecommend">刷新</view>
         </view>
@@ -114,14 +73,28 @@
       </view>
     </view>
     <!-- 登录模态框 -->
-    <u-modal
-      showCancelButton
-      :show="loginModal.show"
-      :title="loginModal.title"
-      :content="loginModal.content"
-      @confirm="loginModal.confirm"
-      @cancel="loginModal.cancel"
-    />
+    <u-modal showCancelButton :show="loginModal.show" :title="loginModal.title" :content="loginModal.content"
+      @confirm="loginModal.confirm" @cancel="loginModal.cancel" />
+    <!-- 通讯录弹出层 -->
+    <u-popup :show="addressShow" mode="center" round="15rpx" closeable @close="addressShow = false">
+      <view class="address">
+        <!-- 图片 -->
+        <image class="address_1" src="http://39.106.208.234/pic/img_/txltc_t.png" />
+        <!-- 开启通讯录 -->
+        <view class="address_2">开启通讯录</view>
+        <!-- 文案 -->
+        <view class="address_3">
+          <!-- 80% -->
+          <text style="color:#1F73F1">80%</text>
+          <!-- 文案2 -->
+          <text style="color:#212121">的用户都在这里快速拓展人脉</text>
+        </view>
+        <!-- tip -->
+        <view class="address_4">看看你的好友都有哪些人脉资源</view>
+        <!-- 按钮 -->
+        <view class="address_5" @click="goAddress">立即开启</view>
+      </view>
+    </u-popup>
   </view>
 </template>
 
@@ -145,9 +118,14 @@ export default {
         title: "登录提示",
         content: "您还未登录，是否前往登录？",
         show: false,
-        confirm: () => uni.navigateTo({ url: "/pages/user/login" }),
+        confirm: () => {
+          this.loginModal.show = false
+          uni.navigateTo({ url: "/pages/user/login" })
+        },
         cancel: () => uni.switchTab({ url: "/pages/index/index" }),
       },
+      // 通讯录弹出层对象
+      addressShow: false,
     };
   },
   methods: {
@@ -225,6 +203,15 @@ export default {
         url: "/pages/contacts/pendingRequest",
       });
     },
+    // 前往通讯录
+    goAddress() {
+      // 取消弹窗
+      this.addressShow = false
+      // 路由跳转
+      uni.navigateTo({
+        url: "/pages/contacts/contacts",
+      });
+    },
   },
   onLoad() {
     uni.$on("refresh", () => {
@@ -239,6 +226,11 @@ export default {
     this.getNotice();
     // 推荐人脉
     this.getRecommend();
+    // 是否开启过通讯录
+    if (!uni.getStorageSync("address")) {
+      // 显示弹窗
+      this.addressShow = true
+    }
   },
   onShow() {
     // 判断是否登录

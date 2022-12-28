@@ -1,7 +1,7 @@
 <template>
   <view style="background: #f6f6f6">
     <view class="content" v-for="(item, index) in data" :key="index" @click="goProjectDetail(item.id)">
-      <view class="content_1">{{ item.title }}</view>
+      <view class="content_1" :style="`color:${item.color}`">{{ item.title }}</view>
       <!-- 分割线 -->
       <view class="content_2" />
       <view class="content_3">{{ item.addtime }}</view>
@@ -33,6 +33,7 @@ export default {
 .content {
   padding: 21rpx 31rpx 21rpx 21rpx;
   background: #fff;
+
   .content_1 {
     font-size: 30rpx;
     font-family: PingFang SC;
@@ -46,11 +47,13 @@ export default {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
+
   .content_2 {
     height: 1rpx;
     background: #f6f6f6;
     margin: 22rpx 0;
   }
+
   .content_3 {
     font-size: 22rpx;
     font-family: PingFang SC;

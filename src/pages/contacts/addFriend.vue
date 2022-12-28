@@ -1,52 +1,31 @@
 <template>
   <view>
+
     <Head title="添加好友" style="background: #f6f6f6">
       <view slot="head_3_1" :style="slotStyle" @click="getRecommend">更新</view>
     </Head>
     <view class="content">
       <!-- 搜索框 -->
       <view class="content_1" @click="goAddFriendAction">
-        <image
-          class="content_1_1"
-          src="http://39.106.208.234/pic/img_/sousuo_rm.png"
-        />
+        <image class="content_1_1" src="http://39.106.208.234/pic/img_/sousuo_rm.png" />
         <view class="content_1_2">手机号/昵称</view>
       </view>
       <!-- 添加通讯录好友 -->
-      <view class="content_2">
-        <image
-          class="content_2_1"
-          src="http://39.106.208.234/pic/img_/shouji.png"
-        />
+      <view class="content_2" @click="goAddressBook">
+        <image class="content_2_1" src="http://39.106.208.234/pic/img_/shouji.png" />
         <view class="content_2_2">添加通讯录好友</view>
       </view>
       <!-- 人脉Tabs -->
       <view class="content_3">
         <view class="content_3_1">
-          <view
-            class="content_3_1_1"
-            :style="currentTab == 1 ? 'font-weight: bold' : 'font-weight: 400'"
-            @click="tabChange(1)"
-            >推荐人脉</view
-          >
-          <view
-            class="content_3_1_1"
-            :style="currentTab == 2 ? 'font-weight: bold' : 'font-weight: 400'"
-            @click="tabChange(2)"
-            >同行</view
-          >
-          <view
-            class="content_3_1_1"
-            :style="currentTab == 3 ? 'font-weight: bold' : 'font-weight: 400'"
-            @click="tabChange(3)"
-            >同城</view
-          >
-          <view
-            class="content_3_1_1"
-            :style="currentTab == 4 ? 'font-weight: bold' : 'font-weight: 400'"
-            @click="tabChange(4)"
-            >校友</view
-          >
+          <view class="content_3_1_1" :style="currentTab == 1 ? 'font-weight: bold' : 'font-weight: 400'"
+            @click="tabChange(1)">推荐人脉</view>
+          <view class="content_3_1_1" :style="currentTab == 2 ? 'font-weight: bold' : 'font-weight: 400'"
+            @click="tabChange(2)">同行</view>
+          <view class="content_3_1_1" :style="currentTab == 3 ? 'font-weight: bold' : 'font-weight: 400'"
+            @click="tabChange(3)">同城</view>
+          <view class="content_3_1_1" :style="currentTab == 4 ? 'font-weight: bold' : 'font-weight: 400'"
+            @click="tabChange(4)">校友</view>
         </view>
         <Contacts :data="contactsList" />
       </view>
@@ -111,6 +90,12 @@ export default {
       this.currentTab = e;
       // 获取推荐人脉
       this.getRecommend();
+    },
+    // 前往通讯录
+    goAddressBook() {
+      uni.navigateTo({
+        url: "/pages/contacts/contacts",
+      });
     },
   },
   onLoad() {

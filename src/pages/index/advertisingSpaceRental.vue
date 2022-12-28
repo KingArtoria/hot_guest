@@ -3,72 +3,44 @@
     <view class="content">
       <!-- 头部 -->
       <view class="content_1">
-        <image
-          class="content_1_1"
-          src="http://39.106.208.234/pic/img_/back_bs.png"
-          @click="goBack"
-        />
+        <image class="content_1_1" src="http://39.106.208.234/pic/img_/back_bs.png" @click="goBack" />
       </view>
       <!-- 表单 -->
       <view class="content_2">
         <view class="content_2_1">
           <view class="content_2_1_1">企业名称：</view>
           <view class="content_2_1_2">
-            <u--input
-              placeholder="请输入企业名称"
-              fontSize="26rpx"
-              v-model="advertisingSpaceRental.company"
-            />
+            <u--input placeholder="请输入企业名称" fontSize="26rpx" v-model="advertisingSpaceRental.company" />
           </view>
         </view>
         <view class="content_2_1">
           <view class="content_2_1_1">联系人：</view>
           <view class="content_2_1_2">
-            <u--input
-              placeholder="请输入联系人"
-              fontSize="26rpx"
-              v-model="advertisingSpaceRental.contact"
-            />
+            <u--input placeholder="请输入联系人" fontSize="26rpx" v-model="advertisingSpaceRental.contact" />
           </view>
         </view>
         <view class="content_2_1">
           <view class="content_2_1_1">联系方式：</view>
           <view class="content_2_1_2">
-            <u--input
-              placeholder="请输入联系方式"
-              fontSize="26rpx"
-              v-model="advertisingSpaceRental.mobile"
-            />
+            <u--input placeholder="请输入联系方式" fontSize="26rpx" v-model="advertisingSpaceRental.mobile" disabled />
           </view>
         </view>
         <view class="content_2_1">
           <view class="content_2_1_1">投放位置：</view>
           <view class="content_2_1_2" @click="place.show = true">
-            <u--input
-              placeholder="请选择投放位置"
-              fontSize="26rpx"
-              v-model="advertisingSpaceRental.place_name"
-            />
+            <u--input placeholder="请选择投放位置" fontSize="26rpx" v-model="advertisingSpaceRental.place_name" disabled />
           </view>
         </view>
         <view class="content_2_1">
           <view class="content_2_1_1">投放周期：</view>
           <view class="content_2_1_2" @click="cycle.show = true">
-            <u--input
-              placeholder="请选择投放周期"
-              fontSize="26rpx"
-              v-model="advertisingSpaceRental.cycle_name"
-            />
+            <u--input placeholder="请选择投放周期" fontSize="26rpx" v-model="advertisingSpaceRental.cycle_name" disabled />
           </view>
         </view>
         <view class="content_2_1">
           <view class="content_2_1_1">预算(元)：</view>
           <view class="content_2_1_2">
-            <u--input
-              placeholder="请输入预算"
-              fontSize="26rpx"
-              v-model="advertisingSpaceRental.budget"
-            />
+            <u--input placeholder="请输入预算" fontSize="26rpx" v-model="advertisingSpaceRental.budget" />
           </view>
         </view>
       </view>
@@ -78,28 +50,13 @@
       <view class="content_4">提交完成后请耐心等待客服与您联系</view>
     </view>
     <!-- 投放位置选择器 -->
-    <u-picker
-      :show="place.show"
-      :columns="place.columns"
-      keyName="name"
-      @confirm="place.confirm"
-      @cancel="place.cancel"
-    />
+    <u-picker :show="place.show" :columns="place.columns" keyName="name" @confirm="place.confirm"
+      @cancel="place.cancel" />
     <!-- 投放周期选择器 -->
-    <u-picker
-      :show="cycle.show"
-      :columns="cycle.columns"
-      keyName="name"
-      @confirm="cycle.confirm"
-      @cancel="cycle.cancel"
-    />
+    <u-picker :show="cycle.show" :columns="cycle.columns" keyName="name" @confirm="cycle.confirm"
+      @cancel="cycle.cancel" />
     <!-- 申请成功模态框 -->
-    <u-modal
-      :show="success.show"
-      :title="success.title"
-      :content="success.content"
-      @confirm="success.confirm"
-    />
+    <u-modal :show="success.show" :title="success.title" :content="success.content" @confirm="success.confirm" />
   </view>
 </template>
 

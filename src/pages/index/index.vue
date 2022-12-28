@@ -39,7 +39,13 @@
       />
       <!-- 宫格 -->
       <view class="content_4">
-        <swiper class="swiper" style="height: 358rpx" indicator-dots>
+        <swiper
+          class="swiper"
+          style="height: 358rpx"
+          indicator-dots
+          indicator-color="#E3E3E3"
+          indicator-active-color="#1F73F1"
+        >
           <swiper-item>
             <u-grid :border="false" col="5">
               <u-grid-item
@@ -73,7 +79,7 @@
       <!-- 标签 -->
       <u-sticky
         bgColor="#fff"
-        style="padding: 0 20rpx"
+        style="padding: 0 20rpx; margin-top: 20rpx"
         :customNavHeight="0"
         :offsetTop="0"
       >
@@ -81,17 +87,18 @@
           :list="categoryMenu"
           style="padding-bottom: 10rpx"
           :inactiveStyle="{
-            'font-size': '26rpx',
-            color: '#515151',
+            'font-size': '28rpx',
+            color: '#1A1A1A',
             'margin-bottom': '10rpx',
           }"
           :activeStyle="{
-            'font-size': '26rpx',
-            color: ' #1F73F1',
+            'font-size': '28rpx',
+            color: ' #1A1A1A',
             'margin-bottom': '10rpx',
+            'font-weight': 'bold',
           }"
           lineWidth="42rpx"
-          lineHeight="4rpx"
+          lineHeight="6rpx"
           @click="tagSelect"
         />
       </u-sticky>
@@ -109,21 +116,67 @@
       @confirm="loginModal.confirm"
       @cancel="loginModal.cancel"
     />
-    <!-- 首页弹窗 -->
-    <u-overlay :show="homeModal.show" @click="homeModal.show = false">
+    <!-- 首页弹窗模板1 -->
+    <u-overlay :show="hm1.show" @click="modalClose">
       <image
         class="homeModal"
-        :src="homeModal.src"
-        :style="homeModal.style"
+        :src="hm1.src"
+        :style="hm1.style"
         @click="modalClick"
       />
     </u-overlay>
+    <!-- 首页弹窗模板2 -->
+    <u-overlay :show="hm2.show" @click="modalClose">
+      <!-- 盒子 -->
+      <view class="hm2" :style="hm2.style">
+        <!-- 二维码 -->
+        <image class="hm2_1" :src="hm2.code" />
+        <!-- 标题 -->
+        <view class="hm2_2">{{ hm2.title }}</view>
+        <!-- 详细文档 -->
+        <view class="hm2_3">{{ hm2.text }}</view>
+        <!-- 按钮 -->
+        <view class="hm2_4" @click.stop="saveImg">保存客服二维码</view>
+      </view>
+    </u-overlay>
+    <!-- 首页弹窗模板3 -->
+    <u-overlay :show="hm3.show" @click="modalClose">
+      <!-- 弹窗盒子 -->
+      <view class="hm3" :style="hm3.style">
+        <!-- 标题 -->
+        <view class="hm3_1">{{ hm3.title }}</view>
+        <!-- 二维码 -->
+        <image class="hm3_2" :src="hm3.code" />
+        <!-- 文案 -->
+        <view class="hm3_3">{{ hm3.text }}</view>
+        <!-- 按钮 -->
+        <view class="hm3_4" @click.stop="saveImg">保存客服二维码</view>
+      </view>
+    </u-overlay>
+    <!-- 版本更新模态框 -->
+    <u-modal
+      :show="versionModal.show"
+      :title="versionModal.title"
+      :content="versionModal.content"
+      @confirm="versionModal.confirm"
+    />
+    <!-- 版本更新弹窗 -->
+    <u-popup :show="versionShow" mode="center" style="padding-bottom: 30rpx">
+      <u--text text="新版本下载中..." />
+      <u-line-progress
+        :percentage="downloadProgress"
+        activeColor="rgb(25, 190, 107)"
+      />
+    </u-popup>
+    <!-- 弹窗模板2 -->
   </view>
 </template>
 
 <script>
 import Project from "../../components/Project";
+import { showToast } from "../../utils";
 import {
+  checkVersion,
   getActivityPopup,
   getCategoryMenu,
   getHomeData,
@@ -156,6 +209,7 @@ export default {
         content: "您还未登录，是否前往登录？",
         show: false,
         confirm: () => {
+          this.loginModal.show = false;
           // 前往登录
           uni.navigateTo({
             url: "/pages/user/login",
@@ -163,8 +217,32 @@ export default {
         },
         cancel: () => (this.loginModal.show = false),
       },
-      // 首页弹窗
-      homeModal: {},
+      // 版本更新模态框对象
+      versionModal: {
+        show: false,
+        title: "版本更新",
+        content: "发现新版本，是否立即更新？",
+        confirm: () => {
+          // 打开弹出层
+          this.versionShow = true;
+          // 开启下载
+          this.downloadApp();
+        },
+      },
+      // 版本更新弹窗
+      versionShow: false,
+      // 下载进度
+      downloadProgress: 0,
+      // 弹窗模板1
+      hm1: {},
+      // 弹窗模板2
+      hm2: {},
+      // 弹窗模板3
+      hm3: {},
+      // 当前弹窗进度
+      currentProgress: 1,
+      // 活动弹窗
+      activityPopup: [],
     };
   },
   methods: {
@@ -370,20 +448,75 @@ export default {
       });
     },
     // 获取活动弹窗
-    getActivityPopup(id = 1) {
-      // 活动弹窗API
-      getActivityPopup({ id }).then((res) => {
-        // 弹窗赋值
-        this.homeModal = res.data;
-        // 弹窗显示
-        this.$set(this.homeModal, "show", true);
-      });
+    getActivityPopup() {
+      // 苹果跳过版本检测
+      if (this._type != "ios")
+        // 检测版本
+        checkVersion({ version: this._version }).then((res) => {
+          // code==1为更新
+          if (res.code == 1) {
+            // 版本更新弹窗
+            this.versionModal.show = true;
+          }
+        });
     },
     // 弹窗点击事件
     modalClick() {
       // 跳转
       uni.navigateTo({
-        url: this.homeModal.url,
+        url: this.hm1.url,
+      });
+    },
+    // 下载APP
+    downloadApp() {
+      var downloadTask = uni.downloadFile({
+        url: "http://dw.channel.bdhuoke.com/huoke_LY.apk",
+        success: (res) => {
+          uni.openDocument({ filePath: res.tempFilePath });
+        },
+      });
+      downloadTask.onProgressUpdate((res) => {
+        this.downloadProgress = res.progress;
+      });
+    },
+    // 活动弹窗
+    getActivityPopup() {
+      // 活动弹窗API
+      getActivityPopup().then((res) => {
+        // 弹窗赋值
+        this[`hm${res.data[this.currentProgress - 1].code_type}`] =
+          res.data[this.currentProgress - 1];
+        // 弹窗显示
+        this[`hm${res.data[this.currentProgress - 1].code_type}`].show = true;
+        this.activityPopup = res.data;
+      });
+    },
+    // 弹窗关闭回调
+    modalClose() {
+      // 关闭弹窗
+      this[
+        `hm${this.activityPopup[this.currentProgress - 1].code_type}`
+      ].show = false;
+      // 延迟拉取下一次弹窗
+      setTimeout(() => {
+        // 步骤加一
+        this.currentProgress++;
+        // 获取活动弹窗
+        this.getActivityPopup();
+      }, this[`hm${this.activityPopup[this.currentProgress - 1].code_type}`].time);
+      // 更新数据
+      this.$forceUpdate();
+    },
+    // 保存图片
+    saveImg() {
+      // 保存图片
+      uni.saveImageToPhotosAlbum({
+        filePath:
+          this[`hm${this.activityPopup[this.currentProgress - 1].code_type}`]
+            .code,
+        success: (res) => {
+          showToast("保存成功");
+        },
       });
     },
   },

@@ -4,7 +4,7 @@
     <view class="content">
       <view class="content_1">
         <image class="content_1_1" src="http://39.106.208.234/pic/img_/sousuo_rm.png" />
-        <u--input placeholder="输入学校名称" fontSize="28px" border="none" clearable v-model="keyword" confirm="search" @confirm="getSchool" />
+        <u--input placeholder="输入学校名称" fontSize="28rpx" border="none" clearable v-model="keyword" confirm="search" @confirm="getSchool" />
       </view>
       <view class="content_2" v-for="(item, index) in schoolList" :key="index" v-html="item.showName" @click="selectSchool(item)" />
     </view>

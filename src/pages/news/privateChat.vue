@@ -7,10 +7,7 @@
         <!-- 返回 -->
         <view class="head_1_1" @click="back">
           <!-- 图标 -->
-          <image
-            class="head_1_1_1"
-            src="http://39.106.208.234/pic/img_/black_ss.png"
-          />
+          <image class="head_1_1_1" src="http://39.106.208.234/pic/img_/black_ss.png" />
         </view>
         <!-- 信息 -->
         <view class="head_1_2">
@@ -22,10 +19,7 @@
         <!-- 更多 -->
         <view class="head_1_3" @click="goChatDetail">
           <!-- 图标 -->
-          <image
-            class="head_1_3_1"
-            src="http://39.106.208.234/pic/img_/diandiandian.png"
-          />
+          <image class="head_1_3_1" src="http://39.106.208.234/pic/img_/diandiandian.png" />
         </view>
       </view>
     </view>
@@ -36,30 +30,21 @@
         <!-- 单个盒子 -->
         <view class="content_1_1" @click="call">
           <!-- 图标 -->
-          <image
-            class="content_1_1_1"
-            src="http://39.106.208.234/pic/img_/dadianh@2x.png"
-          />
+          <image class="content_1_1_1" src="http://39.106.208.234/pic/img_/dadianh@2x.png" />
           <!-- 文案 -->
           <view class="content_1_1_2">打电话</view>
         </view>
         <!-- 单个盒子 -->
         <view class="content_1_1" @click="copy">
           <!-- 图标 -->
-          <image
-            class="content_1_1_1"
-            src="http://39.106.208.234/pic/img_/jiaweixin@2x.png"
-          />
+          <image class="content_1_1_1" src="http://39.106.208.234/pic/img_/jiaweixin@2x.png" />
           <!-- 文案 -->
           <view class="content_1_1_2">加微信</view>
         </view>
         <!-- 单个盒子 -->
         <view class="content_1_1" @click="goTrade">
           <!-- 图标 -->
-          <image
-            class="content_1_1_1"
-            src="http://39.106.208.234/pic/img_/pingtjy@2x.png"
-          />
+          <image class="content_1_1_1" src="http://39.106.208.234/pic/img_/pingtjy@2x.png" />
           <!-- 文案 -->
           <view class="content_1_1_2">平台交易</view>
         </view>
@@ -69,14 +54,9 @@
         <!-- 左侧盒子 -->
         <view class="content_2_1">
           <!-- icon -->
-          <image
-            class="content_2_1_1"
-            src="http://39.106.208.234/pic/img_/anquan@2x.png"
-          />
+          <image class="content_2_1_1" src="http://39.106.208.234/pic/img_/anquan@2x.png" />
           <!-- 文案 -->
-          <view class="content_2_1_2"
-            >在聊天过程中若发布违规内容，请举报。</view
-          >
+          <view class="content_2_1_2">在聊天过程中若发布违规内容，请举报。</view>
         </view>
         <!-- 叉号 -->
         <view class="content_2_2" @click="tip = false">x</view>
@@ -85,22 +65,14 @@
       <view class="content_3" style="padding-bottom: 150rpx">
         <view v-for="(item, index) in list" :key="index">
           <!-- 左 -->
-          <view
-            class="content_3_1"
-            style="justify-content: flex-start"
-            v-if="item.typeText == 2"
-          >
+          <view class="content_3_1" style="justify-content: flex-start" v-if="item.typeText == 2">
             <!-- 头像 -->
             <image class="content_3_1_1" :src="info.head" />
             <!-- 信息 -->
             <view class="content_3_1_2">{{ item.payload.text }}</view>
           </view>
           <!-- 右 -->
-          <view
-            class="content_3_1"
-            style="justify-content: flex-end"
-            v-if="item.typeText == 1"
-          >
+          <view class="content_3_1" style="justify-content: flex-end" v-if="item.typeText == 1">
             <!-- 信息 -->
             <view class="content_3_1_2">{{ item.payload.text }}</view>
             <!-- 头像 -->
@@ -118,42 +90,26 @@
         <!-- 输入框盒子 -->
         <view class="input_1_2">
           <!-- 输入框 -->
-          <u-input
-            placeholder="新信息"
-            border="none"
-            fontSize="28rpx"
-            style="height: 70rpx"
-            v-model="text"
-            confirmType="send"
-            @confirm="privateChat"
-          />
+          <u-input placeholder="新信息" border="none" fontSize="28rpx" style="height: 70rpx" v-model="text"
+            confirmType="send" @confirm="privateChat" />
         </view>
         <!-- 更多 -->
-        <image
-          class="input_1_3"
-          src="http://39.106.208.234/pic/img_/jianhao.png"
-          @click="openMore"
-        />
+        <image class="input_1_3" src="http://39.106.208.234/pic/img_/jianhao.png" @click="openMore" :style="`
+        transform: rotate(${offset});`" />
       </view>
       <!-- 更多 -->
       <view class="input_2" v-show="moreOpen">
         <!-- 拍摄 -->
         <view class="input_2_1" @click="openAlbum">
           <!-- 图标 -->
-          <image
-            class="input_2_1_1"
-            src="http://39.106.208.234/pic/img_/paishe.png"
-          />
+          <image class="input_2_1_1" src="http://39.106.208.234/pic/img_/paishe.png" />
           <!-- 文本 -->
           <view class="input_2_1_2">拍摄</view>
         </view>
         <!-- 照片 -->
         <view class="input_2_1" @click="openAlbum">
           <!-- 图标 -->
-          <image
-            class="input_2_1_1"
-            src="http://39.106.208.234/pic/img_/zhaopian.png"
-          />
+          <image class="input_2_1_1" src="http://39.106.208.234/pic/img_/zhaopian.png" />
           <!-- 文本 -->
           <view class="input_2_1_2">照片</view>
         </view>
@@ -163,12 +119,7 @@
         <!-- 列表 -->
         <view class="input_3_1">
           <!-- 单个常用语 -->
-          <view
-            class="input_3_1_1"
-            v-for="(item, index) in common"
-            :key="index"
-            @click="selectCommon(item)"
-          >
+          <view class="input_3_1_1" v-for="(item, index) in common" :key="index" @click="selectCommon(item)">
             {{ item }}
           </view>
         </view>
@@ -177,20 +128,14 @@
           <!-- 添加 -->
           <view class="input_3_2_1" @click="goAddCommon">
             <!-- 图标 -->
-            <image
-              class="input_3_2_1_1"
-              src="http://39.106.208.234/pic/img_/tianjai@2x.png"
-            />
+            <image class="input_3_2_1_1" src="http://39.106.208.234/pic/img_/tianjai@2x.png" />
             <!-- 添加 -->
             <view class="input_3_2_1_2">添加</view>
           </view>
           <!-- 管理 -->
           <view class="input_3_2_1" @click="editCommon">
             <!-- 图标 -->
-            <image
-              class="input_3_2_1_1"
-              src="http://39.106.208.234/pic/img_/guanli.png"
-            />
+            <image class="input_3_2_1_1" src="http://39.106.208.234/pic/img_/guanli.png" />
             <!-- 添加 -->
             <view class="input_3_2_1_2">管理</view>
           </view>
@@ -225,6 +170,8 @@ export default {
       commonOpen: false,
       // 更多是否打开
       moreOpen: false,
+      // 偏移度
+      offset: '0deg',
     };
   },
   methods: {
@@ -383,6 +330,8 @@ export default {
     },
     // 打开常用语
     openCommon() {
+      // 清除旋转
+      this.offset = '45deg'
       // 打开常用语
       this.commonOpen = !this.commonOpen;
       // 关闭更多
@@ -390,6 +339,8 @@ export default {
     },
     // 打开更多
     openMore() {
+      // 旋转
+      this.offset = this.offset == '0deg' ? '45deg' : '0deg'
       // 打开更多
       this.moreOpen = !this.moreOpen;
       // 关闭常用语

@@ -8,27 +8,19 @@
           <!-- 头像盒子 -->
           <view class="content_1_1_1" @click="goEditData" v-if="token">
             <image class="content_1_1_1_1" :src="userInfo.head" />
-            <image
-              class="content_1_1_1_2"
-              src="http://39.106.208.234/pic/img_/xg.webp"
-            />
+            <!-- <image class="content_1_1_1_2" src="http://39.106.208.234/pic/img_/xg.webp" /> -->
           </view>
           <!-- 未登录盒子 -->
           <view class="content_1_1_1" v-if="!token">
-            <image
-              class="content_1_1_1_1"
-              src="http://39.106.208.234/pic/img_/wdl.png"
-          /></view>
+            <image class="content_1_1_1_1" src="http://39.106.208.234/pic/img_/wdl.png" />
+          </view>
           <view class="content_1_1_2">
             <!-- 去登录 -->
             <view class="content_1_1_2_1" v-if="!token" @click="toLogin">
               <!-- 登录提示 -->
               <view class="content_1_1_2_1_1">立即登录</view>
               <!-- 登录图标 -->
-              <image
-                style="height: 46rpx; width: 46rpx"
-                src="http://39.106.208.234/pic/img_/tz_dl.png"
-              />
+              <image style="height: 46rpx; width: 46rpx" src="http://39.106.208.234/pic/img_/tz_dl.png" />
             </view>
             <!-- 名字 -->
             <view class="content_1_1_2_1" v-if="token">
@@ -36,41 +28,25 @@
               <HY :type="userInfo.maxvip" />
             </view>
             <!-- 职位 -->
-            <view
-              class="content_1_1_2_2"
-              v-if="token"
-              style="margin-bottom: 19rpx"
-              >{{ userInfo.company }}&nbsp;&nbsp;&nbsp;{{
-                userInfo.position
-              }}</view
-            >
+            <view class="content_1_1_2_2" v-if="token" style="margin-bottom: 19rpx">
+              {{ userInfo.company }}
+              &nbsp;&nbsp;&nbsp;
+              {{ userInfo.position }}
+            </view>
             <!-- 邀请码 -->
-            <view class="content_1_1_2_2" @click="copyCode" v-if="token"
-              >我的邀请码：{{ userInfo.Invitation_code }}（点击复制）</view
-            >
+            <view class="content_1_1_2_2" @click="copyCode" v-if="token">我的邀请码：{{ userInfo.Invitation_code }}（点击复制）
+            </view>
             <!-- 登录权益 -->
-            <view class="content_1_1_2_2" v-if="!token"
-              >登录畅享更多会员权益</view
-            >
+            <view class="content_1_1_2_2" v-if="!token">登录畅享更多会员权益</view>
           </view>
+          <!-- 编辑资料按钮 -->
+          <view class="content_1_1_3" @click="goEditData" v-if="token">编辑资料</view>
         </view>
         <!-- 选项卡 -->
         <view class="content_1_2">
-          <image
-            class="content_1_2_1"
-            :src="`${_url}daojshangc.webp`"
-            @click="goProp"
-          />
-          <image
-            class="content_1_2_1"
-            :src="`${_url}wodeqianb.webp`"
-            @click="goWaller"
-          />
-          <image
-            class="content_1_2_1"
-            :src="`${_url}heika.webp`"
-            @click="goBlackCard"
-          />
+          <image class="content_1_2_1" :src="`${_url}daojshangc.webp`" @click="goProp" />
+          <image class="content_1_2_1" :src="`${_url}wodeqianb.webp`" @click="goWaller" />
+          <image class="content_1_2_1" :src="`${_url}heika.webp`" @click="goBlackCard" />
         </view>
         <!-- 开通会员 -->
         <view class="content_1_3" @click="goVip">
@@ -81,26 +57,10 @@
       <!-- 选项卡*4 -->
       <view class="content_2">
         <view class="content_2_1">
-          <image
-            class="content_2_1_1"
-            :src="`${_url}wofabud.webp`"
-            @click="goMyPost"
-          />
-          <image
-            class="content_2_1_2"
-            :src="`${_url}shoucang.webp`"
-            @click="toCollection"
-          />
-          <image
-            class="content_2_1_3"
-            :src="`${_url}daoju.webp`"
-            @click="toMyProp"
-          />
-          <image
-            class="content_2_1_4"
-            :src="`${_url}danbaojil.webp`"
-            @click="goGuaranteeRecord"
-          />
+          <image class="content_2_1_1" :src="`${_url}wofabud.webp`" @click="goMyPost" />
+          <image class="content_2_1_2" :src="`${_url}shoucang.webp`" @click="toCollection" />
+          <image class="content_2_1_3" :src="`${_url}daoju.webp`" @click="toMyProp" />
+          <image class="content_2_1_4" :src="`${_url}danbaojil.webp`" @click="goGuaranteeRecord" />
         </view>
         <view class="content_2_2">
           <view class="content_2_2_1">我发布的</view>
@@ -114,20 +74,14 @@
         <view class="content_3_1">常用</view>
         <view class="content_3_2">
           <view class="content_3_2_1">
-            <image
-              class="content_3_2_1_1"
-              :src="`${_url}yewudy.webp`"
-              @click="goBusinessSubscription"
-            />
-            <image
-              class="content_3_2_1_3"
-              :src="`${_url}yaoqing.webp`"
-              @click="goInviteFriends"
-            />
+            <image class="content_3_2_1_1" :src="`${_url}yewudy.webp`" @click="goBusinessSubscription" />
+            <image class="content_3_2_1_3" :src="`${_url}yaoqing.webp`" @click="goInviteFriends" />
+            <image class="content_3_2_1_3" :src="`${_url}pinglun.png`" @click="toMyComment" />
           </view>
           <view class="content_3_2_2">
             <view class="content_3_2_2_1">业务订阅</view>
             <view class="content_3_2_2_1">邀请有礼</view>
+            <view class="content_3_2_2_1">我的评论</view>
           </view>
         </view>
       </view>
@@ -138,6 +92,7 @@
           <view class="content_4_2_1" @click="goVerified">
             <image class="content_4_2_1_1" :src="`${_url}shimrz.webp`" />
             <view class="content_4_2_1_6">实名认证</view>
+            <view class="content_4_2_1_7" v-show="userInfo.card == ''">未实名</view>
           </view>
           <view class="content_4_2_1" @click="show = true">
             <image class="content_4_2_1_2" :src="`${_url}kefu.webp`" />
@@ -170,22 +125,11 @@
       </view>
     </u-overlay>
     <!-- 退出登录 -->
-    <u-modal
-      :show="loginOutShow"
-      content="确定要退出登录吗"
-      showCancelButton
-      @confirm="goLoginOut"
-      @cancel="loginOutShow = false"
-    />
+    <u-modal :show="loginOutShow" content="确定要退出登录吗" showCancelButton @confirm="goLoginOut"
+      @cancel="loginOutShow = false" />
     <!-- 登录模态框 -->
-    <u-modal
-      :show="loginModal.show"
-      :title="loginModal.title"
-      :content="loginModal.content"
-      showCancelButton
-      @confirm="loginModal.confirm"
-      @cancel="loginModal.show = false"
-    />
+    <u-modal :show="loginModal.show" :title="loginModal.title" :content="loginModal.content" showCancelButton
+      @confirm="loginModal.confirm" @cancel="loginModal.show = false" />
   </view>
 </template>
 
@@ -210,6 +154,7 @@ export default {
         title: "提示",
         content: "请先进行登录",
         confirm: () => {
+          this.loginModal.show = false
           // 跳转登录
           uni.navigateTo({
             url: "/pages/user/login",
@@ -256,8 +201,20 @@ export default {
     goVip() {
       // 判断是否登录
       if (!this.token) return (this.loginModal.show = true);
+      let index = 0;
+      switch (this.userInfo.maxvip) {
+        case 'vip':
+          index = 0;
+          break;
+        case 'svip':
+          index = 1;
+          break;
+        case 'fvip':
+          index = 2;
+          break;
+      }
       uni.navigateTo({
-        url: "/pages/user/vip",
+        url: `/pages/user/vip?index=${index}`,
       });
     },
     // 前往我的发布
@@ -381,8 +338,16 @@ export default {
         url: "/pages/user/login",
       });
     },
+    // 前往我的评论
+    toMyComment() {
+      // 判断是否登录
+      if (!this.token) return (this.loginModal.show = true);
+      uni.navigateTo({
+        url: "/pages/user/collaborativeReview",
+      });
+    },
   },
-  onLoad() {},
+  onLoad() { },
   onShow() {
     // 获取个人信息
     this.getUserInfo();

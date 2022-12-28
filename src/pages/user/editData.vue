@@ -1,5 +1,6 @@
 <template>
   <view>
+
     <Head title="编辑资料" style="background: #f6f6f6" />
     <view class="content">
       <view class="content_1">
@@ -129,11 +130,13 @@ export default {
       uni.chooseImage({
         count: 1,
         success: res => {
+          const tempFilePaths = res.tempFilePaths;
           uni.uploadFile({
             url: 'http://appv5.bdhuoke.com/app_v5/member/upload',
-            filePath: res.tempFilePaths[0],
+            filePath: tempFilePaths[0],
+            name: "file",
             success: res => {
-              this.userInfo.head = this._apiUrl + JSON.parse(res.data).data;
+              this.userInfo.head = JSON.parse(res.data).data;
             },
           });
         },

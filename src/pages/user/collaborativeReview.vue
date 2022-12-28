@@ -1,30 +1,18 @@
 <template>
   <view>
     <!-- 头部 -->
+
     <Head title="合作评论" style="background: #f6f6f6" />
     <!-- 内容 -->
     <view class="content">
       <!-- 选项 -->
       <view class="content_1">
         <!-- 单个内容 -->
-        <view
-          class="content_1_1"
-          style="margin-right: 50rpx"
-          :style="`color:${active == 1 ? '#1A1A1A' : '#7A7A7A'};font-weight:${
-            active == 1 ? 'bold' : '500'
-          }`"
-          @click="getCooperationComment(1)"
-          >我收到的</view
-        >
+        <view class="content_1_1" style="margin-right: 50rpx" :style="`color:${active == 1 ? '#1A1A1A' : '#7A7A7A'};font-weight:${active == 1 ? 'bold' : '500'
+        }`" @click="getCooperationComment(1)">我收到的</view>
         <!-- 单个内容 -->
-        <view
-          class="content_1_1"
-          :style="`color:${active == 3 ? '#1A1A1A' : '#7A7A7A'};font-weight:${
-            active == 3 ? 'bold' : '500'
-          }`"
-          @click="getCooperationComment(3)"
-          >我发出的</view
-        >
+        <view class="content_1_1" :style="`color:${active == 3 ? '#1A1A1A' : '#7A7A7A'};font-weight:${active == 3 ? 'bold' : '500'
+        }`" @click="getCooperationComment(3)">我发出的</view>
       </view>
       <!-- 列表 -->
       <view class="content_2">
@@ -89,7 +77,6 @@ export default {
         });
         // 赋值
         this.list = res.data;
-        console.log(res.data);
       });
     },
     // 前往项目详细

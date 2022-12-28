@@ -3,18 +3,12 @@
     <!-- 头部 -->
     <view class="head">
       <view class="head_1">
-        <view class="head_1_1">
-          <image
-            class="head_1_1_1"
-            src="http://39.106.208.234/pic/img_/hylb.png"
-          />
+        <view class="head_1_1" @click="goFriendList">
+          <image class="head_1_1_1" src="http://39.106.208.234/pic/img_/hylb.png" />
         </view>
         <view class="head_1_2">人脉</view>
-        <view class="head_1_3">
-          <image
-            class="head_1_3_1"
-            src="http://39.106.208.234/pic/img_/tianjia.png"
-          />
+        <view class="head_1_3" @click="goAddFriend">
+          <image class="head_1_3_1" src="http://39.106.208.234/pic/img_/tianjia.png" />
         </view>
       </view>
     </view>
@@ -22,19 +16,13 @@
     <view class="content">
       <!-- 搜素框 -->
       <view class="content_1">
-        <image
-          class="content_1_1"
-          src="http://39.106.208.234/pic/img_/sousuo_rm.png"
-        />
+        <image class="content_1_1" src="http://39.106.208.234/pic/img_/sousuo_rm.png" />
         <u-input placeholder="好友昵称/备注" fontSize="28rpx" border="none" />
       </view>
       <!-- 提示助手 -->
       <view class="content_2">
         <view class="content_2_1" @click="goAssistant">
-          <image
-            class="content_2_1_1"
-            src="http://39.106.208.234/pic/img_/zs.png"
-          />
+          <image class="content_2_1_1" src="http://39.106.208.234/pic/img_/zs.png" />
           <view class="content_2_1_2">
             <view class="content_2_1_2_1">
               <view class="content_2_1_2_1_1">火客小助手</view>
@@ -43,10 +31,7 @@
           </view>
         </view>
         <view class="content_2_1" @click="goFriendRequest">
-          <image
-            class="content_2_1_1"
-            src="http://39.106.208.234/pic/img_/xxzs.png"
-          />
+          <image class="content_2_1_1" src="http://39.106.208.234/pic/img_/xxzs.png" />
           <view class="content_2_1_2">
             <view class="content_2_1_2_1">
               <view class="content_2_1_2_1_1">消息通知小助手</view>
@@ -57,50 +42,37 @@
       </view>
       <!-- 私聊信息 -->
       <view class="content_3">
-        <view
-          class="content_3_1"
-          v-for="(item, index) in chatList"
-          :key="index"
-          @click="goPrivateChat(item)"
-        >
+        <view class="content_3_1" v-for="(item, index) in chatList" :key="index" @click="goPrivateChat(item)">
           <view class="content_3_1_1">
             <image class="content_3_1_1_1" :src="item.data.head" />
             <view class="content_3_1_1_2" v-if="item.unread != 0">{{
-              item.unread
+                item.unread
             }}</view>
           </view>
           <view class="content_3_1_2">
             <view class="content_3_1_2_1">
               <view class="content_3_1_2_1_1">
                 <view class="content_3_1_2_1_1_1">{{
-                  item.data.nickName
+                    item.data.nickName
                 }}</view>
-                <view class="content_3_1_2_1_1_2"
-                  >{{ item.data.company }}&nbsp;&nbsp;{{
+                <view class="content_3_1_2_1_1_2">{{ item.data.company }}&nbsp;&nbsp;{{
                     item.data.position
-                  }}</view
-                >
+                }}</view>
               </view>
               <view class="content_3_1_2_1_2">{{
-                item.lastMessage.timestamp
+                  item.lastMessage.timestamp
               }}</view>
             </view>
             <view class="content_3_1_2_2">{{
-              item.lastMessage.payload.text
+                item.lastMessage.payload.text
             }}</view>
           </view>
         </view>
       </view>
     </view>
     <!-- 登录模态框 -->
-    <u-modal
-      showCancelButton
-      :show="loginModal.show"
-      :title="loginModal.title"
-      :content="loginModal.content"
-      @confirm="loginModal.confirm"
-      @cancel="loginModal.cancel"
-    />
+    <u-modal showCancelButton :show="loginModal.show" :title="loginModal.title" :content="loginModal.content"
+      @confirm="loginModal.confirm" @cancel="loginModal.cancel" />
   </view>
 </template>
 
@@ -186,6 +158,18 @@ export default {
     goAssistant() {
       uni.navigateTo({
         url: "/pages/news/helper",
+      });
+    },
+    // 前往添加好友
+    goAddFriend() {
+      uni.navigateTo({
+        url: "/pages/contacts/addFriend",
+      });
+    },
+    // 前往好友列表
+    goFriendList() {
+      uni.navigateTo({
+        url: "/pages/contacts/buddyList",
       });
     },
   },

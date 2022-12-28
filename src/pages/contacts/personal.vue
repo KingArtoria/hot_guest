@@ -1,5 +1,6 @@
 <template>
   <view>
+
     <Head title="个人页" style="background: #f6f6f6" />
     <view class="content">
       <!-- 名片 -->
@@ -15,42 +16,29 @@
       <!-- 添加好友 -->
       <view class="content_2">
         <view class="content_2_1">
-          <image
-            class="content_2_1_1"
-            src="http://39.106.208.234/pic/img_/moble.png"
-          />
+          <image class="content_2_1_1" src="http://39.106.208.234/pic/img_/moble.png" />
           <view class="content_2_1_2">手机号：{{ personal.phone }}</view>
         </view>
-        <view
-          class="content_2_2"
-          v-if="personal.phone == '仅好友可见'"
-          @click="addFriend"
-        >
-          <image
-            class="content_2_2_1"
-            src="http://39.106.208.234/pic/img_/haoyou.png"
-          />
+        <view class="content_2_2" v-if="personal.phone == '仅好友可见'" @click="addFriend">
+          <image class="content_2_2_1" src="http://39.106.208.234/pic/img_/haoyou.png" />
           <view class="content_2_2_2">好友</view>
         </view>
       </view>
       <!-- 合作信息 -->
-      <view class="content_3">
+      <view class="content_3" v-if="otherRelease.length > 0">
         <view class="content_3_1">
           <view class="content_3_1_1">合作信息</view>
           <view class="content_3_1_2" @click="goMoreItems">
             <view class="content_3_1_2_1">查看更多</view>
-            <image
-              class="content_3_1_2_2"
-              src="http://39.106.208.234/pic/img_/jinr.png"
-            />
+            <image class="content_3_1_2_2" src="http://39.106.208.234/pic/img_/jinr.png" />
           </view>
         </view>
         <ProjectC :data="otherRelease.slice(0, 3)" />
       </view>
       <!-- 猜你还想认识 -->
       <view class="content_4">
-        <view class="content_4_1">猜你还想认识</view
-        ><Contacts :data="recommend" />
+        <view class="content_4_1">猜你还想认识</view>
+        <Contacts :data="recommend" />
       </view>
     </view>
   </view>

@@ -9,11 +9,11 @@ export default {
   data() {
     return {
       // 路由
-      route: ''
-    }
+      route: "",
+    };
   },
   onLoad(op) {
-    this.route = `http://192.168.55.52:8081/${op.id}`
+    this.route = `http://activity.channel.bdhuoke.com/${op.id}?userId=${op.userId}`;
   },
 };
 </script>

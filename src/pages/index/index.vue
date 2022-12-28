@@ -462,15 +462,17 @@ export default {
     },
     // 弹窗点击事件
     modalClick() {
+      // 是否登录
+      if (!uni.getStorageSync("token")) return (this.loginModal.show = true);
       // 跳转
       uni.navigateTo({
-        url: this.hm1.url,
+        url: `${this.hm1.url}&userId=${this._userInfo.id}`,
       });
     },
     // 下载APP
     downloadApp() {
       var downloadTask = uni.downloadFile({
-        url: "http://dw.channel.bdhuoke.com/huoke_LY.apk",
+        url: "http://dw.channel.bdhuoke.com/huoke.apk",
         success: (res) => {
           uni.openDocument({ filePath: res.tempFilePath });
         },

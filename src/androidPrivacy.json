@@ -19,7 +19,7 @@
         "showAlways": false
     },
     "styles": {
-        "backgroundColor": "#1f73f1",
+        "backgroundColor": "#fff",
         "borderRadius": "5px",
         "title": {
             "color": "#1f73f1"

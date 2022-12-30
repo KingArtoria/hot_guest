@@ -42,7 +42,7 @@ export default {
     // 声明全局版本号变量
     Vue.prototype._version = "5.0.0";
     // 声明全局来源
-    Vue.prototype._source = "小米";
+    Vue.prototype._source = "oppo";
     // 声明全局类型
     Vue.prototype._type = "and";
     // 声明头像资源路径

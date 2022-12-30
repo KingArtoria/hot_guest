@@ -170,6 +170,17 @@
       color: #6e6e6e;
       line-height: 1;
     }
+
+    .content_3_4 {
+      position: absolute;
+      right: 25rpx;
+      bottom: 20rpx;
+      font-size: 24rpx;
+      font-family: PingFang SC;
+      font-weight: 400;
+      text-decoration: line-through;
+      color: #AD4020;
+    }
   }
 
   .content_4 {
@@ -211,6 +222,13 @@
         }
       }
 
+      .content_4_2_3 {
+        font-size: 32rpx;
+        font-family: PingFang SC;
+        font-weight: bold;
+        color: #FD3432;
+      }
+
       .content_4_2_2 {
         width: 36rpx;
         height: 36rpx;
@@ -241,6 +259,7 @@
       font-weight: 500;
       color: #ffffff;
       margin-bottom: 15rpx;
+      margin-top: 20rpx;
     }
 
     .content_4_5 {

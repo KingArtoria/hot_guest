@@ -61,7 +61,7 @@ export const MEMBER_CARD = [
     url: "http://39.106.208.234/pic/img_/huiyuan_kpthy.png",
     tagText: "超值优惠",
     name: "12个月普通会员",
-    info: "每月送道具卡(置顶卡*1、变色卡*1)",
+    info: "送道具卡(置顶卡*1、变色卡*1)",
     price: 998
   },
   {
@@ -72,7 +72,7 @@ export const MEMBER_CARD = [
     url: "http://39.106.208.234/pic/img_/huiyuan_kchaojhuiy.png",
     tagText: "本站力推",
     name: "12个月超级会员",
-    info: "每月送道具卡(置顶卡*1、变色卡*1、超级置顶卡*1)",
+    info: "送道具卡(置顶卡*1、变色卡*1、超级置顶卡*1)",
     price: 1998
   },
   {
@@ -83,7 +83,7 @@ export const MEMBER_CARD = [
     url: "http://39.106.208.234/pic/img_/huiyuan_kqyhyuan.png",
     tagText: "企业专享",
     name: "12个月企业会员",
-    info: "每月送道具卡(置顶卡*1、变色卡*1、超级置顶卡*1)",
+    info: "送道具卡(置顶卡*1、变色卡*1、超级置顶卡*1)",
     price: 3998
   },
 ]

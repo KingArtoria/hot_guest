@@ -73,15 +73,34 @@
         <view class="content_3_2">
           <view class="content_3_2_1">{{ memberCard.name }}</view>
           <view class="content_3_2_2">
-            <view class="content_3_2_2_1">{{ memberCard.price }}</view>
+            <view class="content_3_2_2_1" v-if="!memberCard.discount > 0">{{
+              memberCard.price
+            }}</view>
+            <view class="content_3_2_2_1" v-if="memberCard.discount > 0">{{
+              memberCard.price - memberCard.discount
+            }}</view>
             <view class="content_3_2_2_2">元</view>
           </view>
         </view>
         <view class="content_3_3">{{ memberCard.info }}</view>
+        <!-- 原价 -->
+        <view class="content_3_4" v-if="memberCard.discount > 0">
+          原价：{{ memberCard.price }}元
+        </view>
       </view>
       <!-- 支付方式 -->
       <view class="content_4">
         <view class="content_4_1" v-if="_type == 'and'">选择支付方式</view>
+        <view class="content_4_2" @click="payType = 1" v-if="_type == 'and'">
+          <view class="content_4_2_1">
+            <image
+              class="content_4_2_1_1"
+              src="http://39.106.208.234/pic/img_/zk.png"
+            />
+            <view class="content_4_2_1_2">抵用券</view>
+          </view>
+          <view class="content_4_2_3">-￥{{memberCard.discount}}</view>
+        </view>
         <view class="content_4_2" @click="payType = 1" v-if="_type == 'and'">
           <view class="content_4_2_1">
             <image

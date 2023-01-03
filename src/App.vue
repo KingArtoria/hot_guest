@@ -42,7 +42,7 @@ export default {
     // 声明全局版本号变量
     Vue.prototype._version = "5.0.3";
     // 声明全局来源
-    Vue.prototype._source = "oppo";
+    Vue.prototype._source = "直推";
     // 声明全局类型
     Vue.prototype._type = "and";
     // 声明头像资源路径

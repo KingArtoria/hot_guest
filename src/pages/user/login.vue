@@ -2,17 +2,31 @@
   <view>
     <view class="content">
       <!-- 关闭按钮 -->
-      <image class="content_1" src="http://39.106.208.234/pic/img_/close_dl.png" @click="back" />
+      <image
+        class="content_1"
+        src="http://39.106.208.234/pic/img_/close_dl.png"
+        @click="back"
+      />
       <!-- 微信登录 -->
-      <view class="content_2" v-show="currentLogin.type == 1">
+      <view
+        class="content_2"
+        v-show="currentLogin.type == 1"
+        v-if="_hotUpdate != 1"
+      >
         <!-- logo -->
-        <image class="content_2_1" src="http://39.106.208.234/pic/img_/logo.png" />
+        <image
+          class="content_2_1"
+          src="http://39.106.208.234/pic/img_/logo.png"
+        />
         <!-- 小标题 -->
         <view class="content_2_2">找资源更容易</view>
         <!-- 微信登录按钮 -->
         <view class="content_2_3" @click="wechatLogin">
           <!-- 微信登录图标 -->
-          <image class="content_2_3_1" src="http://39.106.208.234/pic/img_/wechat2.png" />
+          <image
+            class="content_2_3_1"
+            src="http://39.106.208.234/pic/img_/wechat2.png"
+          />
           <!-- 登录文案 -->
           <text>微信一键登录</text>
         </view>
@@ -20,10 +34,16 @@
       <!-- 手机号登录 -->
       <view class="content_4" v-show="currentLogin.type != 1">
         <!-- 标题 -->
-        <view class="content_4_1" v-show="currentLogin.type == 2 && openid == ''">
+        <view
+          class="content_4_1"
+          v-show="currentLogin.type == 2 && openid == ''"
+        >
           手机号码登录
         </view>
-        <view class="content_4_1" v-show="currentLogin.type == 2 && openid != ''">
+        <view
+          class="content_4_1"
+          v-show="currentLogin.type == 2 && openid != ''"
+        >
           绑定手机号
         </view>
         <view class="content_4_1" v-show="currentLogin.type == 3">
@@ -37,24 +57,51 @@
           <!-- 手机号盒子 -->
           <view class="content_4_2_1">
             <!-- 表单icon -->
-            <image class="content_4_2_1_1" src="http://39.106.208.234/pic/img_/shouji2.png" />
+            <image
+              class="content_4_2_1_1"
+              src="http://39.106.208.234/pic/img_/shouji2.png"
+            />
             <!-- 分割线 -->
             <view class="content_4_2_1_2" />
             <!-- 手机号 -->
-            <u-input placeholder="请输入手机号" clearable border="none" fontSize="28rpx" v-model="phone" />
+            <u-input
+              placeholder="请输入手机号"
+              clearable
+              border="none"
+              fontSize="28rpx"
+              v-model="phone"
+            />
           </view>
           <!-- 验证码盒子 -->
           <view class="content_4_2_1" v-show="currentLogin.type != 3">
             <!-- 表单icon -->
-            <image class="content_4_2_1_1" src="http://39.106.208.234/pic/img_/fangyu.png" />
+            <image
+              class="content_4_2_1_1"
+              src="http://39.106.208.234/pic/img_/fangyu.png"
+            />
             <!-- 分割线 -->
             <view class="content_4_2_1_2" />
             <!-- 验证码 -->
             <view>
-              <u-input placeholder="请输入验证码" clearable border="none" fontSize="28rpx" v-model="code">
+              <u-input
+                placeholder="请输入验证码"
+                clearable
+                border="none"
+                fontSize="28rpx"
+                v-model="code"
+              >
                 <template slot="suffix">
-                  <u-code ref="uCode" @change="codeChange" seconds="60" changeText="X秒重新获取" />
-                  <u--text type="primary" @tap="getVerificationCode" :text="tips" />
+                  <u-code
+                    ref="uCode"
+                    @change="codeChange"
+                    seconds="60"
+                    changeText="X秒重新获取"
+                  />
+                  <u--text
+                    type="primary"
+                    @tap="getVerificationCode"
+                    :text="tips"
+                  />
                 </template>
               </u-input>
             </view>
@@ -62,34 +109,73 @@
           <!-- 密码盒子 -->
           <view class="content_4_2_1" v-show="currentLogin.type != 2">
             <!-- 表单icon -->
-            <image class="content_4_2_1_1" src="http://39.106.208.234/pic/img_/mima.png" />
+            <image
+              class="content_4_2_1_1"
+              src="http://39.106.208.234/pic/img_/mima.png"
+            />
             <!-- 分割线 -->
             <view class="content_4_2_1_2" />
             <!-- 密码 -->
-            <u-input placeholder="请输入密码" password clearable border="none" fontSize="28rpx" v-model="pass" />
+            <u-input
+              placeholder="请输入密码"
+              password
+              clearable
+              border="none"
+              fontSize="28rpx"
+              v-model="pass"
+            />
           </view>
           <!-- 确认密码盒子-->
           <view class="content_4_2_1" v-show="currentLogin.type == 4">
             <!-- 表单icon -->
-            <image class="content_4_2_1_1" src="http://39.106.208.234/pic/img_/mima.png" />
+            <image
+              class="content_4_2_1_1"
+              src="http://39.106.208.234/pic/img_/mima.png"
+            />
             <!-- 分割线 -->
             <view class="content_4_2_1_2" />
             <!-- 手机号 -->
-            <u-input placeholder="请确认密码" clearable border="none" fontSize="28rpx" password v-model="againpass" />
+            <u-input
+              placeholder="请确认密码"
+              clearable
+              border="none"
+              fontSize="28rpx"
+              password
+              v-model="againpass"
+            />
           </view>
           <!-- 邀请码盒子 -->
           <view class="content_4_2_1" v-show="currentLogin.type == 4">
             <!-- 表单icon -->
-            <image class="content_4_2_1_1" src="http://39.106.208.234/pic/img_/mima.png" />
+            <image
+              class="content_4_2_1_1"
+              src="http://39.106.208.234/pic/img_/mima.png"
+            />
             <!-- 分割线 -->
             <view class="content_4_2_1_2" />
             <!-- 手机号 -->
-            <u-input placeholder="请输入邀请码" clearable border="none" fontSize="28rpx" v-model="Invitation_code" />
+            <u-input
+              placeholder="请输入邀请码"
+              clearable
+              border="none"
+              fontSize="28rpx"
+              v-model="Invitation_code"
+            />
           </view>
           <!-- 登录按钮 -->
-          <view class="content_4_2_2" v-show="currentLogin.type != 4" @click="loginFn">登录</view>
+          <view
+            class="content_4_2_2"
+            v-show="currentLogin.type != 4"
+            @click="loginFn"
+            >登录</view
+          >
           <!-- 注册按钮 -->
-          <view class="content_4_2_2" v-show="currentLogin.type == 4" @click="register">注册</view>
+          <view
+            class="content_4_2_2"
+            v-show="currentLogin.type == 4"
+            @click="register"
+            >注册</view
+          >
         </view>
       </view>
       <!-- 其他登录选项 -->
@@ -99,12 +185,25 @@
         <!-- 登录选项 -->
         <view class="content_3_2">
           <!-- 选项盒子 -->
-          <view class="content_3_2_1" v-for="(item, index) in loginOptions" :key="index" @click="changeLogin(item)"
-            :style="index == 1 ? 'margin:0 97rpx' : 'margin:0'">
+          <view
+            class="content_3_2_1"
+            v-for="(item, index) in loginOptions"
+            :key="index"
+            @click="changeLogin(item)"
+            :style="index == 1 ? 'margin:0 97rpx' : 'margin:0'"
+          >
             <!-- 图标 -->
-            <image class="content_3_2_1_1" :src="item.icon" />
+            <image
+              class="content_3_2_1_1"
+              :src="item.icon"
+              v-if="item.name != '微信登录' || _hotUpdate != 1"
+            />
             <!-- 文案 -->
-            <view class="content_3_2_1_2">{{ item.name }}</view>
+            <view
+              class="content_3_2_1_2"
+              v-if="item.name != '微信登录' || _hotUpdate != 1"
+              >{{ item.name }}</view
+            >
           </view>
         </view>
       </view>
@@ -195,6 +294,11 @@ export default {
       let _this = this;
       uni.login({
         provider: "univerify",
+        univerifyStyle: {
+          privacyTerms: {
+            defaultCheckBoxState: false, // 条款勾选框初始状态 默认值： true
+          },
+        },
         success(loginRes) {
           let e = loginRes.authResult;
           uniCloud.callFunction({

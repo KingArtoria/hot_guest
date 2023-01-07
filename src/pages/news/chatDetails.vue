@@ -24,6 +24,16 @@
           src="http://39.106.208.234/pic/img_/jinr.png"
         />
       </view>
+      <!-- 举报 -->
+      <view class="content_1" @click="goReport">
+        <!-- 左盒子 -->
+        <view class="content_1_1">举报</view>
+        <!-- 右盒子 -->
+        <image
+          class="content_1_2"
+          src="http://39.106.208.234/pic/img_/jinr.png"
+        />
+      </view>
       <!-- 删除好友 -->
       <view class="content_2" @click="delFriendModal.show = true"
         >删除好友</view
@@ -139,6 +149,13 @@ export default {
         showToast("修改成功");
         // 关闭遮罩
         this.bottomPopupShow = false;
+      });
+    },
+    // 前往举报
+    goReport() {
+      // 路由跳转
+      uni.navigateTo({
+        url: `/pages/news/report?id=${this.op.id}`,
       });
     },
   },

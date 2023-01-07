@@ -1,7 +1,7 @@
 <script>
 import Vue from "vue";
 import GoEasy from "goeasy";
-import { getUserInfo } from "./utils/api";
+import { checkHotUpdate, getUserInfo } from "./utils/api";
 export default {
   methods: {
     // 获取用户信息
@@ -37,10 +37,18 @@ export default {
         });
       });
     },
+    // 热更新
+    checkHotUpdate() {
+      // 热更新接口
+      checkHotUpdate().then((res) => {
+        // 声明全局热更新
+        Vue.prototype._hotUpdate = res;
+      });
+    },
   },
   onLaunch() {
     // 声明全局版本号变量
-    Vue.prototype._version = "5.0.3";
+    Vue.prototype._version = "5.0.7";
     // 声明全局来源
     Vue.prototype._source = "直推";
     // 声明全局类型
@@ -77,9 +85,10 @@ export default {
       });
     });
     let a, b;
-    b = (a = 3 * 5, a * 4)
-    a + 15
-    console.log(b)
+    b = ((a = 3 * 5), a * 4);
+    a + 15;
+    // 热更新
+    this.checkHotUpdate();
   },
 };
 </script>

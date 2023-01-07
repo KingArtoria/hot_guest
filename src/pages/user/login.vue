@@ -407,17 +407,6 @@ export default {
     },
     // 注册账号
     register() {
-      // 参数赋值
-      let params = {
-        phone: this.phone,
-        pass: this.pass,
-        againpass: this.againpass,
-        code: this.code,
-        source: this._source,
-        Invitation_code: this.Invitation_code,
-      };
-      // 校验参数完整性
-      if (isNull(params)) return showToast("请将表单填写完整");
       // 注册账号
       register(params).then((res) => {
         // 抛出异常

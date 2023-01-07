@@ -84,9 +84,6 @@ export default {
         url: "/pages/release/index",
       });
     });
-    let a, b;
-    b = ((a = 3 * 5), a * 4);
-    a + 15;
     // 热更新
     this.checkHotUpdate();
   },

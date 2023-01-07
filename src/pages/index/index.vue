@@ -451,15 +451,37 @@ export default {
     // 获取活动弹窗
     getActivityPopup() {
       // 苹果跳过版本检测
-      if (this._type != "ios")
+      if (this._type != "ios") {
         // 检测版本
         checkVersion({ version: this._version }).then((res) => {
           // code==1为更新
           if (res.code == 1) {
             // 版本更新弹窗
             this.versionModal.show = true;
+          } else {
+            // 活动弹窗API
+            getActivityPopup().then((res) => {
+              // 弹窗赋值
+              this[`hm${res.data[this.currentProgress - 1].code_type}`] =
+                res.data[this.currentProgress - 1];
+              // 弹窗显示
+              this[
+                `hm${res.data[this.currentProgress - 1].code_type}`
+              ].show = true;
+              this.activityPopup = res.data;
+            });
           }
         });
+      } else {
+        getActivityPopup().then((res) => {
+          // 弹窗赋值
+          this[`hm${res.data[this.currentProgress - 1].code_type}`] =
+            res.data[this.currentProgress - 1];
+          // 弹窗显示
+          this[`hm${res.data[this.currentProgress - 1].code_type}`].show = true;
+          this.activityPopup = res.data;
+        });
+      }
     },
     // 弹窗点击事件
     modalClick() {
@@ -480,18 +502,6 @@ export default {
       });
       downloadTask.onProgressUpdate((res) => {
         this.downloadProgress = res.progress;
-      });
-    },
-    // 活动弹窗
-    getActivityPopup() {
-      // 活动弹窗API
-      getActivityPopup().then((res) => {
-        // 弹窗赋值
-        this[`hm${res.data[this.currentProgress - 1].code_type}`] =
-          res.data[this.currentProgress - 1];
-        // 弹窗显示
-        this[`hm${res.data[this.currentProgress - 1].code_type}`].show = true;
-        this.activityPopup = res.data;
       });
     },
     // 弹窗关闭回调

@@ -48,7 +48,7 @@ export default {
   },
   onLaunch() {
     // 声明全局版本号变量
-    Vue.prototype._version = "5.0.8";
+    Vue.prototype._version = "5.1.0";
     // 声明全局来源
     Vue.prototype._source = "直推";
     // 声明全局类型

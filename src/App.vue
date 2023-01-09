@@ -48,7 +48,7 @@ export default {
   },
   onLaunch() {
     // 声明全局版本号变量
-    Vue.prototype._version = "5.1.0";
+    Vue.prototype._version = "5.1.1";
     // 声明全局来源
     Vue.prototype._source = "ios";
     // 声明全局类型

@@ -91,7 +91,10 @@
       <!-- 支付方式 -->
       <view class="content_4">
         <view class="content_4_1" v-if="_type == 'and'">选择支付方式</view>
-        <view class="content_4_2" @click="payType = 1" v-if="_type == 'and'">
+        <view
+          class="content_4_2"
+          v-if="_type == 'and' && memberCard.discount > 0"
+        >
           <view class="content_4_2_1">
             <image
               class="content_4_2_1_1"
@@ -99,7 +102,7 @@
             />
             <view class="content_4_2_1_2">抵用券</view>
           </view>
-          <view class="content_4_2_3">-￥{{memberCard.discount}}</view>
+          <view class="content_4_2_3">-￥{{ memberCard.discount }}</view>
         </view>
         <view class="content_4_2" @click="payType = 1" v-if="_type == 'and'">
           <view class="content_4_2_1">
@@ -120,7 +123,7 @@
             v-show="payType == 0"
           />
         </view>
-        <view class="content_4_2" @click="payType = 0" v-if="_type == 'and'">
+        <!-- <view class="content_4_2" @click="payType = 0" v-if="_type == 'and'">
           <view class="content_4_2_1">
             <image
               class="content_4_2_1_1"
@@ -138,7 +141,7 @@
             src="http://39.106.208.234/pic/img_/wx_kong.png"
             v-show="payType == 1"
           />
-        </view>
+        </view> -->
         <view class="content_4_3" v-if="_type == 'ios'"
           >到期后自动续费，可随时取消</view
         >

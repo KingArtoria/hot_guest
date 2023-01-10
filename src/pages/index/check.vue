@@ -5,7 +5,7 @@
       <!-- 签到信息 -->
       <view class="content_1">
         <!-- <view class="content_1_1">签到规则</view> -->
-        <view class="content_1_2">2022年已连续签到</view>
+        <view class="content_1_2">2023年已连续签到</view>
         <view class="content_1_3">
           <view class="content_1_3_1">
             <view
@@ -40,7 +40,7 @@
             >
             <view
               class="content_2_1_1_4"
-              v-if="index == 6 && signInfo.dayslog != 7"
+              v-if="index == 6 && signInfo.dayslog < 7"
             >
               <image
                 class="content_2_1_1_4_1"

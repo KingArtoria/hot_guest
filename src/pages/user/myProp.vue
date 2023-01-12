@@ -99,6 +99,11 @@ export default {
   onLoad() {
     // 我的道具
     this.getMyProps();
+    // 创建监听
+    uni.$on("myProp", () => {
+      // 我的道具
+      this.getMyProps();
+    });
   },
   components: { Head, Props },
 };

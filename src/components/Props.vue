@@ -88,6 +88,13 @@ export default {
           uni.navigateTo({
             url: `/pages/user/useProps?coupons=${coupons}`,
           });
+        } else {
+          // 抛出异常
+          if (res.code != 1) return showToast(res.msg);
+          // 使用成功
+          showToast("使用成功");
+          // 刷新页面
+          uni.$emit("myProp");
         }
       });
     },
@@ -100,7 +107,7 @@ export default {
         // 兑换成功
         showToast("兑换成功");
         // 刷新页面
-        this.$emit("refresh");
+        uni.$emit("myProp");
       });
     },
     // 微信支付

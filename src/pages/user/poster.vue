@@ -16,6 +16,7 @@
 import Head from "../../components/Head";
 import { base64ToPath } from "image-tools";
 import { generateCode } from "../../utils/api";
+import { showToast } from "../../utils";
 export default {
   data() {
     return {
@@ -44,11 +45,12 @@ export default {
     },
     // 保存海报
     handleResult(dataUrl) {
-      console.log(dataUrl);
+      uni.showLoading({ title: "加载中" });
       base64ToPath(dataUrl).then((res) => {
         uni.saveImageToPhotosAlbum({
           filePath: res,
           success: (res) => {
+            uni.hideLoading();
             showToast("保存成功,前往系统相册查看");
           },
         });
@@ -75,8 +77,9 @@ import html2canvas from "html2canvas";
       // 保存海报
       savePoster() {
         this.$nextTick(() => {
+          // 获取元素宽高
           let el = document.getElementById('content')
-          html2canvas(el).then(canvas => {
+          html2canvas(el,{scale: window.devicePixelRatio,dpi: 700}).then(canvas => {
             const dataUrl = canvas.toDataURL('images/png');
             this.$ownerInstance.callMethod('handleResult', dataUrl)
           });

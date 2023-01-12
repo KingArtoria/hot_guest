@@ -685,3 +685,21 @@ export const applyProjectCooperation = data => {
     data
   });
 }
+// ? 钱包余额
+export const getWalletBalance = data => {
+  return request({
+    method: 'post',
+    url: '/member/wallet',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}
+// ? 生成二维码
+export const generateCode = data => {
+  return request({
+    method: 'post',
+    url: '/other/qrcode',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

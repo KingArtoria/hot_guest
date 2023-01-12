@@ -50,9 +50,9 @@ export default {
     // 声明全局版本号变量
     Vue.prototype._version = "5.1.1";
     // 声明全局来源
-    Vue.prototype._source = "华为";
+    Vue.prototype._source = "ios";
     // 声明全局类型
-    Vue.prototype._type = "and";
+    Vue.prototype._type = "ios";
     // 声明头像资源路径
     Vue.prototype._avatarUrl = "https://admin.bdhuoke.com";
     // 接口地址

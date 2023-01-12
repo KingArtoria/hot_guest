@@ -72,6 +72,8 @@
     "core-js": "^3.6.5",
     "flyio": "^0.6.14",
     "goeasy": "^2.5.11",
+    "html2canvas": "^1.4.1",
+    "image-tools": "^1.4.0",
     "qs": "^6.11.0",
     "regenerator-runtime": "^0.12.1",
     "uview-ui": "^2.0.31",

@@ -5,7 +5,7 @@
       <!-- 签到信息 -->
       <view class="content_1">
         <!-- <view class="content_1_1">签到规则</view> -->
-        <view class="content_1_2">2023年已连续签到</view>
+        <view class="content_1_2">{{ year }}年已连续签到</view>
         <view class="content_1_3">
           <view class="content_1_3_1">
             <view
@@ -93,6 +93,8 @@ export default {
       signInfo: {},
       // 兑换列表
       exchangeList: [],
+      // 年
+      year: "",
     };
   },
   methods: {
@@ -158,6 +160,8 @@ export default {
     this.getSignInfo();
     // 兑换列表
     this.getExchangeList();
+    // 获取今年年份
+    this.year = new Date().getFullYear();
   },
   components: { Head, Props },
 };

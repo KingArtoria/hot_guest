@@ -115,13 +115,13 @@
       <!-- 浏览人数 -->
       <view class="content_6">
         <!-- 标题 -->
-        <Title :title="`浏览人数(${projectDetail.visitors.length})`"></Title>
+        <Title :title="`浏览人数(${projectDetail.viewcount})`"></Title>
         <!-- 列表 -->
         <view class="content_6_1">
           <!-- 信息 -->
           <view
             class="content_6_1_1"
-            v-for="(item, index) in projectDetail.visitors.slice(0, 3)"
+            v-for="(item, index) in projectDetail.visitors"
             :key="index"
             @click="goPersonal(item.member_id)"
           >
@@ -147,10 +147,11 @@
         <!-- 查看更多 -->
         <view
           class="content_6_2"
-          v-show="projectDetail.visitors.length > 3"
+          v-show="projectDetail.viewcount > 3"
           @click="getMoreView"
-          >查看更多</view
         >
+          查看更多
+        </view>
       </view>
       <!-- 评论 -->
       <view class="content_7" v-if="projectDetail.comment.length > 0">
@@ -387,7 +388,7 @@ export default {
     // 获取项目详情
     getProjectDetail(op) {
       // 项目详情API
-      getProjectDetail({ fid: op.id }).then((res) => {
+      getProjectDetail({ fid: op.id, version: 5.1 }).then((res) => {
         // 时间删除后3位
         res.data.addtime = res.data.addtime.slice(0, -3);
         // 头像格式化
@@ -569,8 +570,6 @@ export default {
             this.title = item.name;
           }
         });
-        // 保存全部浏览人数
-        uni.setStorageSync("visitors", res.data.visitors);
         // 接口渲染完成
         this.isRender = true;
       });
@@ -702,7 +701,7 @@ export default {
         return;
       }
       uni.navigateTo({
-        url: "/pages/index/browse",
+        url: `/pages/index/browse?fid=${this.op.id}&count=${this.projectDetail.viewcount}`,
       });
     },
     // 前往购买会员

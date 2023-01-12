@@ -703,3 +703,12 @@ export const generateCode = data => {
     data
   });
 }
+// ? 查看更多浏览人数
+export const getMoreView = data => {
+  return request({
+    method: 'post',
+    url: '/comprehensive/get_visitors',
+    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data
+  });
+}

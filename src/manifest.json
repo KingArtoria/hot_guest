@@ -19,7 +19,8 @@
             "Payment" : {},
             "Push" : {},
             "Share" : {},
-            "Contacts" : {}
+            "Contacts" : {},
+            "Camera" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -73,10 +74,10 @@
                         "appid" : "wx33a2c06760654c1e",
                         "UniversalLinks" : "https://static-64ab6986-ef6b-4857-8114-2fa15505310b.bspapp.com/uni-universallinks/__UNI__81DA490"
                     },
+                    "appleiap" : {},
                     "alipay" : {
                         "__platform__" : [ "android" ]
-                    },
-                    "appleiap" : {}
+                    }
                 },
                 "push" : {
                     "unipush" : null
